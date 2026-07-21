@@ -71,6 +71,20 @@ def test_valid_color_loads(write_file):
     assert catalog.get("g1").resolve("opt_a").color == "#c99b6f"
 
 
+def test_refuses_non_string_thumb(write_file):
+    d = write_file(
+        "00.json", _file_with_options([{"id": "opt_a", "label": "A", "thumb": 3}])
+    )
+    refuse(d, E.BAD_KEY_TYPE)
+
+
+def test_refuses_non_list_option_tags(write_file):
+    d = write_file(
+        "00.json", _file_with_options([{"id": "opt_a", "label": "A", "tags": "furry"}])
+    )
+    refuse(d, E.BAD_KEY_TYPE)
+
+
 def test_refuses_non_string_image_text(write_file):
     d = write_file(
         "00.json", _file_with_options([{"id": "opt_a", "label": "A", "image_text": 1}])

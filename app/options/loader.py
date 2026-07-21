@@ -534,6 +534,10 @@ def _read_file(path: Path) -> dict:
     try:
         # utf-8-sig transparently strips a BOM (§3: BOM tolerated).
         text = path.read_text(encoding="utf-8-sig")
+    except UnicodeDecodeError as exc:
+        raise _err(
+            file, E.BAD_ENCODING, None, f"file is not UTF-8 (§3): {exc}"
+        ) from exc
     except OSError as exc:
         raise _err(file, E.UNREADABLE_FILE, None, f"cannot read file: {exc}") from exc
     try:

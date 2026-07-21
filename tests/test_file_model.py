@@ -92,3 +92,14 @@ def test_refuses_file_not_an_object(tmp_path):
 def test_refuses_invalid_json(tmp_path):
     (tmp_path / "00_bad.json").write_text("{not json", encoding="utf-8")
     refuse(tmp_path, E.INVALID_JSON)
+
+
+def test_refuses_non_utf8_file(tmp_path):
+    # §3: files are UTF-8 (BOM tolerated) — anything else is a format error,
+    # not a raw crash.
+    (tmp_path / "00_bad.json").write_bytes(
+        json.dumps(minimal_file(), ensure_ascii=False).replace("G1", "Gé").encode(
+            "latin-1"
+        )
+    )
+    refuse(tmp_path, E.BAD_ENCODING)

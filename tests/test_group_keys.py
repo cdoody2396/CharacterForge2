@@ -168,6 +168,23 @@ def test_free_text_slots_load_with_both_homes(write_file):
     assert catalog.errors == []
 
 
+def test_refuses_non_numeric_order(write_file):
+    refuse(write_file("00.json", _file_with(group(order="10"))), E.BAD_KEY_TYPE)
+
+
+def test_refuses_non_list_group_tags(write_file):
+    refuse(write_file("00.json", _file_with(group(tags="mammal"))), E.BAD_KEY_TYPE)
+
+
+def test_refuses_non_integer_max_picks(write_file):
+    g = group(kind="pick_many", max_picks="3")
+    refuse(write_file("00.json", _file_with(g)), E.BAD_MAX_PICKS)
+
+
+def test_refuses_non_string_hint(write_file):
+    refuse(write_file("00.json", _file_with(group(hint=5))), E.BAD_KEY_TYPE)
+
+
 def test_group_tags_and_hints_load(write_file):
     g = group(tags=["mammal"], hint="help text", section="Body", order=10)
     catalog = load_strict(write_file("00.json", _file_with(g)))

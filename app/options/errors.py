@@ -22,6 +22,7 @@ from dataclasses import dataclass
 # --- per-file format error codes -------------------------------------------
 NOT_AN_OBJECT = "NOT_AN_OBJECT"
 INVALID_JSON = "INVALID_JSON"
+BAD_ENCODING = "BAD_ENCODING"
 UNREADABLE_FILE = "UNREADABLE_FILE"
 UNKNOWN_KEY = "UNKNOWN_KEY"
 MISSING_KEY = "MISSING_KEY"

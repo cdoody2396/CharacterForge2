@@ -62,6 +62,8 @@ def load_age_bands(path: Path | str) -> tuple[AgeBand, ...]:
 
     try:
         text = path.read_text(encoding="utf-8-sig")  # BOM tolerated
+    except UnicodeDecodeError as exc:
+        raise err(E.BAD_ENCODING, f"file is not UTF-8: {exc}") from exc
     except OSError as exc:
         raise err(E.BAND_FILE_MISSING, f"cannot read file: {exc}") from exc
     try:
