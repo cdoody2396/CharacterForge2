@@ -1,0 +1,44 @@
+{
+  "format": 1,
+  "rating": "explicit",
+  "groups": [
+    {
+      "id": "outfit",
+      "_note": "Gated extension fragment (V2 flag 7 / B56 wardrobe_intimate): appends intimate options to the bundled 'outfit' group. Options only - no scalar overrides (gated files load after every ungated directory). Structurally absent when content.gate_open is false. 5.7 UI pass: class 'intimate' buckets these under their own grouped-picker subsection.",
+      "options": [
+        {
+          "id": "lingerie",
+          "label": "Lingerie",
+          "image_text": "lingerie",
+          "tags": [
+            "intimate"
+          ]
+        },
+        {
+          "id": "boudoir_set",
+          "label": "Boudoir Set",
+          "image_text": "boudoir lingerie set",
+          "tags": [
+            "intimate"
+          ]
+        },
+        {
+          "id": "towel_only",
+          "label": "Towel Only",
+          "image_text": "towel wrap",
+          "tags": [
+            "intimate"
+          ]
+        },
+        {
+          "id": "nude",
+          "label": "Nude",
+          "image_text": "nude",
+          "tags": [
+            "intimate"
+          ]
+        }
+      ]
+    }
+  ]
+}

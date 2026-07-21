@@ -1,0 +1,1282 @@
+{
+  "format": 1,
+  "rating": "standard",
+  "groups": [
+    {
+      "id": "ears",
+      "label": "Ears",
+      "kind": "pick_one",
+      "home": "identity",
+      "priority": "should",
+      "section": "Species Features",
+      "order": 50,
+      "hint": "Renders for any race - mix freely.",
+      "options": [
+        {
+          "id": "human",
+          "label": "Human",
+          "image_text": ""
+        },
+        {
+          "id": "pointed_short",
+          "label": "Pointed (Short)",
+          "image_text": "short pointed ears"
+        },
+        {
+          "id": "pointed_long",
+          "label": "Pointed (Long)",
+          "image_text": "long pointed ears"
+        },
+        {
+          "id": "feline",
+          "label": "Feline",
+          "image_text": "cat ears"
+        },
+        {
+          "id": "canine",
+          "label": "Canine",
+          "image_text": "dog ears"
+        },
+        {
+          "id": "fox",
+          "label": "Fox",
+          "image_text": "fox ears"
+        },
+        {
+          "id": "rabbit_upright",
+          "label": "Rabbit (Upright)",
+          "image_text": "rabbit ears"
+        },
+        {
+          "id": "rabbit_lop",
+          "label": "Rabbit (Lop)",
+          "image_text": "lop rabbit ears"
+        },
+        {
+          "id": "deer",
+          "label": "Deer",
+          "image_text": "deer ears"
+        },
+        {
+          "id": "round_bear",
+          "label": "Round Bear",
+          "image_text": "bear ears"
+        },
+        {
+          "id": "mouse",
+          "label": "Mouse",
+          "image_text": "mouse ears"
+        },
+        {
+          "id": "bat",
+          "label": "Bat",
+          "image_text": "bat ears"
+        },
+        {
+          "id": "fin",
+          "label": "Fin",
+          "image_text": "fin ears"
+        },
+        {
+          "id": "mechanical",
+          "label": "Mechanical",
+          "image_text": "mechanical ears"
+        }
+      ]
+    },
+    {
+      "id": "horns",
+      "label": "Horns",
+      "kind": "pick_one",
+      "home": "identity",
+      "priority": "flavor",
+      "section": "Species Features",
+      "order": 51,
+      "hint": "Renders for any race - mix freely.",
+      "options": [
+        {
+          "id": "none",
+          "label": "None",
+          "image_text": ""
+        },
+        {
+          "id": "small_nubs",
+          "label": "Small Nubs",
+          "image_text": "small horn nubs"
+        },
+        {
+          "id": "curved_back",
+          "label": "Curved Back",
+          "image_text": "curved horns"
+        },
+        {
+          "id": "forward_curve",
+          "label": "Forward Curve",
+          "image_text": "forward-curving horns"
+        },
+        {
+          "id": "ram_curl",
+          "label": "Ram Curl",
+          "image_text": "ram horns"
+        },
+        {
+          "id": "antlers",
+          "label": "Antlers",
+          "image_text": "antlers"
+        },
+        {
+          "id": "single_oni_horn",
+          "label": "Single Oni Horn",
+          "image_text": "single oni horn"
+        },
+        {
+          "id": "spiral_pair",
+          "label": "Spiral Pair",
+          "image_text": "spiral horns"
+        },
+        {
+          "id": "demon_crown",
+          "label": "Demon Crown",
+          "image_text": "demon horns"
+        },
+        {
+          "id": "broken_horn",
+          "label": "Broken Horn",
+          "image_text": "broken horn"
+        },
+        {
+          "id": "crystal",
+          "label": "Crystal",
+          "image_text": "crystal horns"
+        }
+      ]
+    },
+    {
+      "id": "tail",
+      "label": "Tail",
+      "kind": "pick_one",
+      "home": "identity",
+      "priority": "should",
+      "section": "Species Features",
+      "order": 52,
+      "hint": "Renders for any race - mix freely.",
+      "options": [
+        {
+          "id": "none",
+          "label": "None",
+          "image_text": ""
+        },
+        {
+          "id": "feline",
+          "label": "Feline",
+          "image_text": "cat tail"
+        },
+        {
+          "id": "fox",
+          "label": "Fox",
+          "image_text": "fox tail"
+        },
+        {
+          "id": "kitsune_two",
+          "label": "Kitsune (Two-Tail)",
+          "image_text": "two fox tails"
+        },
+        {
+          "id": "kitsune_nine",
+          "label": "Kitsune (Nine-Tail)",
+          "image_text": "nine fox tails"
+        },
+        {
+          "id": "canine",
+          "label": "Canine",
+          "image_text": "dog tail"
+        },
+        {
+          "id": "fluffy_wolf",
+          "label": "Fluffy Wolf",
+          "image_text": "fluffy wolf tail"
+        },
+        {
+          "id": "rabbit_puff",
+          "label": "Rabbit Puff",
+          "image_text": "rabbit tail"
+        },
+        {
+          "id": "deer",
+          "label": "Deer",
+          "image_text": "deer tail"
+        },
+        {
+          "id": "cow",
+          "label": "Cow",
+          "image_text": "cow tail"
+        },
+        {
+          "id": "lizard",
+          "label": "Lizard",
+          "image_text": "lizard tail"
+        },
+        {
+          "id": "spiked_dragon",
+          "label": "Spiked Dragon",
+          "image_text": "spiked dragon tail"
+        },
+        {
+          "id": "spade_demon",
+          "label": "Spade Demon",
+          "image_text": "demon tail"
+        },
+        {
+          "id": "fish",
+          "label": "Fish",
+          "image_text": "fish tail"
+        },
+        {
+          "id": "mechanical",
+          "label": "Mechanical",
+          "image_text": "mechanical tail"
+        },
+        {
+          "id": "ghost_wisp",
+          "label": "Ghost Wisp",
+          "image_text": "wisp tail"
+        }
+      ]
+    },
+    {
+      "id": "wings",
+      "label": "Wings",
+      "kind": "pick_one",
+      "home": "identity",
+      "priority": "flavor",
+      "section": "Species Features",
+      "order": 53,
+      "hint": "Renders for any race - mix freely.",
+      "options": [
+        {
+          "id": "none",
+          "label": "None",
+          "image_text": ""
+        },
+        {
+          "id": "small_feathered",
+          "label": "Small Feathered",
+          "image_text": "small feathered wings"
+        },
+        {
+          "id": "large_feathered",
+          "label": "Large Feathered",
+          "image_text": "large feathered wings"
+        },
+        {
+          "id": "black_feathered",
+          "label": "Black Feathered",
+          "image_text": "black feathered wings"
+        },
+        {
+          "id": "bat",
+          "label": "Bat",
+          "image_text": "bat wings"
+        },
+        {
+          "id": "dragon",
+          "label": "Dragon",
+          "image_text": "dragon wings"
+        },
+        {
+          "id": "butterfly",
+          "label": "Butterfly",
+          "image_text": "butterfly wings"
+        },
+        {
+          "id": "dragonfly",
+          "label": "Dragonfly",
+          "image_text": "dragonfly wings"
+        },
+        {
+          "id": "fairy",
+          "label": "Fairy",
+          "image_text": "fairy wings"
+        },
+        {
+          "id": "mechanical",
+          "label": "Mechanical",
+          "image_text": "mechanical wings"
+        },
+        {
+          "id": "light_energy",
+          "label": "Light / Energy",
+          "image_text": "wings of light"
+        },
+        {
+          "id": "tattered",
+          "label": "Tattered",
+          "image_text": "tattered wings"
+        }
+      ]
+    },
+    {
+      "id": "fur_color",
+      "_note": "5.7: re-keyed from race class to the unified skin_type surface (fur_coverage retired - its coverage prompts live on the skin_type compounds). 5.7 UI pass (user decision 2026-07-18): narrowed to fur_over_skin - on full_fur the always-visible skin_tone relabels to Fur Tone and is the single tone pick.",
+      "label": "Fur Color",
+      "kind": "pick_one",
+      "home": "identity",
+      "priority": "should",
+      "visible_when": {
+        "group": "skin_type",
+        "in": [
+          "fur_over_skin"
+        ]
+      },
+      "section": "Species Features",
+      "order": 55,
+      "hint": "Color of the fur patches over skin. On Full Fur the tone slot in Appearance becomes Fur Tone and carries the color instead.",
+      "options": [
+        {
+          "id": "white",
+          "label": "White",
+          "image_text": "white fur",
+          "color": "#f2f2f2"
+        },
+        {
+          "id": "cream",
+          "label": "Cream",
+          "image_text": "cream fur",
+          "color": "#f0e3c8"
+        },
+        {
+          "id": "tawny",
+          "label": "Tawny",
+          "image_text": "tawny fur",
+          "color": "#c9a05e"
+        },
+        {
+          "id": "ginger",
+          "label": "Ginger",
+          "image_text": "ginger fur",
+          "color": "#c96f34"
+        },
+        {
+          "id": "russet",
+          "label": "Russet",
+          "image_text": "russet fur",
+          "color": "#9e4f26"
+        },
+        {
+          "id": "brown",
+          "label": "Brown",
+          "image_text": "brown fur",
+          "color": "#6e4a2e"
+        },
+        {
+          "id": "dark_brown",
+          "label": "Dark Brown",
+          "image_text": "dark brown fur",
+          "color": "#4a2e1a"
+        },
+        {
+          "id": "black",
+          "label": "Black",
+          "image_text": "black fur",
+          "color": "#1f1f23"
+        },
+        {
+          "id": "grey",
+          "label": "Grey",
+          "image_text": "grey fur",
+          "color": "#8e97a3"
+        },
+        {
+          "id": "silver",
+          "label": "Silver",
+          "image_text": "silver fur",
+          "color": "#c9ccd4"
+        },
+        {
+          "id": "golden",
+          "label": "Golden",
+          "image_text": "golden fur",
+          "color": "#d9ab52"
+        },
+        {
+          "id": "blue_grey",
+          "label": "Blue-Grey",
+          "image_text": "blue grey fur",
+          "color": "#7d8ba8"
+        },
+        {
+          "id": "pastel_pink",
+          "label": "Pastel Pink",
+          "image_text": "pastel pink fur",
+          "color": "#eebcd0"
+        },
+        {
+          "id": "lavender",
+          "label": "Lavender",
+          "image_text": "lavender fur",
+          "color": "#b9a3d8"
+        }
+      ]
+    },
+    {
+      "id": "fur_condition",
+      "_note": "5.7 UI pass (user decision 2026-07-18): complexion updates by surface - this group is the fur-surface finish (matted et al.), keyed like fur_pattern.",
+      "label": "Fur Condition",
+      "kind": "pick_one",
+      "home": "identity",
+      "priority": "flavor",
+      "visible_when": {
+        "group": "skin_type",
+        "in": [
+          "fur_over_skin",
+          "full_fur"
+        ]
+      },
+      "section": "Species Features",
+      "order": 57,
+      "hint": "How the coat reads - the fur surfaces' counterpart to Complexion.",
+      "options": [
+        {
+          "id": "groomed",
+          "label": "Groomed",
+          "image_text": "well-groomed fur"
+        },
+        {
+          "id": "sleek",
+          "label": "Sleek",
+          "image_text": "sleek fur"
+        },
+        {
+          "id": "fluffy",
+          "label": "Fluffy",
+          "image_text": "fluffy fur"
+        },
+        {
+          "id": "plush",
+          "label": "Plush",
+          "image_text": "plush fur"
+        },
+        {
+          "id": "shaggy",
+          "label": "Shaggy",
+          "image_text": "shaggy fur"
+        },
+        {
+          "id": "coarse",
+          "label": "Coarse",
+          "image_text": "coarse fur"
+        },
+        {
+          "id": "matted",
+          "label": "Matted",
+          "image_text": "matted fur"
+        }
+      ]
+    },
+    {
+      "id": "fur_pattern",
+      "label": "Fur Pattern",
+      "kind": "pick_one",
+      "home": "identity",
+      "priority": "flavor",
+      "visible_when": {
+        "group": "skin_type",
+        "in": [
+          "fur_over_skin",
+          "full_fur"
+        ]
+      },
+      "section": "Species Features",
+      "order": 56,
+      "hint": "Appears when the surface is fur.",
+      "options": [
+        {
+          "id": "solid",
+          "label": "Solid",
+          "image_text": ""
+        },
+        {
+          "id": "striped",
+          "label": "Striped",
+          "image_text": "striped fur"
+        },
+        {
+          "id": "spotted",
+          "label": "Spotted",
+          "image_text": "spotted fur"
+        },
+        {
+          "id": "calico",
+          "label": "Calico",
+          "image_text": "calico fur"
+        },
+        {
+          "id": "brindle",
+          "label": "Brindle",
+          "image_text": "brindle fur"
+        },
+        {
+          "id": "masked",
+          "label": "Masked",
+          "image_text": "masked fur markings"
+        },
+        {
+          "id": "gradient",
+          "label": "Gradient",
+          "image_text": "gradient fur"
+        },
+        {
+          "id": "tipped",
+          "label": "Tipped",
+          "image_text": "dark-tipped fur"
+        }
+      ]
+    },
+    {
+      "id": "scale_color",
+      "_note": "5.7: re-keyed from race class to skin_type (scale_coverage retired). 5.7 UI pass (user decision 2026-07-18): narrowed to scales_over_skin - on full_scales skin_tone relabels to Scale Tone.",
+      "label": "Scale Color",
+      "kind": "pick_one",
+      "home": "identity",
+      "priority": "should",
+      "visible_when": {
+        "group": "skin_type",
+        "in": [
+          "scales_over_skin"
+        ]
+      },
+      "section": "Species Features",
+      "order": 58,
+      "hint": "Color of the scale patches over skin. On Full Scales the tone slot in Appearance becomes Scale Tone and carries the color instead.",
+      "options": [
+        {
+          "id": "emerald",
+          "label": "Emerald",
+          "image_text": "emerald scales",
+          "color": "#2f9e5f"
+        },
+        {
+          "id": "jade",
+          "label": "Jade",
+          "image_text": "jade scales",
+          "color": "#6fae8f"
+        },
+        {
+          "id": "teal",
+          "label": "Teal",
+          "image_text": "teal scales",
+          "color": "#4d9e97"
+        },
+        {
+          "id": "azure",
+          "label": "Azure",
+          "image_text": "azure scales",
+          "color": "#4f8fd8"
+        },
+        {
+          "id": "cobalt",
+          "label": "Cobalt",
+          "image_text": "cobalt scales",
+          "color": "#3d5a9e"
+        },
+        {
+          "id": "violet",
+          "label": "Violet",
+          "image_text": "violet scales",
+          "color": "#8a5fc8"
+        },
+        {
+          "id": "crimson",
+          "label": "Crimson",
+          "image_text": "crimson scales",
+          "color": "#8e2f39"
+        },
+        {
+          "id": "obsidian",
+          "label": "Obsidian",
+          "image_text": "obsidian scales",
+          "color": "#23252a"
+        },
+        {
+          "id": "bone",
+          "label": "Bone",
+          "image_text": "bone white scales",
+          "color": "#e8e2d2"
+        },
+        {
+          "id": "pearl",
+          "label": "Pearl",
+          "image_text": "pearlescent scales",
+          "color": "#f4f1ec"
+        },
+        {
+          "id": "gold",
+          "label": "Gold",
+          "image_text": "golden scales",
+          "color": "#cfa53c"
+        },
+        {
+          "id": "copper",
+          "label": "Copper",
+          "image_text": "copper scales",
+          "color": "#b0662f"
+        },
+        {
+          "id": "silver",
+          "label": "Silver",
+          "image_text": "silver scales",
+          "color": "#c8cdd4"
+        },
+        {
+          "id": "sand",
+          "label": "Sand",
+          "image_text": "sand-colored scales",
+          "color": "#d8c49a"
+        }
+      ]
+    },
+    {
+      "id": "scale_sheen",
+      "label": "Scale Sheen",
+      "kind": "pick_one",
+      "home": "identity",
+      "priority": "flavor",
+      "visible_when": {
+        "group": "skin_type",
+        "in": [
+          "scales_over_skin",
+          "full_scales"
+        ]
+      },
+      "section": "Species Features",
+      "order": 59,
+      "hint": "Appears when the surface is scales.",
+      "options": [
+        {
+          "id": "matte",
+          "label": "Matte",
+          "image_text": ""
+        },
+        {
+          "id": "glossy",
+          "label": "Glossy",
+          "image_text": "glossy scales"
+        },
+        {
+          "id": "iridescent",
+          "label": "Iridescent",
+          "image_text": "iridescent scales"
+        }
+      ]
+    },
+    {
+      "id": "feather_color",
+      "_note": "5.7: re-keyed from race class to skin_type (feather_coverage retired). 5.7 UI pass (user decision 2026-07-18): narrowed to feathers_over_skin - on full_plumage skin_tone relabels to Plumage Tone.",
+      "label": "Feather Color",
+      "kind": "pick_one",
+      "home": "identity",
+      "priority": "should",
+      "visible_when": {
+        "group": "skin_type",
+        "in": [
+          "feathers_over_skin"
+        ]
+      },
+      "section": "Species Features",
+      "order": 61,
+      "hint": "Color of the feather patches over skin. On Full Plumage the tone slot in Appearance becomes Plumage Tone and carries the color instead.",
+      "options": [
+        {
+          "id": "white",
+          "label": "White",
+          "image_text": "white feathers",
+          "color": "#f2f2f2"
+        },
+        {
+          "id": "black",
+          "label": "Black",
+          "image_text": "black feathers",
+          "color": "#1f1f23"
+        },
+        {
+          "id": "brown",
+          "label": "Brown",
+          "image_text": "brown feathers",
+          "color": "#6e4a2e"
+        },
+        {
+          "id": "tawny",
+          "label": "Tawny",
+          "image_text": "tawny feathers",
+          "color": "#c9a05e"
+        },
+        {
+          "id": "golden",
+          "label": "Golden",
+          "image_text": "golden feathers",
+          "color": "#d9ab52"
+        },
+        {
+          "id": "grey",
+          "label": "Grey",
+          "image_text": "grey feathers",
+          "color": "#8e97a3"
+        },
+        {
+          "id": "silver",
+          "label": "Silver",
+          "image_text": "silver feathers",
+          "color": "#c9ccd4"
+        },
+        {
+          "id": "red",
+          "label": "Red",
+          "image_text": "red feathers",
+          "color": "#c0504d"
+        },
+        {
+          "id": "blue",
+          "label": "Blue",
+          "image_text": "blue feathers",
+          "color": "#4f74d8"
+        },
+        {
+          "id": "teal",
+          "label": "Teal",
+          "image_text": "teal feathers",
+          "color": "#4d9e97"
+        },
+        {
+          "id": "green",
+          "label": "Green",
+          "image_text": "green feathers",
+          "color": "#4d9e6a"
+        },
+        {
+          "id": "violet",
+          "label": "Violet",
+          "image_text": "violet feathers",
+          "color": "#8a5fc8"
+        }
+      ]
+    },
+    {
+      "id": "feather_condition",
+      "_note": "5.7 UI pass (user decision 2026-07-18): complexion updates by surface - the feather-surface finish. Order 60 slots it beside the feather block (scale/feather groups are never co-visible).",
+      "label": "Plumage Condition",
+      "kind": "pick_one",
+      "home": "identity",
+      "priority": "flavor",
+      "visible_when": {
+        "group": "skin_type",
+        "in": [
+          "feathers_over_skin",
+          "full_plumage"
+        ]
+      },
+      "section": "Species Features",
+      "order": 60,
+      "hint": "How the plumage reads - the feather surfaces' counterpart to Complexion.",
+      "options": [
+        {
+          "id": "preened",
+          "label": "Preened",
+          "image_text": "preened feathers"
+        },
+        {
+          "id": "sleek",
+          "label": "Sleek",
+          "image_text": "sleek plumage"
+        },
+        {
+          "id": "fluffed",
+          "label": "Fluffed",
+          "image_text": "fluffed plumage"
+        },
+        {
+          "id": "iridescent",
+          "label": "Iridescent",
+          "image_text": "iridescent plumage"
+        },
+        {
+          "id": "ruffled",
+          "label": "Ruffled",
+          "image_text": "ruffled feathers"
+        },
+        {
+          "id": "molting",
+          "label": "Molting",
+          "image_text": "molting plumage"
+        }
+      ]
+    },
+    {
+      "id": "chassis_finish",
+      "_note": "5.7: re-keyed to skin_type - a synthetic-skin android shows no chassis finish. chassis_seams/faceplate stay race-keyed (structure, not surface).",
+      "label": "Chassis Finish",
+      "kind": "pick_one",
+      "home": "identity",
+      "priority": "should",
+      "visible_when": {
+        "group": "skin_type",
+        "in": [
+          "metal_chassis"
+        ]
+      },
+      "section": "Species Features",
+      "order": 62,
+      "hint": "Appears on a metal-chassis surface.",
+      "options": [
+        {
+          "id": "matte_white",
+          "label": "Matte White",
+          "image_text": "matte white chassis"
+        },
+        {
+          "id": "gloss_white",
+          "label": "Gloss White",
+          "image_text": "glossy white chassis"
+        },
+        {
+          "id": "matte_black",
+          "label": "Matte Black",
+          "image_text": "matte black chassis"
+        },
+        {
+          "id": "gunmetal",
+          "label": "Gunmetal",
+          "image_text": "gunmetal chassis"
+        },
+        {
+          "id": "brushed_steel",
+          "label": "Brushed Steel",
+          "image_text": "brushed steel chassis"
+        },
+        {
+          "id": "chrome",
+          "label": "Chrome",
+          "image_text": "chrome chassis"
+        },
+        {
+          "id": "ceramic",
+          "label": "Ceramic",
+          "image_text": "ceramic chassis"
+        },
+        {
+          "id": "carbon_weave",
+          "label": "Carbon Weave",
+          "image_text": "carbon fiber chassis"
+        },
+        {
+          "id": "brass_clockwork",
+          "label": "Brass Clockwork",
+          "image_text": "brass clockwork chassis"
+        }
+      ]
+    },
+    {
+      "id": "chassis_seams",
+      "label": "Chassis Seams",
+      "kind": "pick_one",
+      "home": "identity",
+      "priority": "flavor",
+      "visible_when": {
+        "group": "race",
+        "has_tag": "construct"
+      },
+      "section": "Species Features",
+      "order": 63,
+      "hint": "Construct body structure - joint lines and plating.",
+      "options": [
+        {
+          "id": "seamless",
+          "label": "Seamless Synth-Skin",
+          "image_text": "seamless synthetic skin"
+        },
+        {
+          "id": "visible_joints",
+          "label": "Visible Joint Lines",
+          "image_text": "visible joint lines"
+        },
+        {
+          "id": "segmented_plates",
+          "label": "Segmented Plates",
+          "image_text": "segmented armor plating"
+        },
+        {
+          "id": "exposed_actuators",
+          "label": "Exposed Actuators",
+          "image_text": "exposed actuators"
+        }
+      ]
+    },
+    {
+      "id": "faceplate",
+      "label": "Face",
+      "kind": "pick_one",
+      "home": "identity",
+      "priority": "flavor",
+      "visible_when": {
+        "group": "race",
+        "has_tag": "construct"
+      },
+      "section": "Species Features",
+      "order": 64,
+      "hint": "Construct face treatment.",
+      "options": [
+        {
+          "id": "fully_human",
+          "label": "Fully Human",
+          "image_text": ""
+        },
+        {
+          "id": "synth_skin_seams",
+          "label": "Synth-Skin with Seams",
+          "image_text": "synthetic skin with facial seams"
+        },
+        {
+          "id": "visor",
+          "label": "Visor",
+          "image_text": "visor face"
+        },
+        {
+          "id": "screen_face",
+          "label": "Screen Face",
+          "image_text": "screen face"
+        },
+        {
+          "id": "sculpted_mask",
+          "label": "Sculpted Mask",
+          "image_text": "sculpted faceplate"
+        }
+      ]
+    },
+    {
+      "id": "ethereal_opacity",
+      "_note": "5.7: re-keyed to skin_type. glow_color deliberately stays race-keyed (class ethereal) - emission is not a surface, and elemental-kin keep their glow on any surface.",
+      "label": "Form Opacity",
+      "kind": "pick_one",
+      "home": "identity",
+      "priority": "should",
+      "visible_when": {
+        "group": "skin_type",
+        "in": [
+          "ethereal_form"
+        ]
+      },
+      "section": "Species Features",
+      "order": 65,
+      "hint": "Appears on an ethereal surface - how solid the form reads.",
+      "options": [
+        {
+          "id": "solid",
+          "label": "Solid",
+          "image_text": ""
+        },
+        {
+          "id": "faint_shimmer",
+          "label": "Faint Shimmer",
+          "image_text": "faint shimmer"
+        },
+        {
+          "id": "translucent",
+          "label": "Translucent",
+          "image_text": "translucent body"
+        },
+        {
+          "id": "mostly_transparent",
+          "label": "Mostly Transparent",
+          "image_text": "mostly transparent"
+        }
+      ]
+    },
+    {
+      "id": "glow_color",
+      "label": "Glow Color",
+      "kind": "pick_one",
+      "home": "identity",
+      "priority": "flavor",
+      "visible_when": {
+        "group": "race",
+        "has_tag": "ethereal"
+      },
+      "section": "Species Features",
+      "order": 66,
+      "hint": "Ambient glow for ethereal and elemental races - any surface.",
+      "options": [
+        {
+          "id": "white",
+          "label": "White",
+          "image_text": "soft white glow",
+          "color": "#f4f1ec"
+        },
+        {
+          "id": "gold",
+          "label": "Gold",
+          "image_text": "golden glow",
+          "color": "#cfa53c"
+        },
+        {
+          "id": "ice_blue",
+          "label": "Ice Blue",
+          "image_text": "ice blue glow",
+          "color": "#a8d8e8"
+        },
+        {
+          "id": "cyan",
+          "label": "Cyan",
+          "image_text": "cyan glow",
+          "color": "#4dc8d8"
+        },
+        {
+          "id": "green",
+          "label": "Green",
+          "image_text": "green glow",
+          "color": "#4d9e6a"
+        },
+        {
+          "id": "violet",
+          "label": "Violet",
+          "image_text": "violet glow",
+          "color": "#8a5fc8"
+        },
+        {
+          "id": "magenta",
+          "label": "Magenta",
+          "image_text": "magenta glow",
+          "color": "#c84da8"
+        },
+        {
+          "id": "red",
+          "label": "Red",
+          "image_text": "red glow",
+          "color": "#c0504d"
+        },
+        {
+          "id": "ember_orange",
+          "label": "Ember Orange",
+          "image_text": "ember orange glow",
+          "color": "#d87634"
+        },
+        {
+          "id": "pink",
+          "label": "Pink",
+          "image_text": "pink glow",
+          "color": "#e8a3bd"
+        },
+        {
+          "id": "void_purple",
+          "label": "Void Purple",
+          "image_text": "dark void purple glow",
+          "color": "#4a2e6e"
+        },
+        {
+          "id": "silver",
+          "label": "Silver",
+          "image_text": "silver glow",
+          "color": "#c8cdd4"
+        }
+      ]
+    },
+    {
+      "id": "lower_body",
+      "label": "Lower Body",
+      "kind": "pick_one",
+      "home": "identity",
+      "priority": "should",
+      "visible_when": {
+        "group": "race",
+        "has_tag": "monstrous"
+      },
+      "section": "Species Features",
+      "order": 67,
+      "hint": "Monstrous lower half (coil, quadruped, abdomen...).",
+      "options": [
+        {
+          "id": "serpent_coil",
+          "label": "Serpent Coil",
+          "image_text": "snake lower body"
+        },
+        {
+          "id": "fish_tail",
+          "label": "Fish Tail",
+          "image_text": "fish tail"
+        },
+        {
+          "id": "spider_abdomen",
+          "label": "Spider Abdomen",
+          "image_text": "spider lower body"
+        },
+        {
+          "id": "quadruped_horse",
+          "label": "Quadruped (Horse)",
+          "image_text": "horse lower body"
+        },
+        {
+          "id": "quadruped_deer",
+          "label": "Quadruped (Deer)",
+          "image_text": "deer lower body"
+        },
+        {
+          "id": "quadruped_big_cat",
+          "label": "Quadruped (Big Cat)",
+          "image_text": "feline lower body"
+        },
+        {
+          "id": "quadruped_goat",
+          "label": "Quadruped (Goat)",
+          "image_text": "goat lower body"
+        },
+        {
+          "id": "slime_mass",
+          "label": "Slime Mass",
+          "image_text": "slime lower body"
+        },
+        {
+          "id": "bird_legs",
+          "label": "Bird Legs",
+          "image_text": "bird legs"
+        }
+      ]
+    },
+    {
+      "id": "elemental_marks",
+      "label": "Manifestation",
+      "kind": "pick_many",
+      "home": "identity",
+      "priority": "flavor",
+      "visible_when": {
+        "group": "race",
+        "has_tag": "elemental-cosmic"
+      },
+      "section": "Species Features",
+      "order": 68,
+      "hint": "Stackable elemental manifestations.",
+      "options": [
+        {
+          "id": "hair_of_element",
+          "label": "Hair of the Element",
+          "image_text": "elemental hair"
+        },
+        {
+          "id": "glowing_veins",
+          "label": "Glowing Veins",
+          "image_text": "glowing veins"
+        },
+        {
+          "id": "aura",
+          "label": "Aura",
+          "image_text": "glowing aura"
+        },
+        {
+          "id": "crackling_limbs",
+          "label": "Crackling Limbs",
+          "image_text": "crackling energy"
+        },
+        {
+          "id": "molten_cracks",
+          "label": "Molten Cracks",
+          "image_text": "molten cracks"
+        },
+        {
+          "id": "frost_rime",
+          "label": "Frost Rime",
+          "image_text": "frost rime"
+        },
+        {
+          "id": "blooming_flowers",
+          "label": "Blooming Flowers",
+          "image_text": "blooming flowers"
+        },
+        {
+          "id": "starfield_skin",
+          "label": "Starfield Skin",
+          "image_text": "starfield skin"
+        }
+      ]
+    },
+    {
+      "id": "undead_state",
+      "label": "State",
+      "kind": "pick_one",
+      "home": "identity",
+      "priority": "should",
+      "visible_when": {
+        "group": "race",
+        "has_tag": "undead"
+      },
+      "section": "Species Features",
+      "order": 69,
+      "hint": "How far gone the body reads.",
+      "options": [
+        {
+          "id": "pristine",
+          "label": "Pristine",
+          "image_text": ""
+        },
+        {
+          "id": "pale",
+          "label": "Pale",
+          "image_text": "deathly pale"
+        },
+        {
+          "id": "gaunt",
+          "label": "Gaunt",
+          "image_text": "gaunt"
+        },
+        {
+          "id": "stitched",
+          "label": "Stitched",
+          "image_text": "stitched skin"
+        },
+        {
+          "id": "partially_skeletal",
+          "label": "Partially Skeletal",
+          "image_text": "partially skeletal"
+        },
+        {
+          "id": "spectral",
+          "label": "Spectral",
+          "image_text": "spectral form"
+        }
+      ]
+    },
+    {
+      "id": "other_features",
+      "label": "Other Features",
+      "kind": "pick_many",
+      "home": "identity",
+      "priority": "flavor",
+      "section": "Species Features",
+      "order": 70,
+      "hint": "Stackable extras (halo, third eye, gills...).",
+      "options": [
+        {
+          "id": "halo",
+          "label": "Halo",
+          "image_text": "halo"
+        },
+        {
+          "id": "broken_halo",
+          "label": "Broken Halo",
+          "image_text": "broken halo"
+        },
+        {
+          "id": "third_eye",
+          "label": "Third Eye",
+          "image_text": "third eye"
+        },
+        {
+          "id": "gills",
+          "label": "Gills",
+          "image_text": "gills"
+        },
+        {
+          "id": "antennae",
+          "label": "Antennae",
+          "image_text": "antennae"
+        }
+      ]
+    }
+  ]
+}

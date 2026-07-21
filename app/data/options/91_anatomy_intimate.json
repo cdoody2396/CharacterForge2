@@ -1,0 +1,183 @@
+{
+  "format": 1,
+  "rating": "explicit",
+  "groups": [
+    {
+      "id": "chest_shape",
+      "_note": "V2 B48 (gated file - V2 flag 7). Condition: chest_size beyond flat; the 'gate open' half of the condition is structural (this file only loads with the gate open).",
+      "label": "Chest Shape",
+      "kind": "pick_one",
+      "home": "identity",
+      "priority": "flavor",
+      "visible_when": {
+        "group": "chest_size",
+        "in": [
+          "small",
+          "modest",
+          "medium",
+          "large",
+          "very_large",
+          "huge"
+        ]
+      },
+      "order": 101,
+      "hint": "Shape refinement - appears beyond a flat chest size.",
+      "_v1": {
+        "region": "Chest",
+        "attribute": "Shape"
+      },
+      "options": [
+        {
+          "id": "natural",
+          "label": "Natural",
+          "image_text": ""
+        },
+        {
+          "id": "round",
+          "label": "Round",
+          "image_text": "round breasts"
+        },
+        {
+          "id": "teardrop",
+          "label": "Teardrop",
+          "image_text": "teardrop breasts"
+        },
+        {
+          "id": "perky",
+          "label": "Perky",
+          "image_text": "perky breasts"
+        },
+        {
+          "id": "athletic",
+          "label": "Athletic",
+          "image_text": "firm athletic chest"
+        },
+        {
+          "id": "heavy",
+          "label": "Heavy",
+          "image_text": "heavy breasts"
+        }
+      ]
+    },
+    {
+      "id": "genitalia",
+      "_note": "V2 B52 (replaces genital_config; legacy values load leniently and lint). Gated file - the ungated catalog structurally lacks this group.",
+      "label": "Configuration",
+      "kind": "pick_one",
+      "home": "identity",
+      "priority": "flavor",
+      "order": 106,
+      "hint": "An explicit, independent choice - never derived from race or presentation. Configure it or leave Unspecified.",
+      "_v1": {
+        "region": "Genitalia",
+        "attribute": "Configuration"
+      },
+      "options": [
+        {
+          "id": "unspecified",
+          "label": "Unspecified",
+          "image_text": ""
+        },
+        {
+          "id": "vulva",
+          "label": "Vulva",
+          "image_text": "female anatomy"
+        },
+        {
+          "id": "penis",
+          "label": "Penis",
+          "image_text": "male anatomy"
+        },
+        {
+          "id": "both",
+          "label": "Both",
+          "image_text": "intersex anatomy"
+        },
+        {
+          "id": "none",
+          "label": "None / Featureless",
+          "image_text": "featureless, doll-like anatomy"
+        }
+      ]
+    },
+    {
+      "id": "genitalia_size",
+      "_note": "V2 B53 (replaces genital_size; legacy values load leniently and lint).",
+      "label": "Size",
+      "kind": "pick_one",
+      "home": "identity",
+      "priority": "flavor",
+      "visible_when": {
+        "group": "genitalia",
+        "in": [
+          "penis",
+          "both"
+        ]
+      },
+      "order": 107,
+      "hint": "Appears for configurations that include a penis.",
+      "_v1": {
+        "region": "Genitalia",
+        "attribute": "Size"
+      },
+      "options": [
+        {
+          "id": "small",
+          "label": "Small",
+          "image_text": "small"
+        },
+        {
+          "id": "average",
+          "label": "Average",
+          "image_text": ""
+        },
+        {
+          "id": "large",
+          "label": "Large",
+          "image_text": "large"
+        },
+        {
+          "id": "very_large",
+          "label": "Very Large",
+          "image_text": "very large"
+        }
+      ]
+    },
+    {
+      "id": "grooming",
+      "_note": "V2 B54. Condition 'gate open' is structural - no visible_when needed; the group exists only while the gate is open.",
+      "label": "Grooming",
+      "kind": "pick_one",
+      "home": "identity",
+      "priority": "flavor",
+      "order": 108,
+      "hint": "Grooming state for intimate renders.",
+      "_v1": {
+        "region": "Genitalia",
+        "attribute": "Grooming"
+      },
+      "options": [
+        {
+          "id": "bare",
+          "label": "Bare",
+          "image_text": "hairless"
+        },
+        {
+          "id": "trimmed",
+          "label": "Trimmed",
+          "image_text": "trimmed pubic hair"
+        },
+        {
+          "id": "natural",
+          "label": "Natural",
+          "image_text": ""
+        },
+        {
+          "id": "styled",
+          "label": "Styled",
+          "image_text": "styled pubic hair"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,2090 @@
+{
+  "format": 1,
+  "rating": "standard",
+  "groups": [
+    {
+      "id": "skin_type",
+      "_note": "5.7 unified surface model (user decision 2026-07-18): what covers the body. Gates skin_tone (skin-bearing surfaces only) and re-keys the fur/scale/feather/chassis/ethereal color groups in 35_species.json off race class, so surface decouples from race (a furless catfolk, a synthetic-skin android, a scaled hybrid). The over/full compounds absorb the retired *_coverage groups; prompts stay minimal where a color group already describes the surface.",
+      "label": "Surface",
+      "kind": "pick_one",
+      "home": "identity",
+      "priority": "should",
+      "section": "Appearance",
+      "order": 19,
+      "hint": "What covers the body. Gates Skin Tone (skin-bearing surfaces only) and reveals the matching fur / scale / feather / chassis / ethereal groups.",
+      "_v1": {
+        "quick": true,
+        "required": true
+      },
+      "options": [
+        {
+          "id": "bare_skin",
+          "label": "Bare Skin",
+          "image_text": ""
+        },
+        {
+          "id": "synthetic_skin",
+          "label": "Synthetic Skin",
+          "image_text": "synthetic skin"
+        },
+        {
+          "id": "fur_over_skin",
+          "label": "Fur over Skin",
+          "image_text": "partial body fur"
+        },
+        {
+          "id": "full_fur",
+          "label": "Full Fur",
+          "image_text": "full body fur"
+        },
+        {
+          "id": "feathers_over_skin",
+          "label": "Feathers over Skin",
+          "image_text": "partial plumage"
+        },
+        {
+          "id": "full_plumage",
+          "label": "Full Plumage",
+          "image_text": "full plumage"
+        },
+        {
+          "id": "scales_over_skin",
+          "label": "Scales over Skin",
+          "image_text": "partial scales"
+        },
+        {
+          "id": "full_scales",
+          "label": "Full Scales",
+          "image_text": "full body scales"
+        },
+        {
+          "id": "stone",
+          "label": "Living Stone",
+          "image_text": "stone skin"
+        },
+        {
+          "id": "metal_chassis",
+          "label": "Metal Chassis",
+          "image_text": ""
+        },
+        {
+          "id": "ethereal_form",
+          "label": "Ethereal",
+          "image_text": ""
+        }
+      ]
+    },
+    {
+      "id": "skin_tone",
+      "_note": "5.7 UI pass (user decision 2026-07-18): always visible - the conditional hide is retired. The group is the one surface-tone slot; the creator relabels it per skin_type (Fur Tone / Scale Tone / Plumage Tone / Stone Tone / Chassis Tone / Form Tone) with the same palette. fur/scale/feather color groups narrow to the *_over_skin surfaces (35_species.json) so full coverings have exactly one tone pick. Prompt fragments still read '... skin' - the per-surface prompt wording lands with the image-gen wiring session.",
+      "label": "Skin Tone",
+      "kind": "pick_one",
+      "home": "identity",
+      "priority": "should",
+      "section": "Appearance",
+      "order": 20,
+      "hint": "Color of the body's surface. The label follows the Surface pick - skin tone on skin, fur tone on full fur, scale tone on full scales, and so on.",
+      "_v1": {
+        "quick": true,
+        "required": true
+      },
+      "options": [
+        {
+          "id": "porcelain",
+          "label": "Porcelain",
+          "image_text": "porcelain skin",
+          "color": "#f6e6e0"
+        },
+        {
+          "id": "fair",
+          "label": "Fair",
+          "image_text": "fair skin",
+          "color": "#f2d6c4"
+        },
+        {
+          "id": "peach",
+          "label": "Peach",
+          "image_text": "peach skin",
+          "color": "#f5c9a8"
+        },
+        {
+          "id": "light_olive",
+          "label": "Light Olive",
+          "image_text": "light olive skin",
+          "color": "#e0c39a"
+        },
+        {
+          "id": "olive",
+          "label": "Olive",
+          "image_text": "olive skin",
+          "color": "#d8b98e"
+        },
+        {
+          "id": "golden",
+          "label": "Golden",
+          "image_text": "golden skin",
+          "color": "#d9ab72"
+        },
+        {
+          "id": "tan",
+          "label": "Tan",
+          "image_text": "tan skin",
+          "color": "#c99b6f"
+        },
+        {
+          "id": "bronze",
+          "label": "Bronze",
+          "image_text": "bronze skin",
+          "color": "#b07d4f"
+        },
+        {
+          "id": "brown",
+          "label": "Brown",
+          "image_text": "brown skin",
+          "color": "#a3714b"
+        },
+        {
+          "id": "dark",
+          "label": "Deep Brown",
+          "image_text": "dark skin",
+          "color": "#7c4f33"
+        },
+        {
+          "id": "ebony",
+          "label": "Ebony",
+          "image_text": "deep ebony skin",
+          "color": "#503222"
+        },
+        {
+          "id": "alabaster",
+          "label": "Alabaster",
+          "image_text": "alabaster skin",
+          "color": "#efe8e2"
+        },
+        {
+          "id": "grey",
+          "label": "Ashen Grey",
+          "image_text": "ashen grey skin",
+          "tags": [
+            "nonhuman"
+          ],
+          "color": "#9aa0a6"
+        },
+        {
+          "id": "slate_grey",
+          "label": "Slate Grey",
+          "image_text": "slate grey skin",
+          "tags": [
+            "nonhuman"
+          ],
+          "color": "#6e7681"
+        },
+        {
+          "id": "jet_black",
+          "label": "Jet Black",
+          "image_text": "jet black skin",
+          "tags": [
+            "nonhuman"
+          ],
+          "color": "#23252a"
+        },
+        {
+          "id": "pearl_white",
+          "label": "Pearl White",
+          "image_text": "pearl white skin",
+          "tags": [
+            "nonhuman"
+          ],
+          "color": "#f4f1ec"
+        },
+        {
+          "id": "blue",
+          "label": "Blue",
+          "image_text": "blue skin",
+          "tags": [
+            "nonhuman"
+          ],
+          "color": "#7d9bd4"
+        },
+        {
+          "id": "deep_blue",
+          "label": "Deep Blue",
+          "image_text": "deep blue skin",
+          "tags": [
+            "nonhuman"
+          ],
+          "color": "#3d5a9e"
+        },
+        {
+          "id": "teal",
+          "label": "Teal",
+          "image_text": "teal skin",
+          "tags": [
+            "nonhuman"
+          ],
+          "color": "#4d9e97"
+        },
+        {
+          "id": "green",
+          "label": "Green",
+          "image_text": "green skin",
+          "tags": [
+            "nonhuman"
+          ],
+          "color": "#8fae6f"
+        },
+        {
+          "id": "moss_green",
+          "label": "Moss Green",
+          "image_text": "moss green skin",
+          "tags": [
+            "nonhuman"
+          ],
+          "color": "#6d8a4e"
+        },
+        {
+          "id": "lavender",
+          "label": "Lavender",
+          "image_text": "lavender skin",
+          "tags": [
+            "nonhuman"
+          ],
+          "color": "#b9a3d8"
+        },
+        {
+          "id": "violet",
+          "label": "Violet",
+          "image_text": "violet skin",
+          "tags": [
+            "nonhuman"
+          ],
+          "color": "#8a5fc8"
+        },
+        {
+          "id": "pink",
+          "label": "Pink",
+          "image_text": "pink skin",
+          "tags": [
+            "nonhuman"
+          ],
+          "color": "#e8a3bd"
+        },
+        {
+          "id": "red",
+          "label": "Red",
+          "image_text": "red skin",
+          "tags": [
+            "nonhuman"
+          ],
+          "color": "#c0504d"
+        },
+        {
+          "id": "crimson",
+          "label": "Crimson",
+          "image_text": "crimson skin",
+          "tags": [
+            "nonhuman"
+          ],
+          "color": "#8e2f39"
+        },
+        {
+          "id": "gold_metallic",
+          "label": "Gold Metallic",
+          "image_text": "metallic gold skin",
+          "tags": [
+            "nonhuman"
+          ],
+          "color": "#cfa53c"
+        },
+        {
+          "id": "chrome",
+          "label": "Chrome",
+          "image_text": "chrome skin",
+          "tags": [
+            "nonhuman"
+          ],
+          "color": "#c8cdd4"
+        }
+      ]
+    },
+    {
+      "id": "complexion",
+      "_note": "5.7 UI pass (user decision 2026-07-18): the finish updates with the surface - complexion keys to skin-bearing surfaces (the old skin_tone gate list); fur_condition and feather_condition (35_species.json) cover the full coverings, scale_sheen and chassis_finish already exist.",
+      "label": "Complexion",
+      "kind": "pick_one",
+      "home": "identity",
+      "priority": "flavor",
+      "visible_when": {
+        "group": "skin_type",
+        "in": [
+          "bare_skin",
+          "synthetic_skin",
+          "fur_over_skin",
+          "feathers_over_skin",
+          "scales_over_skin"
+        ]
+      },
+      "section": "Appearance",
+      "order": 21,
+      "hint": "Skin finish detail (matte, dewy, weathered) - a subtle render modifier. Shown for skin-bearing surfaces; fur, plumage and scale surfaces get their own condition groups.",
+      "options": [
+        {
+          "id": "flawless",
+          "label": "Flawless",
+          "image_text": "flawless skin"
+        },
+        {
+          "id": "soft_matte",
+          "label": "Soft Matte",
+          "image_text": "matte skin"
+        },
+        {
+          "id": "dewy",
+          "label": "Dewy",
+          "image_text": "dewy skin"
+        },
+        {
+          "id": "luminous",
+          "label": "Luminous",
+          "image_text": "luminous skin"
+        },
+        {
+          "id": "weathered",
+          "label": "Weathered",
+          "image_text": "weathered skin"
+        },
+        {
+          "id": "rough",
+          "label": "Rough",
+          "image_text": "rough skin"
+        },
+        {
+          "id": "battle_worn",
+          "label": "Battle-Worn",
+          "image_text": "battle-worn skin"
+        }
+      ]
+    },
+    {
+      "id": "hair_color",
+      "label": "Hair Color",
+      "kind": "pick_one",
+      "home": "identity",
+      "priority": "should",
+      "visible_when": {
+        "group": "hair_length",
+        "not_in": [
+          "bald"
+        ]
+      },
+      "section": "Appearance",
+      "order": 24,
+      "hint": "Primary hair color in every render.",
+      "_v1": {
+        "quick": true,
+        "required": true
+      },
+      "options": [
+        {
+          "id": "black",
+          "label": "Black",
+          "image_text": "black hair",
+          "color": "#1b1b1f"
+        },
+        {
+          "id": "soft_black",
+          "label": "Soft Black",
+          "image_text": "soft black hair",
+          "color": "#26262c"
+        },
+        {
+          "id": "dark_brown",
+          "label": "Dark Brown",
+          "image_text": "dark brown hair",
+          "color": "#3f2818"
+        },
+        {
+          "id": "brown",
+          "label": "Brown",
+          "image_text": "brown hair",
+          "color": "#5b3a24"
+        },
+        {
+          "id": "chestnut",
+          "label": "Chestnut",
+          "image_text": "chestnut hair",
+          "color": "#7a4a2b"
+        },
+        {
+          "id": "auburn",
+          "label": "Auburn",
+          "image_text": "auburn hair",
+          "color": "#8c3b23"
+        },
+        {
+          "id": "ginger",
+          "label": "Ginger",
+          "image_text": "ginger hair",
+          "color": "#c26a37"
+        },
+        {
+          "id": "red",
+          "label": "Red",
+          "image_text": "red hair",
+          "color": "#b6392c"
+        },
+        {
+          "id": "crimson",
+          "label": "Crimson",
+          "image_text": "crimson hair",
+          "color": "#8e2431"
+        },
+        {
+          "id": "strawberry_blonde",
+          "label": "Strawberry Blonde",
+          "image_text": "strawberry blonde hair",
+          "color": "#e0a380"
+        },
+        {
+          "id": "blonde",
+          "label": "Blonde",
+          "image_text": "blonde hair",
+          "color": "#e8c56a"
+        },
+        {
+          "id": "platinum",
+          "label": "Platinum",
+          "image_text": "platinum blonde hair",
+          "color": "#ece2c8"
+        },
+        {
+          "id": "white",
+          "label": "White",
+          "image_text": "white hair",
+          "color": "#f2f2f2"
+        },
+        {
+          "id": "silver",
+          "label": "Silver",
+          "image_text": "silver hair",
+          "color": "#c9ccd4"
+        },
+        {
+          "id": "grey",
+          "label": "Grey",
+          "image_text": "grey hair",
+          "color": "#9aa0a6"
+        },
+        {
+          "id": "pink",
+          "label": "Pink",
+          "image_text": "pink hair",
+          "color": "#e88ab8"
+        },
+        {
+          "id": "rose",
+          "label": "Rose",
+          "image_text": "rose pink hair",
+          "color": "#d86a8a"
+        },
+        {
+          "id": "orange",
+          "label": "Orange",
+          "image_text": "orange hair",
+          "color": "#d87634"
+        },
+        {
+          "id": "blue",
+          "label": "Blue",
+          "image_text": "blue hair",
+          "color": "#4f74d8"
+        },
+        {
+          "id": "navy",
+          "label": "Navy",
+          "image_text": "navy blue hair",
+          "color": "#2e3f66"
+        },
+        {
+          "id": "teal",
+          "label": "Teal",
+          "image_text": "teal hair",
+          "color": "#4d9e97"
+        },
+        {
+          "id": "green",
+          "label": "Green",
+          "image_text": "green hair",
+          "color": "#4d9e6a"
+        },
+        {
+          "id": "mint",
+          "label": "Mint",
+          "image_text": "mint green hair",
+          "color": "#9ed8b5"
+        },
+        {
+          "id": "purple",
+          "label": "Purple",
+          "image_text": "purple hair",
+          "color": "#8858c8"
+        },
+        {
+          "id": "lavender",
+          "label": "Lavender",
+          "image_text": "lavender hair",
+          "color": "#b9a3d8"
+        }
+      ]
+    },
+    {
+      "id": "hair_color_2",
+      "_note": "V2 B7: a second color set is the two-tone flag; B8 pattern appears when this is set. 5.7: hidden on bald; pattern keeps its hair_color_2 condition (one condition per group) — the server-side drop makes the chain converge.",
+      "label": "Second Hair Color",
+      "kind": "pick_one",
+      "home": "identity",
+      "priority": "flavor",
+      "visible_when": {
+        "group": "hair_length",
+        "not_in": [
+          "bald"
+        ]
+      },
+      "section": "Appearance",
+      "order": 25,
+      "hint": "Pick a second color to make the hair two-tone - the Pattern choice appears once set.",
+      "options": [
+        {
+          "id": "black",
+          "label": "Black",
+          "image_text": "two-tone black hair",
+          "color": "#1b1b1f"
+        },
+        {
+          "id": "soft_black",
+          "label": "Soft Black",
+          "image_text": "two-tone soft black hair",
+          "color": "#26262c"
+        },
+        {
+          "id": "dark_brown",
+          "label": "Dark Brown",
+          "image_text": "two-tone dark brown hair",
+          "color": "#3f2818"
+        },
+        {
+          "id": "brown",
+          "label": "Brown",
+          "image_text": "two-tone brown hair",
+          "color": "#5b3a24"
+        },
+        {
+          "id": "chestnut",
+          "label": "Chestnut",
+          "image_text": "two-tone chestnut hair",
+          "color": "#7a4a2b"
+        },
+        {
+          "id": "auburn",
+          "label": "Auburn",
+          "image_text": "two-tone auburn hair",
+          "color": "#8c3b23"
+        },
+        {
+          "id": "ginger",
+          "label": "Ginger",
+          "image_text": "two-tone ginger hair",
+          "color": "#c26a37"
+        },
+        {
+          "id": "red",
+          "label": "Red",
+          "image_text": "two-tone red hair",
+          "color": "#b6392c"
+        },
+        {
+          "id": "crimson",
+          "label": "Crimson",
+          "image_text": "two-tone crimson hair",
+          "color": "#8e2431"
+        },
+        {
+          "id": "strawberry_blonde",
+          "label": "Strawberry Blonde",
+          "image_text": "two-tone strawberry blonde hair",
+          "color": "#e0a380"
+        },
+        {
+          "id": "blonde",
+          "label": "Blonde",
+          "image_text": "two-tone blonde hair",
+          "color": "#e8c56a"
+        },
+        {
+          "id": "platinum",
+          "label": "Platinum",
+          "image_text": "two-tone platinum blonde hair",
+          "color": "#ece2c8"
+        },
+        {
+          "id": "white",
+          "label": "White",
+          "image_text": "two-tone white hair",
+          "color": "#f2f2f2"
+        },
+        {
+          "id": "silver",
+          "label": "Silver",
+          "image_text": "two-tone silver hair",
+          "color": "#c9ccd4"
+        },
+        {
+          "id": "grey",
+          "label": "Grey",
+          "image_text": "two-tone grey hair",
+          "color": "#9aa0a6"
+        },
+        {
+          "id": "pink",
+          "label": "Pink",
+          "image_text": "two-tone pink hair",
+          "color": "#e88ab8"
+        },
+        {
+          "id": "rose",
+          "label": "Rose",
+          "image_text": "two-tone rose pink hair",
+          "color": "#d86a8a"
+        },
+        {
+          "id": "orange",
+          "label": "Orange",
+          "image_text": "two-tone orange hair",
+          "color": "#d87634"
+        },
+        {
+          "id": "blue",
+          "label": "Blue",
+          "image_text": "two-tone blue hair",
+          "color": "#4f74d8"
+        },
+        {
+          "id": "navy",
+          "label": "Navy",
+          "image_text": "two-tone navy blue hair",
+          "color": "#2e3f66"
+        },
+        {
+          "id": "teal",
+          "label": "Teal",
+          "image_text": "two-tone teal hair",
+          "color": "#4d9e97"
+        },
+        {
+          "id": "green",
+          "label": "Green",
+          "image_text": "two-tone green hair",
+          "color": "#4d9e6a"
+        },
+        {
+          "id": "mint",
+          "label": "Mint",
+          "image_text": "two-tone mint green hair",
+          "color": "#9ed8b5"
+        },
+        {
+          "id": "purple",
+          "label": "Purple",
+          "image_text": "two-tone purple hair",
+          "color": "#8858c8"
+        },
+        {
+          "id": "lavender",
+          "label": "Lavender",
+          "image_text": "two-tone lavender hair",
+          "color": "#b9a3d8"
+        }
+      ]
+    },
+    {
+      "id": "hair_color_pattern",
+      "label": "Color Pattern",
+      "kind": "pick_one",
+      "home": "identity",
+      "priority": "flavor",
+      "visible_when": {
+        "group": "hair_color_2",
+        "any": true
+      },
+      "section": "Appearance",
+      "order": 26,
+      "hint": "How the two colors combine (gradient, streaks, tips...).",
+      "options": [
+        {
+          "id": "gradient",
+          "label": "Gradient",
+          "image_text": "gradient hair"
+        },
+        {
+          "id": "streaks",
+          "label": "Streaks",
+          "image_text": "streaked hair"
+        },
+        {
+          "id": "tips",
+          "label": "Tips",
+          "image_text": "colored tips"
+        },
+        {
+          "id": "split",
+          "label": "Split Half-and-Half",
+          "image_text": "split-color hair"
+        },
+        {
+          "id": "inner_layer",
+          "label": "Inner Layer",
+          "image_text": "colored inner hair"
+        },
+        {
+          "id": "roots",
+          "label": "Roots Showing",
+          "image_text": "visible roots"
+        }
+      ]
+    },
+    {
+      "id": "hair_length",
+      "_note": "V2 B9: length extracted from the old style list; hair_style keeps its required id and stays pure shape. 5.7: length leads the hair block (length -> style -> color), and bald hides style/colors/bangs (required-when-visible). 5.7 UI pass (user decision 2026-07-18): on the quick path - quick without required, so quick-create stays satisfiable with it unset.",
+      "label": "Hair Length",
+      "kind": "pick_one",
+      "home": "identity",
+      "priority": "should",
+      "section": "Appearance",
+      "order": 22,
+      "hint": "How much hair there is. Bald removes the style and color choices entirely.",
+      "_v1": {
+        "quick": true
+      },
+      "options": [
+        {
+          "id": "bald",
+          "label": "Bald",
+          "image_text": "bald"
+        },
+        {
+          "id": "buzzed",
+          "label": "Buzzed",
+          "image_text": "buzzed hair"
+        },
+        {
+          "id": "short",
+          "label": "Short",
+          "image_text": "short hair"
+        },
+        {
+          "id": "chin_length",
+          "label": "Chin-Length",
+          "image_text": "chin length hair"
+        },
+        {
+          "id": "shoulder_length",
+          "label": "Shoulder-Length",
+          "image_text": "shoulder length hair"
+        },
+        {
+          "id": "mid_back",
+          "label": "Mid-Back",
+          "image_text": "long hair"
+        },
+        {
+          "id": "waist_length",
+          "label": "Waist-Length",
+          "image_text": "very long hair"
+        },
+        {
+          "id": "floor_length",
+          "label": "Floor-Length",
+          "image_text": "absurdly long hair"
+        }
+      ]
+    },
+    {
+      "id": "hair_style",
+      "_note": "5.7 UI pass (user decision 2026-07-18): every style carries a family class - the picker groups under class headers (the race pattern) with collapsible sections. Options reordered by family, ids untouched; seven new styles appended to their families.",
+      "label": "Hair Style",
+      "kind": "pick_one",
+      "home": "identity",
+      "priority": "should",
+      "visible_when": {
+        "group": "hair_length",
+        "not_in": [
+          "bald"
+        ]
+      },
+      "section": "Appearance",
+      "order": 23,
+      "hint": "The cut and arrangement - length is set separately above. Styles are grouped by family; search or expand a group.",
+      "_v1": {
+        "quick": true,
+        "required": true
+      },
+      "options": [
+        {
+          "id": "loose_straight",
+          "label": "Loose Straight",
+          "image_text": "straight hair",
+          "tags": [
+            "loose"
+          ]
+        },
+        {
+          "id": "wavy",
+          "label": "Wavy",
+          "image_text": "wavy hair",
+          "tags": [
+            "loose"
+          ]
+        },
+        {
+          "id": "messy",
+          "label": "Messy",
+          "image_text": "messy hair",
+          "tags": [
+            "loose"
+          ]
+        },
+        {
+          "id": "windswept",
+          "label": "Windswept",
+          "image_text": "windswept hair",
+          "tags": [
+            "loose"
+          ]
+        },
+        {
+          "id": "curtained",
+          "label": "Curtained",
+          "image_text": "curtained hair",
+          "tags": [
+            "loose"
+          ]
+        },
+        {
+          "id": "middle_part",
+          "label": "Middle Part",
+          "image_text": "middle-parted hair",
+          "tags": [
+            "loose"
+          ]
+        },
+        {
+          "id": "deep_side_part",
+          "label": "Deep Side Part",
+          "image_text": "deep side part",
+          "tags": [
+            "loose"
+          ]
+        },
+        {
+          "id": "flipped_ends",
+          "label": "Flipped Ends",
+          "image_text": "flipped hair",
+          "tags": [
+            "loose"
+          ]
+        },
+        {
+          "id": "hair_over_shoulder",
+          "label": "Over One Shoulder",
+          "image_text": "hair over one shoulder",
+          "tags": [
+            "loose"
+          ]
+        },
+        {
+          "id": "hime_cut",
+          "label": "Hime Cut",
+          "image_text": "hime cut",
+          "tags": [
+            "loose"
+          ]
+        },
+        {
+          "id": "long_layers",
+          "label": "Long Layers",
+          "image_text": "long layered hair",
+          "tags": [
+            "loose"
+          ]
+        },
+        {
+          "id": "shag",
+          "label": "Shag",
+          "image_text": "shag haircut",
+          "tags": [
+            "loose"
+          ]
+        },
+        {
+          "id": "wolf_cut",
+          "label": "Wolf Cut",
+          "image_text": "wolf cut",
+          "tags": [
+            "loose"
+          ]
+        },
+        {
+          "id": "mullet",
+          "label": "Mullet",
+          "image_text": "mullet",
+          "tags": [
+            "loose"
+          ]
+        },
+        {
+          "id": "curly",
+          "label": "Curly",
+          "image_text": "curly hair",
+          "tags": [
+            "textured"
+          ]
+        },
+        {
+          "id": "coily",
+          "label": "Coily",
+          "image_text": "coily hair",
+          "tags": [
+            "textured"
+          ]
+        },
+        {
+          "id": "ringlets",
+          "label": "Ringlets",
+          "image_text": "ringlet curls",
+          "tags": [
+            "textured"
+          ]
+        },
+        {
+          "id": "afro",
+          "label": "Afro",
+          "image_text": "afro",
+          "tags": [
+            "textured"
+          ]
+        },
+        {
+          "id": "afro_puffs",
+          "label": "Afro Puffs",
+          "image_text": "afro puffs",
+          "tags": [
+            "textured"
+          ]
+        },
+        {
+          "id": "dreadlocks",
+          "label": "Dreadlocks",
+          "image_text": "dreadlocks",
+          "tags": [
+            "textured"
+          ]
+        },
+        {
+          "id": "high_ponytail",
+          "label": "High Ponytail",
+          "image_text": "high ponytail",
+          "tags": [
+            "ponytails"
+          ]
+        },
+        {
+          "id": "low_ponytail",
+          "label": "Low Ponytail",
+          "image_text": "low ponytail",
+          "tags": [
+            "ponytails"
+          ]
+        },
+        {
+          "id": "side_ponytail",
+          "label": "Side Ponytail",
+          "image_text": "side ponytail",
+          "tags": [
+            "ponytails"
+          ]
+        },
+        {
+          "id": "short_ponytail",
+          "label": "Short Ponytail",
+          "image_text": "short ponytail",
+          "tags": [
+            "ponytails"
+          ]
+        },
+        {
+          "id": "folded_ponytail",
+          "label": "Folded Ponytail",
+          "image_text": "folded ponytail",
+          "tags": [
+            "ponytails"
+          ]
+        },
+        {
+          "id": "braided_ponytail",
+          "label": "Braided Ponytail",
+          "image_text": "braided ponytail",
+          "tags": [
+            "ponytails"
+          ]
+        },
+        {
+          "id": "twin_tails",
+          "label": "Twin Tails",
+          "image_text": "twintails",
+          "tags": [
+            "twintails"
+          ]
+        },
+        {
+          "id": "low_twintails",
+          "label": "Low Twintails",
+          "image_text": "low twintails",
+          "tags": [
+            "twintails"
+          ]
+        },
+        {
+          "id": "short_twintails",
+          "label": "Short Twintails",
+          "image_text": "short twintails",
+          "tags": [
+            "twintails"
+          ]
+        },
+        {
+          "id": "drill_hair",
+          "label": "Drills",
+          "image_text": "drill hair",
+          "tags": [
+            "twintails"
+          ]
+        },
+        {
+          "id": "twin_drills",
+          "label": "Twin Drills",
+          "image_text": "twin drills",
+          "tags": [
+            "twintails"
+          ]
+        },
+        {
+          "id": "single_braid",
+          "label": "Single Braid",
+          "image_text": "single braid",
+          "tags": [
+            "braids"
+          ]
+        },
+        {
+          "id": "twin_braids",
+          "label": "Twin Braids",
+          "image_text": "twin braids",
+          "tags": [
+            "braids"
+          ]
+        },
+        {
+          "id": "crown_braid",
+          "label": "Crown Braid",
+          "image_text": "crown braid",
+          "tags": [
+            "braids"
+          ]
+        },
+        {
+          "id": "french_braid",
+          "label": "French Braid",
+          "image_text": "french braid",
+          "tags": [
+            "braids"
+          ]
+        },
+        {
+          "id": "dutch_braids",
+          "label": "Dutch Braids",
+          "image_text": "dutch braids",
+          "tags": [
+            "braids"
+          ]
+        },
+        {
+          "id": "fishtail_braid",
+          "label": "Fishtail Braid",
+          "image_text": "fishtail braid",
+          "tags": [
+            "braids"
+          ]
+        },
+        {
+          "id": "side_braid",
+          "label": "Side Braid",
+          "image_text": "side braid",
+          "tags": [
+            "braids"
+          ]
+        },
+        {
+          "id": "waterfall_braid",
+          "label": "Waterfall Braid",
+          "image_text": "waterfall braid",
+          "tags": [
+            "braids"
+          ]
+        },
+        {
+          "id": "box_braids",
+          "label": "Box Braids",
+          "image_text": "box braids",
+          "tags": [
+            "braids"
+          ]
+        },
+        {
+          "id": "cornrows",
+          "label": "Cornrows",
+          "image_text": "cornrows",
+          "tags": [
+            "braids"
+          ]
+        },
+        {
+          "id": "twists",
+          "label": "Twists",
+          "image_text": "twist braids",
+          "tags": [
+            "braids"
+          ]
+        },
+        {
+          "id": "bun",
+          "label": "Bun",
+          "image_text": "hair bun",
+          "tags": [
+            "updos"
+          ]
+        },
+        {
+          "id": "low_bun",
+          "label": "Low Bun",
+          "image_text": "low bun",
+          "tags": [
+            "updos"
+          ]
+        },
+        {
+          "id": "double_buns",
+          "label": "Double Buns",
+          "image_text": "double buns",
+          "tags": [
+            "updos"
+          ]
+        },
+        {
+          "id": "messy_bun",
+          "label": "Messy Bun",
+          "image_text": "messy hair bun",
+          "tags": [
+            "updos"
+          ]
+        },
+        {
+          "id": "braided_bun",
+          "label": "Braided Bun",
+          "image_text": "braided bun",
+          "tags": [
+            "updos"
+          ]
+        },
+        {
+          "id": "bantu_knots",
+          "label": "Bantu Knots",
+          "image_text": "bantu knots",
+          "tags": [
+            "updos"
+          ]
+        },
+        {
+          "id": "top_knot",
+          "label": "Topknot",
+          "image_text": "topknot",
+          "tags": [
+            "updos"
+          ]
+        },
+        {
+          "id": "chignon",
+          "label": "Chignon",
+          "image_text": "chignon",
+          "tags": [
+            "updos"
+          ]
+        },
+        {
+          "id": "french_twist",
+          "label": "French Twist",
+          "image_text": "french twist updo",
+          "tags": [
+            "updos"
+          ]
+        },
+        {
+          "id": "loose_updo",
+          "label": "Loose Updo",
+          "image_text": "loose updo",
+          "tags": [
+            "updos"
+          ]
+        },
+        {
+          "id": "half_up",
+          "label": "Half-Up",
+          "image_text": "half updo",
+          "tags": [
+            "updos"
+          ]
+        },
+        {
+          "id": "bob",
+          "label": "Bob",
+          "image_text": "bob cut",
+          "tags": [
+            "short"
+          ]
+        },
+        {
+          "id": "long_bob",
+          "label": "Long Bob",
+          "image_text": "long bob",
+          "tags": [
+            "short"
+          ]
+        },
+        {
+          "id": "asymmetrical_bob",
+          "label": "Asymmetrical Bob",
+          "image_text": "asymmetrical bob cut",
+          "tags": [
+            "short"
+          ]
+        },
+        {
+          "id": "inverted_bob",
+          "label": "Inverted Bob",
+          "image_text": "inverted bob cut",
+          "tags": [
+            "short"
+          ]
+        },
+        {
+          "id": "pixie",
+          "label": "Pixie",
+          "image_text": "pixie cut",
+          "tags": [
+            "short"
+          ]
+        },
+        {
+          "id": "bowl_cut",
+          "label": "Bowl Cut",
+          "image_text": "bowl cut",
+          "tags": [
+            "short"
+          ]
+        },
+        {
+          "id": "crew_cut",
+          "label": "Crew Cut",
+          "image_text": "crew cut",
+          "tags": [
+            "short"
+          ]
+        },
+        {
+          "id": "flattop",
+          "label": "Flattop",
+          "image_text": "flattop haircut",
+          "tags": [
+            "short"
+          ]
+        },
+        {
+          "id": "undercut",
+          "label": "Undercut",
+          "image_text": "undercut",
+          "tags": [
+            "shaved"
+          ]
+        },
+        {
+          "id": "side_shave",
+          "label": "Side Shave",
+          "image_text": "side shave",
+          "tags": [
+            "shaved"
+          ]
+        },
+        {
+          "id": "mohawk",
+          "label": "Mohawk",
+          "image_text": "mohawk",
+          "tags": [
+            "shaved"
+          ]
+        },
+        {
+          "id": "faux_hawk",
+          "label": "Faux Hawk",
+          "image_text": "faux hawk",
+          "tags": [
+            "shaved"
+          ]
+        },
+        {
+          "id": "liberty_spikes",
+          "label": "Liberty Spikes",
+          "image_text": "liberty spikes",
+          "tags": [
+            "shaved"
+          ]
+        },
+        {
+          "id": "spiky",
+          "label": "Spiky",
+          "image_text": "spiky hair",
+          "tags": [
+            "shaved"
+          ]
+        },
+        {
+          "id": "rattail",
+          "label": "Rattail",
+          "image_text": "rat tail haircut",
+          "tags": [
+            "shaved"
+          ]
+        },
+        {
+          "id": "slicked_back",
+          "label": "Slicked Back",
+          "image_text": "slicked back hair",
+          "tags": [
+            "retro"
+          ]
+        },
+        {
+          "id": "pompadour",
+          "label": "Pompadour",
+          "image_text": "pompadour",
+          "tags": [
+            "retro"
+          ]
+        },
+        {
+          "id": "quiff",
+          "label": "Quiff",
+          "image_text": "quiff",
+          "tags": [
+            "retro"
+          ]
+        },
+        {
+          "id": "finger_waves",
+          "label": "Finger Waves",
+          "image_text": "finger waves",
+          "tags": [
+            "retro"
+          ]
+        },
+        {
+          "id": "victory_rolls",
+          "label": "Victory Rolls",
+          "image_text": "victory rolls",
+          "tags": [
+            "retro"
+          ]
+        },
+        {
+          "id": "beehive",
+          "label": "Beehive",
+          "image_text": "beehive hairdo",
+          "tags": [
+            "retro"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bangs",
+      "label": "Bangs",
+      "kind": "pick_one",
+      "home": "identity",
+      "priority": "flavor",
+      "visible_when": {
+        "group": "hair_length",
+        "not_in": [
+          "bald"
+        ]
+      },
+      "section": "Appearance",
+      "order": 27,
+      "hint": "Front fringe framing the face.",
+      "options": [
+        {
+          "id": "none",
+          "label": "None",
+          "image_text": ""
+        },
+        {
+          "id": "blunt",
+          "label": "Blunt",
+          "image_text": "blunt bangs"
+        },
+        {
+          "id": "side_swept",
+          "label": "Side-Swept",
+          "image_text": "side-swept bangs"
+        },
+        {
+          "id": "curtain",
+          "label": "Curtain",
+          "image_text": "parted bangs"
+        },
+        {
+          "id": "wispy",
+          "label": "Wispy",
+          "image_text": "wispy bangs"
+        },
+        {
+          "id": "choppy",
+          "label": "Choppy",
+          "image_text": "choppy bangs"
+        },
+        {
+          "id": "hime_side_locks",
+          "label": "Hime Side-Locks",
+          "image_text": "long sidelocks"
+        }
+      ]
+    },
+    {
+      "id": "facial_hair",
+      "label": "Facial Hair",
+      "kind": "pick_one",
+      "home": "identity",
+      "priority": "flavor",
+      "section": "Appearance",
+      "order": 28,
+      "hint": "Renders regardless of gender presentation.",
+      "options": [
+        {
+          "id": "none",
+          "label": "None",
+          "image_text": ""
+        },
+        {
+          "id": "stubble",
+          "label": "Stubble",
+          "image_text": "stubble"
+        },
+        {
+          "id": "mustache",
+          "label": "Mustache",
+          "image_text": "mustache"
+        },
+        {
+          "id": "goatee",
+          "label": "Goatee",
+          "image_text": "goatee"
+        },
+        {
+          "id": "pointed_goatee",
+          "label": "Van Dyke",
+          "image_text": "pointed goatee"
+        },
+        {
+          "id": "short_beard",
+          "label": "Short Beard",
+          "image_text": "short beard"
+        },
+        {
+          "id": "full_beard",
+          "label": "Full Beard",
+          "image_text": "full beard"
+        },
+        {
+          "id": "braided_beard",
+          "label": "Braided Beard",
+          "image_text": "braided beard"
+        },
+        {
+          "id": "mutton_chops",
+          "label": "Mutton Chops",
+          "image_text": "mutton chops"
+        }
+      ]
+    },
+    {
+      "id": "eye_color",
+      "label": "Eye Color",
+      "kind": "pick_one",
+      "home": "identity",
+      "priority": "should",
+      "section": "Appearance",
+      "order": 29,
+      "hint": "Primary eye color in every render.",
+      "_v1": {
+        "quick": true,
+        "required": true
+      },
+      "options": [
+        {
+          "id": "brown",
+          "label": "Brown",
+          "image_text": "brown eyes",
+          "color": "#6b4226"
+        },
+        {
+          "id": "dark_brown",
+          "label": "Dark Brown",
+          "image_text": "dark brown eyes",
+          "color": "#4a2e1a"
+        },
+        {
+          "id": "hazel",
+          "label": "Hazel",
+          "image_text": "hazel eyes",
+          "color": "#9a7a3f"
+        },
+        {
+          "id": "amber",
+          "label": "Amber",
+          "image_text": "amber eyes",
+          "color": "#c98a2e"
+        },
+        {
+          "id": "green",
+          "label": "Green",
+          "image_text": "green eyes",
+          "color": "#4e8d57"
+        },
+        {
+          "id": "emerald",
+          "label": "Emerald",
+          "image_text": "emerald eyes",
+          "color": "#2f9e5f"
+        },
+        {
+          "id": "blue",
+          "label": "Blue",
+          "image_text": "blue eyes",
+          "color": "#4d7fd0"
+        },
+        {
+          "id": "ice_blue",
+          "label": "Ice Blue",
+          "image_text": "ice blue eyes",
+          "color": "#a8d8e8"
+        },
+        {
+          "id": "grey",
+          "label": "Grey",
+          "image_text": "grey eyes",
+          "color": "#8e97a3"
+        },
+        {
+          "id": "violet",
+          "label": "Violet",
+          "image_text": "violet eyes",
+          "color": "#8a5fc8"
+        },
+        {
+          "id": "red",
+          "label": "Red",
+          "image_text": "red eyes",
+          "tags": [
+            "nonhuman"
+          ],
+          "color": "#c03434"
+        },
+        {
+          "id": "crimson",
+          "label": "Crimson",
+          "image_text": "crimson eyes",
+          "tags": [
+            "nonhuman"
+          ],
+          "color": "#8e2f39"
+        },
+        {
+          "id": "gold",
+          "label": "Gold",
+          "image_text": "golden eyes",
+          "tags": [
+            "nonhuman"
+          ],
+          "color": "#d8a62f"
+        },
+        {
+          "id": "yellow",
+          "label": "Yellow",
+          "image_text": "yellow eyes",
+          "tags": [
+            "nonhuman"
+          ],
+          "color": "#d8c22f"
+        },
+        {
+          "id": "pink",
+          "label": "Pink",
+          "image_text": "pink eyes",
+          "tags": [
+            "nonhuman"
+          ],
+          "color": "#e88ab8"
+        },
+        {
+          "id": "black",
+          "label": "Black",
+          "image_text": "black eyes",
+          "tags": [
+            "nonhuman"
+          ],
+          "color": "#1b1b1f"
+        },
+        {
+          "id": "pupil_less_white",
+          "label": "Pupil-less White",
+          "image_text": "blank white eyes",
+          "tags": [
+            "nonhuman"
+          ],
+          "color": "#f2f2f2"
+        }
+      ]
+    },
+    {
+      "id": "eye_color_2",
+      "_note": "V2 B14: a second color set IS the heterochromia flag.",
+      "label": "Heterochromia",
+      "kind": "pick_one",
+      "home": "identity",
+      "priority": "flavor",
+      "section": "Appearance",
+      "order": 30,
+      "hint": "Pick a second color for heterochromia (one eye each).",
+      "options": [
+        {
+          "id": "brown",
+          "label": "Brown",
+          "image_text": "heterochromia, one brown eye",
+          "color": "#6b4226"
+        },
+        {
+          "id": "dark_brown",
+          "label": "Dark Brown",
+          "image_text": "heterochromia, one dark brown eye",
+          "color": "#4a2e1a"
+        },
+        {
+          "id": "hazel",
+          "label": "Hazel",
+          "image_text": "heterochromia, one hazel eye",
+          "color": "#9a7a3f"
+        },
+        {
+          "id": "amber",
+          "label": "Amber",
+          "image_text": "heterochromia, one amber eye",
+          "color": "#c98a2e"
+        },
+        {
+          "id": "green",
+          "label": "Green",
+          "image_text": "heterochromia, one green eye",
+          "color": "#4e8d57"
+        },
+        {
+          "id": "emerald",
+          "label": "Emerald",
+          "image_text": "heterochromia, one emerald eye",
+          "color": "#2f9e5f"
+        },
+        {
+          "id": "blue",
+          "label": "Blue",
+          "image_text": "heterochromia, one blue eye",
+          "color": "#4d7fd0"
+        },
+        {
+          "id": "ice_blue",
+          "label": "Ice Blue",
+          "image_text": "heterochromia, one ice blue eye",
+          "color": "#a8d8e8"
+        },
+        {
+          "id": "grey",
+          "label": "Grey",
+          "image_text": "heterochromia, one grey eye",
+          "color": "#8e97a3"
+        },
+        {
+          "id": "violet",
+          "label": "Violet",
+          "image_text": "heterochromia, one violet eye",
+          "color": "#8a5fc8"
+        },
+        {
+          "id": "red",
+          "label": "Red",
+          "image_text": "heterochromia, one red eye",
+          "color": "#c03434"
+        },
+        {
+          "id": "crimson",
+          "label": "Crimson",
+          "image_text": "heterochromia, one crimson eye",
+          "color": "#8e2f39"
+        },
+        {
+          "id": "gold",
+          "label": "Gold",
+          "image_text": "heterochromia, one golden eye",
+          "color": "#d8a62f"
+        },
+        {
+          "id": "yellow",
+          "label": "Yellow",
+          "image_text": "heterochromia, one yellow eye",
+          "color": "#d8c22f"
+        },
+        {
+          "id": "pink",
+          "label": "Pink",
+          "image_text": "heterochromia, one pink eye",
+          "color": "#e88ab8"
+        },
+        {
+          "id": "black",
+          "label": "Black",
+          "image_text": "heterochromia, one black eye",
+          "color": "#1b1b1f"
+        },
+        {
+          "id": "pupil_less_white",
+          "label": "Pupil-less White",
+          "image_text": "heterochromia, one blank white eye",
+          "color": "#f2f2f2"
+        }
+      ]
+    },
+    {
+      "id": "eye_shape",
+      "label": "Eye Shape",
+      "kind": "pick_one",
+      "home": "identity",
+      "priority": "flavor",
+      "section": "Appearance",
+      "order": 31,
+      "hint": "Eye silhouette - a subtle face modifier.",
+      "options": [
+        {
+          "id": "almond",
+          "label": "Almond",
+          "image_text": "almond-shaped eyes"
+        },
+        {
+          "id": "round",
+          "label": "Round",
+          "image_text": "round eyes"
+        },
+        {
+          "id": "upturned",
+          "label": "Upturned",
+          "image_text": "upturned eyes"
+        },
+        {
+          "id": "downturned",
+          "label": "Downturned",
+          "image_text": "downturned eyes"
+        },
+        {
+          "id": "narrow",
+          "label": "Narrow",
+          "image_text": "narrow eyes"
+        },
+        {
+          "id": "wide",
+          "label": "Wide",
+          "image_text": "wide eyes"
+        }
+      ]
+    },
+    {
+      "id": "eye_features",
+      "label": "Eye Features",
+      "kind": "pick_many",
+      "home": "identity",
+      "priority": "flavor",
+      "section": "Appearance",
+      "order": 32,
+      "hint": "Stackable eye details (glow, slit pupils, lashes...).",
+      "options": [
+        {
+          "id": "glowing_eyes",
+          "label": "Glowing Eyes",
+          "image_text": "glowing eyes"
+        },
+        {
+          "id": "slit_pupils",
+          "label": "Slit Pupils",
+          "image_text": "slit pupils"
+        },
+        {
+          "id": "no_pupils",
+          "label": "No Pupils",
+          "image_text": "no pupils"
+        },
+        {
+          "id": "ringed_iris",
+          "label": "Ringed Iris",
+          "image_text": "ringed iris"
+        },
+        {
+          "id": "long_lashes",
+          "label": "Long Lashes",
+          "image_text": "long eyelashes"
+        },
+        {
+          "id": "dark_circles",
+          "label": "Dark Circles",
+          "image_text": "dark circles"
+        },
+        {
+          "id": "heavy_lidded",
+          "label": "Heavy-Lidded",
+          "image_text": "heavy-lidded eyes"
+        }
+      ]
+    },
+    {
+      "id": "face_shape",
+      "label": "Face Shape",
+      "kind": "pick_one",
+      "home": "identity",
+      "priority": "flavor",
+      "section": "Appearance",
+      "order": 33,
+      "hint": "Late-window detail - renders when the prompt has room.",
+      "options": [
+        {
+          "id": "oval",
+          "label": "Oval",
+          "image_text": "oval face"
+        },
+        {
+          "id": "round",
+          "label": "Round",
+          "image_text": "round face"
+        },
+        {
+          "id": "heart",
+          "label": "Heart",
+          "image_text": "heart-shaped face"
+        },
+        {
+          "id": "square",
+          "label": "Square",
+          "image_text": "square jaw"
+        },
+        {
+          "id": "angular",
+          "label": "Angular",
+          "image_text": "angular features"
+        },
+        {
+          "id": "soft",
+          "label": "Soft",
+          "image_text": "soft features"
+        },
+        {
+          "id": "long",
+          "label": "Long",
+          "image_text": "long face"
+        }
+      ]
+    },
+    {
+      "id": "lips",
+      "label": "Lips",
+      "kind": "pick_one",
+      "home": "identity",
+      "priority": "flavor",
+      "section": "Appearance",
+      "order": 34,
+      "hint": "Late-window detail - renders when the prompt has room.",
+      "options": [
+        {
+          "id": "thin",
+          "label": "Thin",
+          "image_text": "thin lips"
+        },
+        {
+          "id": "natural",
+          "label": "Natural",
+          "image_text": ""
+        },
+        {
+          "id": "full",
+          "label": "Full",
+          "image_text": "full lips"
+        },
+        {
+          "id": "very_full",
+          "label": "Very Full",
+          "image_text": "very full lips"
+        }
+      ]
+    },
+    {
+      "id": "nose",
+      "label": "Nose",
+      "kind": "pick_one",
+      "home": "identity",
+      "priority": "flavor",
+      "section": "Appearance",
+      "order": 35,
+      "hint": "Late-window detail - renders when the prompt has room.",
+      "options": [
+        {
+          "id": "small",
+          "label": "Small",
+          "image_text": "small nose"
+        },
+        {
+          "id": "button",
+          "label": "Button",
+          "image_text": "button nose"
+        },
+        {
+          "id": "straight",
+          "label": "Straight",
+          "image_text": "straight nose"
+        },
+        {
+          "id": "aquiline",
+          "label": "Aquiline",
+          "image_text": "aquiline nose"
+        },
+        {
+          "id": "broad",
+          "label": "Broad",
+          "image_text": "broad nose"
+        },
+        {
+          "id": "upturned",
+          "label": "Upturned",
+          "image_text": "upturned nose"
+        }
+      ]
+    },
+    {
+      "id": "eyebrows",
+      "label": "Eyebrows",
+      "kind": "pick_one",
+      "home": "identity",
+      "priority": "flavor",
+      "section": "Appearance",
+      "order": 36,
+      "hint": "Late-window detail - renders when the prompt has room.",
+      "options": [
+        {
+          "id": "thin",
+          "label": "Thin",
+          "image_text": "thin eyebrows"
+        },
+        {
+          "id": "natural",
+          "label": "Natural",
+          "image_text": ""
+        },
+        {
+          "id": "thick",
+          "label": "Thick",
+          "image_text": "thick eyebrows"
+        },
+        {
+          "id": "arched",
+          "label": "Arched",
+          "image_text": "arched eyebrows"
+        },
+        {
+          "id": "straight",
+          "label": "Straight",
+          "image_text": "straight eyebrows"
+        }
+      ]
+    },
+    {
+      "id": "makeup",
+      "label": "Makeup",
+      "kind": "pick_one",
+      "home": "identity",
+      "priority": "flavor",
+      "section": "Appearance",
+      "order": 37,
+      "hint": "Applied look - part of the character, not the scene.",
+      "options": [
+        {
+          "id": "none",
+          "label": "None",
+          "image_text": ""
+        },
+        {
+          "id": "natural",
+          "label": "Natural",
+          "image_text": "light makeup"
+        },
+        {
+          "id": "bold_lips",
+          "label": "Bold Lips",
+          "image_text": "bold lipstick"
+        },
+        {
+          "id": "smoky_eyes",
+          "label": "Smoky Eyes",
+          "image_text": "smoky eye makeup"
+        },
+        {
+          "id": "full_glam",
+          "label": "Full Glam",
+          "image_text": "glamorous makeup"
+        },
+        {
+          "id": "gothic",
+          "label": "Gothic",
+          "image_text": "gothic makeup"
+        },
+        {
+          "id": "festival_paint",
+          "label": "Festival Paint",
+          "image_text": "festival face paint"
+        },
+        {
+          "id": "war_paint",
+          "label": "War Paint",
+          "image_text": "war paint"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,763 @@
+{
+  "_note": "CHARACTER_VOCABULARY_V2.md §5 Subset C, C20-C31 (Voice & Speech, Emotional profile). All render:false (chat-side; Stage-6 persona injection). C25 catchphrase is a free-text slot (flag 10), handled by the creator free-text field set - NOT a group here. Mem provisional (flag 1); fragments best-effort, re-cut at 6d. Caps documented but unenforced.",
+  "format": 1,
+  "rating": "standard",
+  "groups": [
+    {
+      "id": "voice_timbre",
+      "_note": "C20. Replaces the pre-V2 'voice' group (which retires to lint); this is the timbre axis, the C21-C27 groups carry the rest of the speech block.",
+      "label": "Timbre",
+      "kind": "pick_one",
+      "home": "persona",
+      "section": "Voice & Speech",
+      "order": 520,
+      "options": [
+        {
+          "id": "soft",
+          "label": "Soft",
+          "chat_text": "a soft voice"
+        },
+        {
+          "id": "gentle",
+          "label": "Gentle",
+          "chat_text": "a gentle voice"
+        },
+        {
+          "id": "bright",
+          "label": "Bright",
+          "chat_text": "a bright voice"
+        },
+        {
+          "id": "clear",
+          "label": "Clear",
+          "chat_text": "a clear voice"
+        },
+        {
+          "id": "warm",
+          "label": "Warm",
+          "chat_text": "a warm voice"
+        },
+        {
+          "id": "husky",
+          "label": "Husky",
+          "chat_text": "a husky voice"
+        },
+        {
+          "id": "sultry",
+          "label": "Sultry",
+          "chat_text": "a sultry voice"
+        },
+        {
+          "id": "deep",
+          "label": "Deep",
+          "chat_text": "a deep voice"
+        },
+        {
+          "id": "resonant",
+          "label": "Resonant",
+          "chat_text": "a resonant voice"
+        },
+        {
+          "id": "gravelly",
+          "label": "Gravelly",
+          "chat_text": "a gravelly voice"
+        },
+        {
+          "id": "raspy",
+          "label": "Raspy",
+          "chat_text": "a raspy voice"
+        },
+        {
+          "id": "melodic",
+          "label": "Melodic",
+          "chat_text": "a melodic voice"
+        },
+        {
+          "id": "lilting",
+          "label": "Lilting",
+          "chat_text": "a lilting voice"
+        },
+        {
+          "id": "monotone",
+          "label": "Monotone",
+          "chat_text": "a monotone voice"
+        },
+        {
+          "id": "sharp",
+          "label": "Sharp",
+          "chat_text": "a sharp voice"
+        },
+        {
+          "id": "breathy",
+          "label": "Breathy",
+          "chat_text": "a breathy voice"
+        },
+        {
+          "id": "booming",
+          "label": "Booming",
+          "chat_text": "a booming voice"
+        },
+        {
+          "id": "squeaky",
+          "label": "Squeaky",
+          "chat_text": "a squeaky voice"
+        },
+        {
+          "id": "synthesized",
+          "label": "Synthesized",
+          "chat_text": "a synthesized voice"
+        },
+        {
+          "id": "echoing",
+          "label": "Echoing",
+          "chat_text": "an echoing voice"
+        }
+      ]
+    },
+    {
+      "id": "speech_pace",
+      "_note": "C21, ordinal(5) - segmented.",
+      "label": "Pace",
+      "kind": "pick_one",
+      "home": "persona",
+      "section": "Voice & Speech",
+      "order": 521,
+      "options": [
+        {
+          "id": "laconic",
+          "label": "Laconic",
+          "chat_text": "speaks laconically"
+        },
+        {
+          "id": "measured",
+          "label": "Measured",
+          "chat_text": "speaks at a measured pace"
+        },
+        {
+          "id": "even",
+          "label": "Even",
+          "chat_text": "speaks at an even pace"
+        },
+        {
+          "id": "quick",
+          "label": "Quick",
+          "chat_text": "speaks quickly"
+        },
+        {
+          "id": "rapid_fire",
+          "label": "Rapid-fire",
+          "chat_text": "speaks rapid-fire"
+        }
+      ]
+    },
+    {
+      "id": "speech_register",
+      "_note": "C22.",
+      "label": "Register",
+      "kind": "pick_one",
+      "home": "persona",
+      "section": "Voice & Speech",
+      "order": 522,
+      "options": [
+        {
+          "id": "archaic_formal",
+          "label": "Archaic-formal",
+          "chat_text": "speaks in an archaic, formal register"
+        },
+        {
+          "id": "formal",
+          "label": "Formal",
+          "chat_text": "speaks formally"
+        },
+        {
+          "id": "polite",
+          "label": "Polite",
+          "chat_text": "speaks politely"
+        },
+        {
+          "id": "casual",
+          "label": "Casual",
+          "chat_text": "speaks casually"
+        },
+        {
+          "id": "rough",
+          "label": "Rough",
+          "chat_text": "speaks in a rough register"
+        },
+        {
+          "id": "crude",
+          "label": "Crude",
+          "chat_text": "speaks crudely"
+        }
+      ]
+    },
+    {
+      "id": "speech_patterns",
+      "_note": "C23. Intended cap 3 (unenforced).",
+      "label": "Patterns",
+      "kind": "pick_many",
+      "home": "persona",
+      "section": "Voice & Speech",
+      "order": 523,
+      "options": [
+        {
+          "id": "never_uses_contractions",
+          "label": "Never uses contractions",
+          "chat_text": "never uses contractions"
+        },
+        {
+          "id": "uses_honorifics_for_everyone",
+          "label": "Uses honorifics for everyone",
+          "chat_text": "uses honorifics for everyone"
+        },
+        {
+          "id": "gives_everyone_nicknames",
+          "label": "Gives everyone nicknames",
+          "chat_text": "gives everyone nicknames"
+        },
+        {
+          "id": "trails_off_mid_thought",
+          "label": "Trails off mid-thought",
+          "chat_text": "trails off mid-thought"
+        },
+        {
+          "id": "answers_questions_with_questions",
+          "label": "Answers questions with questions",
+          "chat_text": "answers questions with questions"
+        },
+        {
+          "id": "thinks_aloud",
+          "label": "Thinks aloud",
+          "chat_text": "thinks aloud"
+        },
+        {
+          "id": "over_explains",
+          "label": "Over-explains",
+          "chat_text": "over-explains"
+        },
+        {
+          "id": "one_word_answers",
+          "label": "One-word answers",
+          "chat_text": "gives one-word answers"
+        },
+        {
+          "id": "poetic_metaphors",
+          "label": "Poetic metaphors",
+          "chat_text": "speaks in poetic metaphors"
+        },
+        {
+          "id": "dry_sarcasm",
+          "label": "Dry sarcasm",
+          "chat_text": "given to dry sarcasm"
+        },
+        {
+          "id": "gentle_teasing",
+          "label": "Gentle teasing",
+          "chat_text": "given to gentle teasing"
+        },
+        {
+          "id": "constant_proverbs",
+          "label": "Constant proverbs",
+          "chat_text": "quotes proverbs constantly"
+        },
+        {
+          "id": "technical_jargon",
+          "label": "Technical jargon",
+          "chat_text": "lapses into technical jargon"
+        },
+        {
+          "id": "modern_slang",
+          "label": "Modern slang",
+          "chat_text": "peppers speech with modern slang"
+        },
+        {
+          "id": "old_fashioned_slang",
+          "label": "Old-fashioned slang",
+          "chat_text": "uses old-fashioned slang"
+        },
+        {
+          "id": "mild_oaths",
+          "label": "Mild oaths",
+          "chat_text": "swears mild oaths"
+        },
+        {
+          "id": "heavy_profanity",
+          "label": "Heavy profanity",
+          "chat_text": "swears heavily"
+        },
+        {
+          "id": "theatrical_declarations",
+          "label": "Theatrical declarations",
+          "chat_text": "makes theatrical declarations"
+        },
+        {
+          "id": "whispers_when_serious",
+          "label": "Whispers when serious",
+          "chat_text": "whispers when serious"
+        },
+        {
+          "id": "laughs_mid_sentence",
+          "label": "Laughs mid-sentence",
+          "chat_text": "laughs mid-sentence"
+        },
+        {
+          "id": "self_deprecating_asides",
+          "label": "Self-deprecating asides",
+          "chat_text": "makes self-deprecating asides"
+        },
+        {
+          "id": "refers_to_self_in_third_person",
+          "label": "Refers to self in third person",
+          "chat_text": "refers to themselves in the third person"
+        },
+        {
+          "id": "royal_we",
+          "label": "Royal we",
+          "chat_text": "uses the royal we"
+        },
+        {
+          "id": "counts_points_on_fingers",
+          "label": "Counts points on fingers",
+          "chat_text": "counts points on their fingers"
+        },
+        {
+          "id": "apologizes_reflexively",
+          "label": "Apologizes reflexively",
+          "chat_text": "apologizes reflexively"
+        },
+        {
+          "id": "switches_languages_when_flustered",
+          "label": "Switches languages when flustered",
+          "chat_text": "switches languages when flustered"
+        }
+      ]
+    },
+    {
+      "id": "verbal_tic",
+      "_note": "C24. Doc options are quoted phrases; ids sanitized to snake_case.",
+      "label": "Tic",
+      "kind": "pick_one",
+      "home": "persona",
+      "section": "Voice & Speech",
+      "order": 524,
+      "options": [
+        {
+          "id": "ya_know",
+          "label": "\"ya know\"",
+          "chat_text": "peppers speech with 'ya know'"
+        },
+        {
+          "id": "like",
+          "label": "\"like\"",
+          "chat_text": "drops 'like' into sentences"
+        },
+        {
+          "id": "right_then",
+          "label": "\"right then\"",
+          "chat_text": "punctuates with 'right then'"
+        },
+        {
+          "id": "as_it_were",
+          "label": "\"as it were\"",
+          "chat_text": "adds 'as it were'"
+        },
+        {
+          "id": "i_suppose",
+          "label": "\"I suppose\"",
+          "chat_text": "hedges with 'I suppose'"
+        },
+        {
+          "id": "hm",
+          "label": "\"hm?\"",
+          "chat_text": "trails questions with 'hm?'"
+        },
+        {
+          "id": "eh",
+          "label": "\"eh?\"",
+          "chat_text": "tags sentences with 'eh?'"
+        },
+        {
+          "id": "probably",
+          "label": "\"...probably\"",
+          "chat_text": "softens claims with '...probably'"
+        },
+        {
+          "id": "so_it_goes",
+          "label": "\"so it goes\"",
+          "chat_text": "shrugs things off with 'so it goes'"
+        },
+        {
+          "id": "mark_my_words",
+          "label": "\"mark my words\"",
+          "chat_text": "warns with 'mark my words'"
+        },
+        {
+          "id": "bless_it",
+          "label": "\"bless it\"",
+          "chat_text": "mutters 'bless it'"
+        },
+        {
+          "id": "tch",
+          "label": "\"tch\"",
+          "chat_text": "clicks a 'tch' of annoyance"
+        },
+        {
+          "id": "trailing_yeah",
+          "label": "trailing \"...yeah\"",
+          "chat_text": "trails off with '...yeah'"
+        },
+        {
+          "id": "nya",
+          "label": "\"nya\"",
+          "chat_text": "adds a catlike 'nya'"
+        }
+      ]
+    },
+    {
+      "id": "accent_flavor",
+      "_note": "C26.",
+      "label": "Accent",
+      "kind": "pick_one",
+      "home": "persona",
+      "section": "Voice & Speech",
+      "order": 525,
+      "options": [
+        {
+          "id": "neutral",
+          "label": "Neutral",
+          "chat_text": "a neutral accent"
+        },
+        {
+          "id": "posh",
+          "label": "Posh",
+          "chat_text": "a posh accent"
+        },
+        {
+          "id": "rustic",
+          "label": "Rustic",
+          "chat_text": "a rustic accent"
+        },
+        {
+          "id": "clipped",
+          "label": "Clipped",
+          "chat_text": "a clipped accent"
+        },
+        {
+          "id": "lilting",
+          "label": "Lilting",
+          "chat_text": "a lilting accent"
+        },
+        {
+          "id": "brogue",
+          "label": "Brogue",
+          "chat_text": "a thick brogue"
+        },
+        {
+          "id": "drawl",
+          "label": "Drawl",
+          "chat_text": "a slow drawl"
+        },
+        {
+          "id": "sing_song",
+          "label": "Sing-song",
+          "chat_text": "a sing-song accent"
+        },
+        {
+          "id": "foreign_formal",
+          "label": "Foreign-formal",
+          "chat_text": "a formal foreign accent"
+        },
+        {
+          "id": "old_world",
+          "label": "Old-world",
+          "chat_text": "an old-world accent"
+        },
+        {
+          "id": "dockside_rough",
+          "label": "Dockside rough",
+          "chat_text": "a rough dockside accent"
+        },
+        {
+          "id": "courtly",
+          "label": "Courtly",
+          "chat_text": "a courtly accent"
+        },
+        {
+          "id": "backwater",
+          "label": "Backwater",
+          "chat_text": "a backwater accent"
+        },
+        {
+          "id": "synthetic_clipped",
+          "label": "Synthetic-clipped",
+          "chat_text": "a synthetic, clipped accent"
+        }
+      ]
+    },
+    {
+      "id": "laugh",
+      "_note": "C27.",
+      "label": "Laugh",
+      "kind": "pick_one",
+      "home": "persona",
+      "section": "Voice & Speech",
+      "order": 526,
+      "options": [
+        {
+          "id": "soft_giggle",
+          "label": "Soft giggle",
+          "chat_text": "a soft giggle"
+        },
+        {
+          "id": "snort_laugh",
+          "label": "Snort-laugh",
+          "chat_text": "a snort-laugh"
+        },
+        {
+          "id": "booming",
+          "label": "Booming",
+          "chat_text": "a booming laugh"
+        },
+        {
+          "id": "silent_shoulder_shake",
+          "label": "Silent shoulder-shake",
+          "chat_text": "a silent, shoulder-shaking laugh"
+        },
+        {
+          "id": "wheeze",
+          "label": "Wheeze",
+          "chat_text": "a wheezing laugh"
+        },
+        {
+          "id": "musical",
+          "label": "Musical",
+          "chat_text": "a musical laugh"
+        },
+        {
+          "id": "rare_and_quiet",
+          "label": "Rare and quiet",
+          "chat_text": "a rare, quiet laugh"
+        },
+        {
+          "id": "cackle",
+          "label": "Cackle",
+          "chat_text": "a cackling laugh"
+        }
+      ]
+    },
+    {
+      "id": "expressiveness",
+      "_note": "C28, ordinal(5) - segmented.",
+      "label": "Face card",
+      "kind": "pick_one",
+      "home": "persona",
+      "section": "Emotional Profile",
+      "order": 527,
+      "options": [
+        {
+          "id": "stone_faced",
+          "label": "Stone-faced",
+          "chat_text": "stone-faced, hard to read"
+        },
+        {
+          "id": "reserved",
+          "label": "Reserved",
+          "chat_text": "reserved in expression"
+        },
+        {
+          "id": "readable",
+          "label": "Readable",
+          "chat_text": "readable expression"
+        },
+        {
+          "id": "expressive",
+          "label": "Expressive",
+          "chat_text": "openly expressive"
+        },
+        {
+          "id": "wears_everything",
+          "label": "Wears everything",
+          "chat_text": "wears every feeling on their face"
+        }
+      ]
+    },
+    {
+      "id": "temper_fuse",
+      "_note": "C29, ordinal(5) - segmented.",
+      "label": "Fuse",
+      "kind": "pick_one",
+      "home": "persona",
+      "section": "Emotional Profile",
+      "order": 528,
+      "options": [
+        {
+          "id": "unshakeable",
+          "label": "Unshakeable",
+          "chat_text": "an unshakeable temper"
+        },
+        {
+          "id": "long_fuse",
+          "label": "Long fuse",
+          "chat_text": "a long fuse"
+        },
+        {
+          "id": "average",
+          "label": "Average",
+          "chat_text": "an average temper"
+        },
+        {
+          "id": "short_fuse",
+          "label": "Short fuse",
+          "chat_text": "a short fuse"
+        },
+        {
+          "id": "hair_trigger",
+          "label": "Hair trigger",
+          "chat_text": "a hair-trigger temper"
+        }
+      ]
+    },
+    {
+      "id": "affection_style",
+      "_note": "C30. Written general - how they treat anyone they care for (flag 4). Intended cap 2 (unenforced).",
+      "label": "Shows care by",
+      "kind": "pick_many",
+      "home": "persona",
+      "section": "Emotional Profile",
+      "order": 529,
+      "options": [
+        {
+          "id": "words_of_praise",
+          "label": "Words of praise",
+          "chat_text": "shows care through words of praise"
+        },
+        {
+          "id": "teasing",
+          "label": "Teasing",
+          "chat_text": "shows care through teasing"
+        },
+        {
+          "id": "acts_of_service",
+          "label": "Acts of service",
+          "chat_text": "shows care through acts of service"
+        },
+        {
+          "id": "small_gifts",
+          "label": "Small gifts",
+          "chat_text": "shows care through small gifts"
+        },
+        {
+          "id": "protective_hovering",
+          "label": "Protective hovering",
+          "chat_text": "shows care through protective hovering"
+        },
+        {
+          "id": "physical_closeness",
+          "label": "Physical closeness",
+          "chat_text": "shows care through physical closeness"
+        },
+        {
+          "id": "cooking_for_them",
+          "label": "Cooking for them",
+          "chat_text": "shows care by cooking for them"
+        },
+        {
+          "id": "quality_time",
+          "label": "Quality time",
+          "chat_text": "shows care through quality time"
+        },
+        {
+          "id": "quiet_presence",
+          "label": "Quiet presence",
+          "chat_text": "shows care through quiet presence"
+        },
+        {
+          "id": "loyalty_shown_publicly",
+          "label": "Loyalty shown publicly",
+          "chat_text": "shows care through loyalty shown publicly"
+        }
+      ]
+    },
+    {
+      "id": "comfort_ritual",
+      "_note": "C31.",
+      "label": "Comfort ritual",
+      "kind": "pick_one",
+      "home": "persona",
+      "section": "Emotional Profile",
+      "order": 530,
+      "options": [
+        {
+          "id": "brewing_tea",
+          "label": "Brewing tea",
+          "chat_text": "finds comfort in brewing tea"
+        },
+        {
+          "id": "black_coffee_at_dawn",
+          "label": "Black coffee at dawn",
+          "chat_text": "finds comfort in black coffee at dawn"
+        },
+        {
+          "id": "whetstone_and_blade_care",
+          "label": "Whetstone and blade care",
+          "chat_text": "finds comfort in caring for their blade"
+        },
+        {
+          "id": "prayer_beads",
+          "label": "Prayer beads",
+          "chat_text": "finds comfort in prayer beads"
+        },
+        {
+          "id": "rooftop_stargazing",
+          "label": "Rooftop stargazing",
+          "chat_text": "finds comfort in rooftop stargazing"
+        },
+        {
+          "id": "long_baths",
+          "label": "Long baths",
+          "chat_text": "finds comfort in long baths"
+        },
+        {
+          "id": "tending_plants",
+          "label": "Tending plants",
+          "chat_text": "finds comfort in tending plants"
+        },
+        {
+          "id": "polishing_the_chassis",
+          "label": "Polishing the chassis",
+          "chat_text": "finds comfort in polishing their chassis"
+        },
+        {
+          "id": "journaling",
+          "label": "Journaling",
+          "chat_text": "finds comfort in journaling"
+        },
+        {
+          "id": "an_old_photo",
+          "label": "An old photo",
+          "chat_text": "finds comfort in an old photo"
+        },
+        {
+          "id": "humming_an_old_song",
+          "label": "Humming an old song",
+          "chat_text": "finds comfort in humming an old song"
+        },
+        {
+          "id": "cleaning_the_workspace",
+          "label": "Cleaning the workspace",
+          "chat_text": "finds comfort in cleaning the workspace"
+        },
+        {
+          "id": "feeding_strays",
+          "label": "Feeding strays",
+          "chat_text": "finds comfort in feeding strays"
+        },
+        {
+          "id": "watching_the_rain",
+          "label": "Watching the rain",
+          "chat_text": "finds comfort in watching the rain"
+        }
+      ]
+    }
+  ]
+}

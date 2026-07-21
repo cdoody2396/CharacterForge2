@@ -1,0 +1,203 @@
+{
+  "format": 1,
+  "rating": "standard",
+  "groups": [
+    {
+      "id": "chest_size",
+      "label": "Chest",
+      "kind": "pick_one",
+      "home": "identity",
+      "priority": "flavor",
+      "order": 100,
+      "hint": "Categorical by design - the pipeline honors categories, not measurements.",
+      "_v1": {
+        "region": "Chest",
+        "attribute": "Size"
+      },
+      "options": [
+        {
+          "id": "flat",
+          "label": "Flat",
+          "image_text": "flat chest"
+        },
+        {
+          "id": "small",
+          "label": "Small",
+          "image_text": "small breasts"
+        },
+        {
+          "id": "modest",
+          "label": "Modest",
+          "image_text": "modest bust"
+        },
+        {
+          "id": "medium",
+          "label": "Medium",
+          "image_text": "medium breasts"
+        },
+        {
+          "id": "large",
+          "label": "Large",
+          "image_text": "large breasts"
+        },
+        {
+          "id": "very_large",
+          "label": "Very Large",
+          "image_text": "very large breasts"
+        },
+        {
+          "id": "huge",
+          "label": "Huge",
+          "image_text": "huge breasts"
+        }
+      ]
+    },
+    {
+      "id": "waist",
+      "label": "Waist",
+      "kind": "pick_one",
+      "home": "identity",
+      "priority": "flavor",
+      "order": 102,
+      "hint": "Categorical by design.",
+      "_v1": {
+        "region": "Hips & Rear",
+        "attribute": "Waist"
+      },
+      "options": [
+        {
+          "id": "narrow",
+          "label": "Narrow",
+          "image_text": "narrow waist"
+        },
+        {
+          "id": "average",
+          "label": "Average",
+          "image_text": ""
+        },
+        {
+          "id": "thick",
+          "label": "Thick",
+          "image_text": "thick waist"
+        },
+        {
+          "id": "soft",
+          "label": "Soft",
+          "image_text": "soft waist"
+        }
+      ]
+    },
+    {
+      "id": "hips",
+      "_note": "V2 B50 (replaces hip_size; legacy values load leniently and lint).",
+      "label": "Hips",
+      "kind": "pick_one",
+      "home": "identity",
+      "priority": "flavor",
+      "order": 103,
+      "hint": "Categorical by design.",
+      "_v1": {
+        "region": "Hips & Rear",
+        "attribute": "Width"
+      },
+      "options": [
+        {
+          "id": "narrow",
+          "label": "Narrow",
+          "image_text": "narrow hips"
+        },
+        {
+          "id": "average",
+          "label": "Average",
+          "image_text": ""
+        },
+        {
+          "id": "wide",
+          "label": "Wide",
+          "image_text": "wide hips"
+        },
+        {
+          "id": "very_wide",
+          "label": "Very Wide",
+          "image_text": "very wide hips"
+        }
+      ]
+    },
+    {
+      "id": "rear",
+      "_note": "V2 B51 (replaces rear_size; legacy values load leniently and lint).",
+      "label": "Rear",
+      "kind": "pick_one",
+      "home": "identity",
+      "priority": "flavor",
+      "order": 104,
+      "hint": "Categorical by design.",
+      "_v1": {
+        "region": "Hips & Rear",
+        "attribute": "Size"
+      },
+      "options": [
+        {
+          "id": "small",
+          "label": "Small",
+          "image_text": "small rear"
+        },
+        {
+          "id": "average",
+          "label": "Average",
+          "image_text": ""
+        },
+        {
+          "id": "full",
+          "label": "Full",
+          "image_text": "full rear"
+        },
+        {
+          "id": "large",
+          "label": "Large",
+          "image_text": "large rear"
+        },
+        {
+          "id": "heavy",
+          "label": "Heavy",
+          "image_text": "heavy rear"
+        }
+      ]
+    },
+    {
+      "id": "body_hair",
+      "label": "Body Hair",
+      "kind": "pick_one",
+      "home": "identity",
+      "priority": "flavor",
+      "order": 105,
+      "hint": "Categorical by design.",
+      "_v1": {
+        "region": "Features",
+        "attribute": "Body Hair"
+      },
+      "options": [
+        {
+          "id": "smooth",
+          "label": "Smooth",
+          "image_text": "smooth, hairless"
+        },
+        {
+          "id": "light",
+          "label": "Light",
+          "image_text": "light body hair"
+        },
+        {
+          "id": "moderate",
+          "label": "Moderate",
+          "image_text": "moderate body hair"
+        },
+        {
+          "id": "heavy",
+          "label": "Heavy",
+          "image_text": "heavy body hair"
+        }
+      ]
+    }
+  ]
+}

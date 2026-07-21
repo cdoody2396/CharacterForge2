@@ -1,0 +1,1560 @@
+{
+  "format": 1,
+  "rating": "standard",
+  "groups": [
+    {
+      "id": "outfit",
+      "_note": "Group id 'outfit' and kind 'multi' are pinned by app/imagegen/catalog.py (OUTFIT_GROUP, record.tags) - V2 B56's 'existing id'. Intimate entries (lingerie, boudoir_set, towel_only, nude) append from app/data/options_gated (V2 flag 7). O* default deferred (user decision 2026-07-16). 5.7 UI pass (user decision 2026-07-18): options gain style-family classes for grouped-picker subsections; reordered by family, ids untouched.",
+      "label": "Wardrobe",
+      "kind": "pick_many",
+      "home": "persona",
+      "priority": "flavor",
+      "section": "Wardrobe",
+      "order": 90,
+      "hint": "Stackable wardrobe pieces, grouped by style family. Search or expand a family.",
+      "options": [
+        {
+          "id": "casual",
+          "label": "Casual Streetwear",
+          "image_text": "casual clothing",
+          "tags": [
+            "casual"
+          ]
+        },
+        {
+          "id": "hoodie_jeans",
+          "label": "Hoodie & Jeans",
+          "image_text": "hoodie and jeans",
+          "tags": [
+            "casual"
+          ]
+        },
+        {
+          "id": "tshirt_shorts",
+          "label": "T-Shirt & Shorts",
+          "image_text": "t-shirt and shorts",
+          "tags": [
+            "casual"
+          ]
+        },
+        {
+          "id": "leggings_hoodie",
+          "label": "Leggings & Oversized Hoodie",
+          "image_text": "leggings and oversized hoodie",
+          "tags": [
+            "casual"
+          ]
+        },
+        {
+          "id": "crop_top_jeans",
+          "label": "Crop Top & Jeans",
+          "image_text": "crop top and jeans",
+          "tags": [
+            "casual"
+          ]
+        },
+        {
+          "id": "denim_jacket",
+          "label": "Denim Jacket Casual",
+          "image_text": "denim jacket outfit",
+          "tags": [
+            "casual"
+          ]
+        },
+        {
+          "id": "leather_jacket_jeans",
+          "label": "Leather Jacket & Jeans",
+          "image_text": "leather jacket and jeans",
+          "tags": [
+            "casual"
+          ]
+        },
+        {
+          "id": "skater",
+          "label": "Skater Style",
+          "image_text": "skater style clothing",
+          "tags": [
+            "casual"
+          ]
+        },
+        {
+          "id": "knitwear_coat",
+          "label": "Knitwear & Coat",
+          "image_text": "knit sweater and coat",
+          "tags": [
+            "casual"
+          ]
+        },
+        {
+          "id": "turtleneck_slacks",
+          "label": "Turtleneck & Slacks",
+          "image_text": "turtleneck and slacks",
+          "tags": [
+            "casual"
+          ]
+        },
+        {
+          "id": "sundress",
+          "label": "Sundress",
+          "image_text": "sundress",
+          "tags": [
+            "casual"
+          ]
+        },
+        {
+          "id": "maxi_dress",
+          "label": "Maxi Dress",
+          "image_text": "maxi dress",
+          "tags": [
+            "casual"
+          ]
+        },
+        {
+          "id": "blouse_skirt",
+          "label": "Blouse & Skirt",
+          "image_text": "blouse and skirt",
+          "tags": [
+            "casual"
+          ]
+        },
+        {
+          "id": "cottagecore_dress",
+          "label": "Cottagecore Dress",
+          "image_text": "cottagecore dress",
+          "tags": [
+            "casual"
+          ]
+        },
+        {
+          "id": "bohemian_layers",
+          "label": "Bohemian Layers",
+          "image_text": "bohemian layered clothing",
+          "tags": [
+            "casual"
+          ]
+        },
+        {
+          "id": "tracksuit",
+          "label": "Tracksuit",
+          "image_text": "tracksuit",
+          "tags": [
+            "active"
+          ]
+        },
+        {
+          "id": "athletic_wear",
+          "label": "Athletic Wear",
+          "image_text": "athletic wear",
+          "tags": [
+            "active"
+          ]
+        },
+        {
+          "id": "gym_wear",
+          "label": "Gym Wear",
+          "image_text": "gym clothes",
+          "tags": [
+            "active"
+          ]
+        },
+        {
+          "id": "hiking_gear",
+          "label": "Hiking Gear",
+          "image_text": "hiking gear",
+          "tags": [
+            "active"
+          ]
+        },
+        {
+          "id": "winter_layers",
+          "label": "Winter Layers",
+          "image_text": "winter coat and layers",
+          "tags": [
+            "active"
+          ]
+        },
+        {
+          "id": "pajamas",
+          "label": "Pajamas",
+          "image_text": "pajamas",
+          "tags": [
+            "lounge"
+          ]
+        },
+        {
+          "id": "loungewear",
+          "label": "Loungewear",
+          "image_text": "loungewear",
+          "tags": [
+            "lounge"
+          ]
+        },
+        {
+          "id": "bathrobe",
+          "label": "Bathrobe",
+          "image_text": "bathrobe",
+          "tags": [
+            "lounge"
+          ]
+        },
+        {
+          "id": "business_casual",
+          "label": "Business Casual",
+          "image_text": "business casual attire",
+          "tags": [
+            "office"
+          ]
+        },
+        {
+          "id": "blazer_slacks",
+          "label": "Blazer & Slacks",
+          "image_text": "blazer and slacks",
+          "tags": [
+            "office"
+          ]
+        },
+        {
+          "id": "office_suit",
+          "label": "Office Suit",
+          "image_text": "office suit",
+          "tags": [
+            "office"
+          ]
+        },
+        {
+          "id": "suit_no_tie",
+          "label": "Suit Without Tie",
+          "image_text": "suit without tie",
+          "tags": [
+            "office"
+          ]
+        },
+        {
+          "id": "pencil_skirt_blouse",
+          "label": "Pencil Skirt & Blouse",
+          "image_text": "pencil skirt and blouse",
+          "tags": [
+            "office"
+          ]
+        },
+        {
+          "id": "retail_uniform",
+          "label": "Retail Uniform",
+          "image_text": "retail uniform",
+          "tags": [
+            "uniforms"
+          ]
+        },
+        {
+          "id": "fast_food_uniform",
+          "label": "Fast-Food Uniform",
+          "image_text": "fast food uniform",
+          "tags": [
+            "uniforms"
+          ]
+        },
+        {
+          "id": "barista_apron",
+          "label": "Barista Apron",
+          "image_text": "barista apron outfit",
+          "tags": [
+            "uniforms"
+          ]
+        },
+        {
+          "id": "chef_whites",
+          "label": "Chef Whites & Apron",
+          "image_text": "chef whites and apron",
+          "tags": [
+            "uniforms"
+          ]
+        },
+        {
+          "id": "diner_uniform",
+          "label": "Diner Uniform & Apron",
+          "image_text": "diner uniform and apron",
+          "tags": [
+            "uniforms"
+          ]
+        },
+        {
+          "id": "bartender_vest",
+          "label": "Bartender Vest",
+          "image_text": "bartender vest",
+          "tags": [
+            "uniforms"
+          ]
+        },
+        {
+          "id": "lab_coat",
+          "label": "Lab Coat",
+          "image_text": "lab coat",
+          "tags": [
+            "uniforms"
+          ]
+        },
+        {
+          "id": "medical_scrubs",
+          "label": "Medical Scrubs",
+          "image_text": "medical scrubs",
+          "tags": [
+            "uniforms"
+          ]
+        },
+        {
+          "id": "mechanic_coveralls",
+          "label": "Mechanic Coveralls",
+          "image_text": "mechanic coveralls",
+          "tags": [
+            "uniforms"
+          ]
+        },
+        {
+          "id": "hi_vis_workwear",
+          "label": "Hi-Vis Workwear",
+          "image_text": "hi-vis workwear",
+          "tags": [
+            "uniforms"
+          ]
+        },
+        {
+          "id": "police_uniform",
+          "label": "Police Uniform",
+          "image_text": "police uniform",
+          "tags": [
+            "uniforms"
+          ]
+        },
+        {
+          "id": "uniform",
+          "label": "Military Uniform",
+          "image_text": "military uniform",
+          "tags": [
+            "uniforms"
+          ]
+        },
+        {
+          "id": "dress_uniform",
+          "label": "Dress Uniform",
+          "image_text": "dress uniform",
+          "tags": [
+            "uniforms"
+          ]
+        },
+        {
+          "id": "tactical_gear",
+          "label": "Tactical Gear",
+          "image_text": "tactical gear",
+          "tags": [
+            "uniforms"
+          ]
+        },
+        {
+          "id": "flight_suit",
+          "label": "Flight Suit",
+          "image_text": "flight suit",
+          "tags": [
+            "uniforms"
+          ]
+        },
+        {
+          "id": "maid_uniform",
+          "label": "Maid Uniform",
+          "image_text": "maid uniform",
+          "tags": [
+            "uniforms"
+          ]
+        },
+        {
+          "id": "butler_suit",
+          "label": "Butler Suit",
+          "image_text": "butler suit",
+          "tags": [
+            "uniforms"
+          ]
+        },
+        {
+          "id": "formal",
+          "label": "Formal Suit",
+          "image_text": "formal attire",
+          "tags": [
+            "formal"
+          ]
+        },
+        {
+          "id": "cocktail_dress",
+          "label": "Cocktail Dress",
+          "image_text": "cocktail dress",
+          "tags": [
+            "formal"
+          ]
+        },
+        {
+          "id": "date_night",
+          "label": "Date-Night Smart",
+          "image_text": "smart date-night outfit",
+          "tags": [
+            "formal"
+          ]
+        },
+        {
+          "id": "gown",
+          "label": "Evening Gown",
+          "image_text": "elegant gown",
+          "tags": [
+            "formal"
+          ]
+        },
+        {
+          "id": "ball_gown",
+          "label": "Ball Gown",
+          "image_text": "ball gown",
+          "tags": [
+            "formal"
+          ]
+        },
+        {
+          "id": "noble_finery",
+          "label": "Noble Finery",
+          "image_text": "noble finery",
+          "tags": [
+            "formal"
+          ]
+        },
+        {
+          "id": "royal_regalia",
+          "label": "Royal Regalia",
+          "image_text": "royal regalia",
+          "tags": [
+            "formal"
+          ]
+        },
+        {
+          "id": "plate_armor",
+          "label": "Plate Armor",
+          "image_text": "plate armor",
+          "tags": [
+            "armor",
+            "fantasy"
+          ]
+        },
+        {
+          "id": "leather_armor",
+          "label": "Leather Armor",
+          "image_text": "leather armor",
+          "tags": [
+            "armor",
+            "fantasy"
+          ]
+        },
+        {
+          "id": "chainmail_tabard",
+          "label": "Chainmail & Tabard",
+          "image_text": "chainmail and tabard",
+          "tags": [
+            "armor",
+            "fantasy"
+          ]
+        },
+        {
+          "id": "battle_mage_garb",
+          "label": "Battle-Mage Garb",
+          "image_text": "battle mage garb",
+          "tags": [
+            "armor",
+            "fantasy"
+          ]
+        },
+        {
+          "id": "robes",
+          "label": "Mage Robes",
+          "image_text": "flowing robes",
+          "tags": [
+            "fantasy"
+          ]
+        },
+        {
+          "id": "priest_vestments",
+          "label": "Priest Vestments",
+          "image_text": "priest vestments",
+          "tags": [
+            "fantasy"
+          ]
+        },
+        {
+          "id": "witch_attire",
+          "label": "Witch Attire",
+          "image_text": "witch outfit",
+          "tags": [
+            "fantasy"
+          ]
+        },
+        {
+          "id": "desert_robes",
+          "label": "Desert Robes",
+          "image_text": "desert robes",
+          "tags": [
+            "fantasy"
+          ]
+        },
+        {
+          "id": "northern_furs",
+          "label": "Northern Furs",
+          "image_text": "fur-lined northern clothing",
+          "tags": [
+            "fantasy"
+          ]
+        },
+        {
+          "id": "medieval_peasant",
+          "label": "Medieval Peasant Garb",
+          "image_text": "medieval peasant garb",
+          "tags": [
+            "fantasy"
+          ]
+        },
+        {
+          "id": "tribal_wraps",
+          "label": "Tribal Wraps",
+          "image_text": "tribal wraps",
+          "tags": [
+            "fantasy"
+          ]
+        },
+        {
+          "id": "kimono",
+          "label": "Kimono",
+          "image_text": "kimono",
+          "tags": [
+            "traditional"
+          ]
+        },
+        {
+          "id": "yukata",
+          "label": "Yukata",
+          "image_text": "yukata",
+          "tags": [
+            "traditional"
+          ]
+        },
+        {
+          "id": "hanfu_robes",
+          "label": "Hanfu-Style Robes",
+          "image_text": "hanfu robes",
+          "tags": [
+            "traditional"
+          ]
+        },
+        {
+          "id": "shrine_garb",
+          "label": "Shrine Garb",
+          "image_text": "shrine garb",
+          "tags": [
+            "traditional"
+          ]
+        },
+        {
+          "id": "victorian_dress",
+          "label": "Victorian Dress",
+          "image_text": "victorian dress",
+          "tags": [
+            "historical"
+          ]
+        },
+        {
+          "id": "victorian_suit",
+          "label": "Victorian Suit",
+          "image_text": "victorian suit",
+          "tags": [
+            "historical"
+          ]
+        },
+        {
+          "id": "cowboy_western",
+          "label": "Cowboy Western Wear",
+          "image_text": "western cowboy outfit",
+          "tags": [
+            "historical"
+          ]
+        },
+        {
+          "id": "steampunk_attire",
+          "label": "Steampunk Attire",
+          "image_text": "steampunk outfit",
+          "tags": [
+            "historical"
+          ]
+        },
+        {
+          "id": "gothic_dress",
+          "label": "Gothic Dress",
+          "image_text": "gothic dress",
+          "tags": [
+            "alt"
+          ]
+        },
+        {
+          "id": "gothic_punk",
+          "label": "Gothic Punk",
+          "image_text": "gothic punk outfit",
+          "tags": [
+            "alt"
+          ]
+        },
+        {
+          "id": "punk_leather",
+          "label": "Punk Leather",
+          "image_text": "punk leather outfit",
+          "tags": [
+            "alt"
+          ]
+        },
+        {
+          "id": "biker_leathers",
+          "label": "Biker Leathers",
+          "image_text": "biker leathers",
+          "tags": [
+            "alt"
+          ]
+        },
+        {
+          "id": "grunge_flannel",
+          "label": "Grunge Flannel",
+          "image_text": "grunge flannel outfit",
+          "tags": [
+            "alt"
+          ]
+        },
+        {
+          "id": "cyberpunk_techwear",
+          "label": "Cyberpunk Techwear",
+          "image_text": "cyberpunk techwear",
+          "tags": [
+            "sci-fi",
+            "scifi"
+          ]
+        },
+        {
+          "id": "streetwear",
+          "label": "Neon Streetwear",
+          "image_text": "neon streetwear",
+          "tags": [
+            "sci-fi",
+            "scifi"
+          ]
+        },
+        {
+          "id": "spacer_jumpsuit",
+          "label": "Spacer Jumpsuit",
+          "image_text": "spacer jumpsuit",
+          "tags": [
+            "sci-fi",
+            "scifi"
+          ]
+        },
+        {
+          "id": "idol_stage",
+          "label": "Idol Stage Outfit",
+          "image_text": "idol stage outfit",
+          "tags": [
+            "performance"
+          ]
+        },
+        {
+          "id": "dancer_costume",
+          "label": "Dancer Costume",
+          "image_text": "dancer costume",
+          "tags": [
+            "performance"
+          ]
+        },
+        {
+          "id": "clubwear",
+          "label": "Clubwear",
+          "image_text": "clubwear",
+          "tags": [
+            "performance"
+          ]
+        },
+        {
+          "id": "swimwear",
+          "label": "One-Piece Swimsuit",
+          "image_text": "one-piece swimsuit",
+          "tags": [
+            "swim"
+          ]
+        },
+        {
+          "id": "bikini",
+          "label": "Bikini",
+          "image_text": "bikini",
+          "tags": [
+            "swim"
+          ]
+        },
+        {
+          "id": "beach_casual",
+          "label": "Beach Casual",
+          "image_text": "beach casual outfit",
+          "tags": [
+            "swim"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "outfit_palette",
+      "label": "Palette",
+      "kind": "pick_many",
+      "home": "persona",
+      "priority": "flavor",
+      "section": "Wardrobe",
+      "order": 91,
+      "options": [
+        {
+          "id": "black",
+          "label": "Black",
+          "image_text": "black clothing",
+          "color": "#1b1b1f"
+        },
+        {
+          "id": "white",
+          "label": "White",
+          "image_text": "white clothing",
+          "color": "#f2f2f2"
+        },
+        {
+          "id": "grey",
+          "label": "Grey",
+          "image_text": "grey clothing",
+          "color": "#8e97a3"
+        },
+        {
+          "id": "navy",
+          "label": "Navy",
+          "image_text": "navy clothing",
+          "color": "#2e3f66"
+        },
+        {
+          "id": "blue",
+          "label": "Blue",
+          "image_text": "blue clothing",
+          "color": "#4f74d8"
+        },
+        {
+          "id": "teal",
+          "label": "Teal",
+          "image_text": "teal clothing",
+          "color": "#4d9e97"
+        },
+        {
+          "id": "green",
+          "label": "Green",
+          "image_text": "green clothing",
+          "color": "#4d9e6a"
+        },
+        {
+          "id": "olive",
+          "label": "Olive",
+          "image_text": "olive clothing",
+          "color": "#7a7a3d"
+        },
+        {
+          "id": "brown",
+          "label": "Brown",
+          "image_text": "brown clothing",
+          "color": "#6e4a2e"
+        },
+        {
+          "id": "tan",
+          "label": "Tan",
+          "image_text": "tan clothing",
+          "color": "#c9a05e"
+        },
+        {
+          "id": "red",
+          "label": "Red",
+          "image_text": "red clothing",
+          "color": "#c0504d"
+        },
+        {
+          "id": "burgundy",
+          "label": "Burgundy",
+          "image_text": "burgundy clothing",
+          "color": "#6e2f39"
+        },
+        {
+          "id": "pink",
+          "label": "Pink",
+          "image_text": "pink clothing",
+          "color": "#e8a3bd"
+        },
+        {
+          "id": "purple",
+          "label": "Purple",
+          "image_text": "purple clothing",
+          "color": "#8858c8"
+        },
+        {
+          "id": "gold",
+          "label": "Gold",
+          "image_text": "gold clothing",
+          "color": "#cfa53c"
+        },
+        {
+          "id": "silver",
+          "label": "Silver",
+          "image_text": "silver clothing",
+          "color": "#c8cdd4"
+        }
+      ]
+    },
+    {
+      "id": "outfit_fit",
+      "label": "Fit",
+      "kind": "pick_one",
+      "home": "persona",
+      "priority": "flavor",
+      "section": "Wardrobe",
+      "order": 92,
+      "options": [
+        {
+          "id": "loose",
+          "label": "Loose",
+          "image_text": "loose-fitting clothes"
+        },
+        {
+          "id": "relaxed",
+          "label": "Relaxed",
+          "image_text": "relaxed fit clothes"
+        },
+        {
+          "id": "fitted",
+          "label": "Fitted",
+          "image_text": "fitted clothes"
+        },
+        {
+          "id": "form_fitting",
+          "label": "Form-Fitting",
+          "image_text": "form-fitting clothes"
+        },
+        {
+          "id": "skin_tight",
+          "label": "Skin-Tight",
+          "image_text": "skin-tight clothes"
+        }
+      ]
+    },
+    {
+      "id": "outfit_condition",
+      "label": "Condition",
+      "kind": "pick_one",
+      "home": "persona",
+      "priority": "flavor",
+      "section": "Wardrobe",
+      "order": 93,
+      "options": [
+        {
+          "id": "pristine",
+          "label": "Pristine",
+          "image_text": "immaculate clothing"
+        },
+        {
+          "id": "lived_in",
+          "label": "Lived-In",
+          "image_text": ""
+        },
+        {
+          "id": "worn",
+          "label": "Worn",
+          "image_text": "worn clothing"
+        },
+        {
+          "id": "patched",
+          "label": "Patched",
+          "image_text": "patched clothing"
+        },
+        {
+          "id": "tattered",
+          "label": "Tattered",
+          "image_text": "tattered clothing"
+        }
+      ]
+    },
+    {
+      "id": "neckline",
+      "label": "Coverage",
+      "kind": "pick_one",
+      "home": "persona",
+      "priority": "flavor",
+      "section": "Wardrobe",
+      "order": 94,
+      "options": [
+        {
+          "id": "modest",
+          "label": "Modest",
+          "image_text": "modest neckline"
+        },
+        {
+          "id": "standard",
+          "label": "Standard",
+          "image_text": ""
+        },
+        {
+          "id": "open_collar",
+          "label": "Open Collar",
+          "image_text": "open collar"
+        },
+        {
+          "id": "low_cut",
+          "label": "Low-Cut",
+          "image_text": "low-cut neckline"
+        },
+        {
+          "id": "revealing",
+          "label": "Revealing",
+          "image_text": "revealing neckline"
+        }
+      ]
+    },
+    {
+      "id": "accessories",
+      "_note": "5.7 UI pass (user decision 2026-07-18): options gain kind classes for grouped-picker subsections; reordered by kind, ids untouched.",
+      "label": "Accessories",
+      "kind": "pick_many",
+      "home": "persona",
+      "priority": "flavor",
+      "section": "Wardrobe",
+      "order": 95,
+      "hint": "Stackable accessories, grouped by kind. Search or expand a group.",
+      "options": [
+        {
+          "id": "round_glasses",
+          "label": "Round Glasses",
+          "image_text": "round glasses",
+          "tags": [
+            "eyewear"
+          ]
+        },
+        {
+          "id": "square_glasses",
+          "label": "Square Glasses",
+          "image_text": "square glasses",
+          "tags": [
+            "eyewear"
+          ]
+        },
+        {
+          "id": "half_rim_glasses",
+          "label": "Half-Rim Glasses",
+          "image_text": "half-rimmed glasses",
+          "tags": [
+            "eyewear"
+          ]
+        },
+        {
+          "id": "sunglasses",
+          "label": "Sunglasses",
+          "image_text": "sunglasses",
+          "tags": [
+            "eyewear"
+          ]
+        },
+        {
+          "id": "monocle",
+          "label": "Monocle",
+          "image_text": "monocle",
+          "tags": [
+            "eyewear"
+          ]
+        },
+        {
+          "id": "eyepatch",
+          "label": "Eyepatch",
+          "image_text": "eyepatch",
+          "tags": [
+            "eyewear"
+          ]
+        },
+        {
+          "id": "choker",
+          "label": "Choker",
+          "image_text": "choker",
+          "tags": [
+            "jewelry"
+          ]
+        },
+        {
+          "id": "ribbon_choker",
+          "label": "Ribbon Choker",
+          "image_text": "ribbon choker",
+          "tags": [
+            "jewelry"
+          ]
+        },
+        {
+          "id": "pendant_necklace",
+          "label": "Pendant Necklace",
+          "image_text": "pendant necklace",
+          "tags": [
+            "jewelry"
+          ]
+        },
+        {
+          "id": "chain_necklace",
+          "label": "Chain Necklace",
+          "image_text": "chain necklace",
+          "tags": [
+            "jewelry"
+          ]
+        },
+        {
+          "id": "prayer_beads",
+          "label": "Prayer Beads",
+          "image_text": "prayer beads",
+          "tags": [
+            "jewelry"
+          ]
+        },
+        {
+          "id": "hoop_earrings",
+          "label": "Hoop Earrings",
+          "image_text": "hoop earrings",
+          "tags": [
+            "jewelry"
+          ]
+        },
+        {
+          "id": "stud_earrings",
+          "label": "Stud Earrings",
+          "image_text": "stud earrings",
+          "tags": [
+            "jewelry"
+          ]
+        },
+        {
+          "id": "ear_cuffs",
+          "label": "Ear Cuffs",
+          "image_text": "ear cuffs",
+          "tags": [
+            "jewelry"
+          ]
+        },
+        {
+          "id": "bracelets",
+          "label": "Bracelets",
+          "image_text": "bracelets",
+          "tags": [
+            "jewelry"
+          ]
+        },
+        {
+          "id": "ankle_bracelet",
+          "label": "Ankle Bracelet",
+          "image_text": "ankle bracelet",
+          "tags": [
+            "jewelry"
+          ]
+        },
+        {
+          "id": "tail_ring",
+          "label": "Tail Ring",
+          "image_text": "tail ring",
+          "tags": [
+            "jewelry"
+          ]
+        },
+        {
+          "id": "hairpin_ornament",
+          "label": "Hairpin Ornament",
+          "image_text": "ornate hairpin",
+          "tags": [
+            "hair"
+          ]
+        },
+        {
+          "id": "hair_ribbon",
+          "label": "Hair Ribbon",
+          "image_text": "hair ribbon",
+          "tags": [
+            "hair"
+          ]
+        },
+        {
+          "id": "flower_in_hair",
+          "label": "Flower in Hair",
+          "image_text": "flower in hair",
+          "tags": [
+            "hair"
+          ]
+        },
+        {
+          "id": "hair_beads",
+          "label": "Hair Beads",
+          "image_text": "hair beads",
+          "tags": [
+            "hair"
+          ]
+        },
+        {
+          "id": "crown",
+          "label": "Crown",
+          "image_text": "crown",
+          "tags": [
+            "headwear"
+          ]
+        },
+        {
+          "id": "circlet",
+          "label": "Circlet",
+          "image_text": "circlet",
+          "tags": [
+            "headwear"
+          ]
+        },
+        {
+          "id": "tiara",
+          "label": "Tiara",
+          "image_text": "tiara",
+          "tags": [
+            "headwear"
+          ]
+        },
+        {
+          "id": "beanie",
+          "label": "Beanie",
+          "image_text": "beanie",
+          "tags": [
+            "headwear"
+          ]
+        },
+        {
+          "id": "cap",
+          "label": "Cap",
+          "image_text": "baseball cap",
+          "tags": [
+            "headwear"
+          ]
+        },
+        {
+          "id": "wide_brim_hat",
+          "label": "Wide-Brim Hat",
+          "image_text": "wide-brimmed hat",
+          "tags": [
+            "headwear"
+          ]
+        },
+        {
+          "id": "witch_hat",
+          "label": "Witch Hat",
+          "image_text": "witch hat",
+          "tags": [
+            "headwear"
+          ]
+        },
+        {
+          "id": "cowboy_hat",
+          "label": "Cowboy Hat",
+          "image_text": "cowboy hat",
+          "tags": [
+            "headwear"
+          ]
+        },
+        {
+          "id": "top_hat",
+          "label": "Top Hat",
+          "image_text": "top hat",
+          "tags": [
+            "headwear"
+          ]
+        },
+        {
+          "id": "hood",
+          "label": "Hood",
+          "image_text": "hood",
+          "tags": [
+            "headwear"
+          ]
+        },
+        {
+          "id": "veil",
+          "label": "Veil",
+          "image_text": "veil",
+          "tags": [
+            "headwear"
+          ]
+        },
+        {
+          "id": "half_mask",
+          "label": "Half Mask",
+          "image_text": "half mask",
+          "tags": [
+            "masks"
+          ]
+        },
+        {
+          "id": "medical_mask",
+          "label": "Medical Mask",
+          "image_text": "medical mask",
+          "tags": [
+            "masks"
+          ]
+        },
+        {
+          "id": "fox_mask",
+          "label": "Fox Mask",
+          "image_text": "fox mask",
+          "tags": [
+            "masks"
+          ]
+        },
+        {
+          "id": "oni_mask",
+          "label": "Oni Mask",
+          "image_text": "oni mask",
+          "tags": [
+            "masks"
+          ]
+        },
+        {
+          "id": "scarf",
+          "label": "Scarf",
+          "image_text": "scarf",
+          "tags": [
+            "neckwear"
+          ]
+        },
+        {
+          "id": "bandana",
+          "label": "Bandana",
+          "image_text": "bandana",
+          "tags": [
+            "neckwear"
+          ]
+        },
+        {
+          "id": "long_gloves",
+          "label": "Long Gloves",
+          "image_text": "long gloves",
+          "tags": [
+            "gloves"
+          ]
+        },
+        {
+          "id": "fingerless_gloves",
+          "label": "Fingerless Gloves",
+          "image_text": "fingerless gloves",
+          "tags": [
+            "gloves"
+          ]
+        },
+        {
+          "id": "gauntlets",
+          "label": "Gauntlets",
+          "image_text": "gauntlets",
+          "tags": [
+            "gloves"
+          ]
+        },
+        {
+          "id": "watch",
+          "label": "Watch",
+          "image_text": "wristwatch",
+          "tags": [
+            "tech"
+          ]
+        },
+        {
+          "id": "smartwatch",
+          "label": "Smartwatch",
+          "image_text": "smartwatch",
+          "tags": [
+            "tech"
+          ]
+        },
+        {
+          "id": "wireless_earbuds",
+          "label": "Wireless Earbuds",
+          "image_text": "wireless earbuds",
+          "tags": [
+            "tech"
+          ]
+        },
+        {
+          "id": "headphones",
+          "label": "Headphones",
+          "image_text": "headphones",
+          "tags": [
+            "tech"
+          ]
+        },
+        {
+          "id": "work_lanyard",
+          "label": "Work Lanyard",
+          "image_text": "lanyard",
+          "tags": [
+            "bags"
+          ]
+        },
+        {
+          "id": "tote_bag",
+          "label": "Tote Bag",
+          "image_text": "tote bag",
+          "tags": [
+            "bags"
+          ]
+        },
+        {
+          "id": "crossbody_bag",
+          "label": "Crossbody Bag",
+          "image_text": "crossbody bag",
+          "tags": [
+            "bags"
+          ]
+        },
+        {
+          "id": "gym_bag",
+          "label": "Gym Bag",
+          "image_text": "gym bag",
+          "tags": [
+            "bags"
+          ]
+        },
+        {
+          "id": "belt_pouches",
+          "label": "Belt Pouches",
+          "image_text": "belt pouches",
+          "tags": [
+            "bags"
+          ]
+        },
+        {
+          "id": "satchel",
+          "label": "Satchel",
+          "image_text": "satchel",
+          "tags": [
+            "bags"
+          ]
+        },
+        {
+          "id": "backpack",
+          "label": "Backpack",
+          "image_text": "backpack",
+          "tags": [
+            "bags"
+          ]
+        },
+        {
+          "id": "holster",
+          "label": "Holster",
+          "image_text": "holster",
+          "tags": [
+            "gear"
+          ]
+        },
+        {
+          "id": "sheathed_sword",
+          "label": "Sheathed Sword",
+          "image_text": "sheathed sword",
+          "tags": [
+            "gear"
+          ]
+        },
+        {
+          "id": "sheathed_dagger",
+          "label": "Sheathed Dagger",
+          "image_text": "sheathed dagger",
+          "tags": [
+            "gear"
+          ]
+        },
+        {
+          "id": "carried_staff",
+          "label": "Carried Staff",
+          "image_text": "wooden staff",
+          "tags": [
+            "gear"
+          ]
+        },
+        {
+          "id": "hip_spellbook",
+          "label": "Hip Spellbook",
+          "image_text": "spellbook at hip",
+          "tags": [
+            "gear"
+          ]
+        },
+        {
+          "id": "belt_wrench",
+          "label": "Belt Wrench",
+          "image_text": "wrench on belt",
+          "tags": [
+            "gear"
+          ]
+        },
+        {
+          "id": "tool_belt",
+          "label": "Tool Belt",
+          "image_text": "tool belt",
+          "tags": [
+            "gear"
+          ]
+        },
+        {
+          "id": "umbrella",
+          "label": "Umbrella",
+          "image_text": "umbrella",
+          "tags": [
+            "misc"
+          ]
+        },
+        {
+          "id": "parasol",
+          "label": "Parasol",
+          "image_text": "parasol",
+          "tags": [
+            "misc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "aesthetic",
+      "_note": "V2 B62 (replaces the old 'style' group id; legacy values load leniently and lint).",
+      "label": "Aesthetic",
+      "kind": "pick_many",
+      "home": "persona",
+      "priority": "flavor",
+      "section": "Wardrobe",
+      "order": 96,
+      "options": [
+        {
+          "id": "elegant",
+          "label": "Elegant",
+          "image_text": "elegant aesthetic"
+        },
+        {
+          "id": "regal",
+          "label": "Regal",
+          "image_text": "regal aesthetic"
+        },
+        {
+          "id": "ethereal",
+          "label": "Ethereal",
+          "image_text": "ethereal aesthetic"
+        },
+        {
+          "id": "gothic",
+          "label": "Gothic",
+          "image_text": "gothic aesthetic"
+        },
+        {
+          "id": "gothic_punk",
+          "label": "Gothic Punk",
+          "image_text": "gothic punk aesthetic"
+        },
+        {
+          "id": "punk",
+          "label": "Punk",
+          "image_text": "punk aesthetic"
+        },
+        {
+          "id": "grunge",
+          "label": "Grunge",
+          "image_text": "grunge aesthetic"
+        },
+        {
+          "id": "cyberpunk_neon",
+          "label": "Cyberpunk Neon",
+          "image_text": "cyberpunk neon aesthetic",
+          "tags": [
+            "scifi"
+          ]
+        },
+        {
+          "id": "chrome_futurist",
+          "label": "Chrome Futurist",
+          "image_text": "chrome futurist aesthetic",
+          "tags": [
+            "scifi"
+          ]
+        },
+        {
+          "id": "vaporwave",
+          "label": "Vaporwave",
+          "image_text": "vaporwave aesthetic"
+        },
+        {
+          "id": "pastel_soft",
+          "label": "Pastel Soft",
+          "image_text": "pastel aesthetic"
+        },
+        {
+          "id": "cottagecore",
+          "label": "Cottagecore",
+          "image_text": "cottagecore aesthetic"
+        },
+        {
+          "id": "bohemian",
+          "label": "Bohemian",
+          "image_text": "bohemian aesthetic"
+        },
+        {
+          "id": "rustic",
+          "label": "Rustic",
+          "image_text": "rustic aesthetic"
+        },
+        {
+          "id": "minimalist",
+          "label": "Minimalist",
+          "image_text": "minimalist aesthetic"
+        },
+        {
+          "id": "military_crisp",
+          "label": "Military Crisp",
+          "image_text": "crisp military aesthetic"
+        },
+        {
+          "id": "noir",
+          "label": "Noir",
+          "image_text": "noir aesthetic"
+        },
+        {
+          "id": "baroque",
+          "label": "Baroque",
+          "image_text": "baroque aesthetic"
+        },
+        {
+          "id": "tribal",
+          "label": "Tribal",
+          "image_text": "tribal aesthetic"
+        },
+        {
+          "id": "industrial",
+          "label": "Industrial",
+          "image_text": "industrial aesthetic"
+        },
+        {
+          "id": "sun_bleached",
+          "label": "Sun-Bleached",
+          "image_text": "sun-bleached aesthetic"
+        },
+        {
+          "id": "gloomy_romantic",
+          "label": "Gloomy Romantic",
+          "image_text": "gloomy romantic aesthetic"
+        },
+        {
+          "id": "festival",
+          "label": "Festival",
+          "image_text": "festival aesthetic"
+        },
+        {
+          "id": "scholarly_tweed",
+          "label": "Scholarly Tweed",
+          "image_text": "scholarly tweed aesthetic"
+        }
+      ]
+    }
+  ]
+}

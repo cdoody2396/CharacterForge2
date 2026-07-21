@@ -1,0 +1,2590 @@
+{
+  "_note": "CHARACTER_VOCABULARY_V2.md §5 Subset C, C1-C19 (Mind, Character, Skill). All render:false (chat-side; feeds Stage-6 persona injection / §9 RAG seed). Mem column provisional per flag 1 - the prompt fragments are best-effort natural-language descriptors, re-cut at 6d. Caps ('cap N') and single-select defaults are documented per group but NOT format-enforced (deferred at 5.6c - no format key yet). Replaces the pre-V2 disposition/traits/voice groups from 50_personality.json; 'traits' reuses its id (C7), disposition/voice retire to lint (keep+lint only).",
+  "format": 1,
+  "rating": "standard",
+  "groups": [
+    {
+      "id": "personality_archetype",
+      "_note": "5.7 (user decision 2026-07-18, rename+add resolution): the personality axis the old class-like archetype never was. Quick-create; render:false - feeds Stage-6 persona injection like the rest of Subset C. Prompts are natural-language persona descriptors (Mem provisional, flag 1).",
+      "label": "Personality Archetype",
+      "kind": "pick_one",
+      "home": "persona",
+      "section": "Mind",
+      "order": 499,
+      "hint": "Who they are at the core - the one-line personality read. Chat-side: shapes how they talk and act, never how they look.",
+      "_v1": {
+        "quick": true
+      },
+      "options": [
+        {
+          "id": "protector",
+          "label": "The Protector",
+          "chat_text": "protective, puts others' safety first"
+        },
+        {
+          "id": "free_spirit",
+          "label": "Free Spirit",
+          "chat_text": "spontaneous, follows impulse and joy"
+        },
+        {
+          "id": "schemer",
+          "label": "The Schemer",
+          "chat_text": "always three steps ahead, plans in secret"
+        },
+        {
+          "id": "stoic",
+          "label": "The Stoic",
+          "chat_text": "composed, feelings kept behind a wall"
+        },
+        {
+          "id": "nurturer",
+          "label": "The Nurturer",
+          "chat_text": "warm, tends to everyone around them"
+        },
+        {
+          "id": "rebel",
+          "label": "The Rebel",
+          "chat_text": "defies rules and authority on principle"
+        },
+        {
+          "id": "trickster",
+          "label": "The Trickster",
+          "chat_text": "playful, provocative, never straightforward"
+        },
+        {
+          "id": "idealist",
+          "label": "The Idealist",
+          "chat_text": "believes the world can be better and acts like it"
+        },
+        {
+          "id": "cynic",
+          "label": "The Cynic",
+          "chat_text": "expects the worst, rarely surprised"
+        },
+        {
+          "id": "charmer",
+          "label": "The Charmer",
+          "chat_text": "disarming, wins people over effortlessly"
+        },
+        {
+          "id": "loner",
+          "label": "The Loner",
+          "chat_text": "keeps distance, opens up to almost no one"
+        },
+        {
+          "id": "leader",
+          "label": "Born Leader",
+          "chat_text": "takes charge naturally, others follow"
+        },
+        {
+          "id": "wallflower",
+          "label": "The Wallflower",
+          "chat_text": "quiet observer, blooms only in trusted company"
+        },
+        {
+          "id": "hedonist",
+          "label": "The Hedonist",
+          "chat_text": "chases pleasure and comfort unapologetically"
+        },
+        {
+          "id": "zealot",
+          "label": "The Zealot",
+          "chat_text": "burns with conviction, uncompromising"
+        },
+        {
+          "id": "caretaker",
+          "label": "The Caretaker",
+          "chat_text": "duty-bound to look after their people"
+        },
+        {
+          "id": "wanderer",
+          "label": "The Wanderer",
+          "chat_text": "restless, never settles, always moving on"
+        },
+        {
+          "id": "perfectionist",
+          "label": "The Perfectionist",
+          "chat_text": "exacting standards, hardest on themselves"
+        },
+        {
+          "id": "optimist",
+          "label": "The Optimist",
+          "chat_text": "finds the bright side, lifts the room"
+        },
+        {
+          "id": "brooder",
+          "label": "The Brooder",
+          "chat_text": "carries old weight, speaks in shadows"
+        }
+      ]
+    },
+    {
+      "id": "warmth",
+      "_note": "C1, ordinal(5) - segmented. Middle default 'even' intended (unenforced - no default key).",
+      "label": "Warmth",
+      "kind": "pick_one",
+      "home": "persona",
+      "section": "Temperament",
+      "order": 500,
+      "options": [
+        {
+          "id": "icy",
+          "label": "Icy",
+          "chat_text": "cold and emotionally distant"
+        },
+        {
+          "id": "cool",
+          "label": "Cool",
+          "chat_text": "cool and reserved in affection"
+        },
+        {
+          "id": "even",
+          "label": "Even",
+          "chat_text": "even, steady warmth"
+        },
+        {
+          "id": "warm",
+          "label": "Warm",
+          "chat_text": "warm and affectionate"
+        },
+        {
+          "id": "radiant",
+          "label": "Radiant",
+          "chat_text": "radiantly warm, quick to affection"
+        }
+      ]
+    },
+    {
+      "id": "energy",
+      "_note": "C2, ordinal(5) - segmented. Middle default 'steady' intended.",
+      "label": "Energy",
+      "kind": "pick_one",
+      "home": "persona",
+      "section": "Temperament",
+      "order": 501,
+      "options": [
+        {
+          "id": "still",
+          "label": "Still",
+          "chat_text": "still and low-energy"
+        },
+        {
+          "id": "calm",
+          "label": "Calm",
+          "chat_text": "calm and unhurried"
+        },
+        {
+          "id": "steady",
+          "label": "Steady",
+          "chat_text": "steady, even energy"
+        },
+        {
+          "id": "lively",
+          "label": "Lively",
+          "chat_text": "lively and animated"
+        },
+        {
+          "id": "exuberant",
+          "label": "Exuberant",
+          "chat_text": "exuberant, bursting with energy"
+        }
+      ]
+    },
+    {
+      "id": "assertiveness",
+      "_note": "C3, ordinal(5) - segmented. Middle default 'balanced' intended.",
+      "label": "Assertiveness",
+      "kind": "pick_one",
+      "home": "persona",
+      "section": "Temperament",
+      "order": 502,
+      "options": [
+        {
+          "id": "yielding",
+          "label": "Yielding",
+          "chat_text": "yielding and deferential"
+        },
+        {
+          "id": "accommodating",
+          "label": "Accommodating",
+          "chat_text": "accommodating and easygoing"
+        },
+        {
+          "id": "balanced",
+          "label": "Balanced",
+          "chat_text": "balanced in assertiveness"
+        },
+        {
+          "id": "assertive",
+          "label": "Assertive",
+          "chat_text": "assertive and direct"
+        },
+        {
+          "id": "domineering",
+          "label": "Domineering",
+          "chat_text": "domineering and commanding"
+        }
+      ]
+    },
+    {
+      "id": "candor",
+      "_note": "C4, ordinal(5) - segmented. Middle default 'selective' intended.",
+      "label": "Candor",
+      "kind": "pick_one",
+      "home": "persona",
+      "section": "Temperament",
+      "order": 503,
+      "options": [
+        {
+          "id": "guarded",
+          "label": "Guarded",
+          "chat_text": "guarded and tight-lipped"
+        },
+        {
+          "id": "private",
+          "label": "Private",
+          "chat_text": "private, shares little"
+        },
+        {
+          "id": "selective",
+          "label": "Selective",
+          "chat_text": "selectively open"
+        },
+        {
+          "id": "open",
+          "label": "Open",
+          "chat_text": "open and forthcoming"
+        },
+        {
+          "id": "unfiltered",
+          "label": "Unfiltered",
+          "chat_text": "unfiltered, says whatever they think"
+        }
+      ]
+    },
+    {
+      "id": "impulse",
+      "_note": "C5, ordinal(5) - segmented. Middle default 'balanced' intended.",
+      "label": "Impulse",
+      "kind": "pick_one",
+      "home": "persona",
+      "section": "Temperament",
+      "order": 504,
+      "options": [
+        {
+          "id": "deliberate",
+          "label": "Deliberate",
+          "chat_text": "deliberate and methodical"
+        },
+        {
+          "id": "careful",
+          "label": "Careful",
+          "chat_text": "careful and considered"
+        },
+        {
+          "id": "balanced",
+          "label": "Balanced",
+          "chat_text": "balanced between caution and impulse"
+        },
+        {
+          "id": "spontaneous",
+          "label": "Spontaneous",
+          "chat_text": "spontaneous and quick to act"
+        },
+        {
+          "id": "impulsive",
+          "label": "Impulsive",
+          "chat_text": "impulsive, acts on the moment"
+        }
+      ]
+    },
+    {
+      "id": "default_mood",
+      "_note": "C6.",
+      "label": "Resting mood",
+      "kind": "pick_one",
+      "home": "persona",
+      "section": "Temperament",
+      "order": 505,
+      "options": [
+        {
+          "id": "sunny",
+          "label": "Sunny",
+          "chat_text": "a sunny resting mood"
+        },
+        {
+          "id": "content",
+          "label": "Content",
+          "chat_text": "a contented resting mood"
+        },
+        {
+          "id": "neutral",
+          "label": "Neutral",
+          "chat_text": "a neutral, even resting mood"
+        },
+        {
+          "id": "wistful",
+          "label": "Wistful",
+          "chat_text": "a wistful resting mood"
+        },
+        {
+          "id": "gloomy",
+          "label": "Gloomy",
+          "chat_text": "a gloomy resting mood"
+        },
+        {
+          "id": "irritable",
+          "label": "Irritable",
+          "chat_text": "an irritable resting mood"
+        },
+        {
+          "id": "anxious",
+          "label": "Anxious",
+          "chat_text": "an anxious resting mood"
+        },
+        {
+          "id": "serene",
+          "label": "Serene",
+          "chat_text": "a serene resting mood"
+        },
+        {
+          "id": "brooding",
+          "label": "Brooding",
+          "chat_text": "a brooding resting mood"
+        }
+      ]
+    },
+    {
+      "id": "traits",
+      "_note": "C7. Reuses the pre-V2 'traits' group id (grows 14 -> 71); old records' trait selections survive except 'intellectual' (retired -> lints). Intended cap 6 (unenforced).",
+      "label": "Traits",
+      "kind": "pick_many",
+      "home": "persona",
+      "section": "Character",
+      "order": 506,
+      "options": [
+        {
+          "id": "confident",
+          "label": "Confident",
+          "chat_text": "confident"
+        },
+        {
+          "id": "shy",
+          "label": "Shy",
+          "chat_text": "shy"
+        },
+        {
+          "id": "witty",
+          "label": "Witty",
+          "chat_text": "witty"
+        },
+        {
+          "id": "dry_humored",
+          "label": "Dry-humored",
+          "chat_text": "a dry sense of humor"
+        },
+        {
+          "id": "playful",
+          "label": "Playful",
+          "chat_text": "playful"
+        },
+        {
+          "id": "serious",
+          "label": "Serious",
+          "chat_text": "serious"
+        },
+        {
+          "id": "loyal",
+          "label": "Loyal",
+          "chat_text": "loyal"
+        },
+        {
+          "id": "fickle",
+          "label": "Fickle",
+          "chat_text": "fickle"
+        },
+        {
+          "id": "ambitious",
+          "label": "Ambitious",
+          "chat_text": "ambitious"
+        },
+        {
+          "id": "content",
+          "label": "Content",
+          "chat_text": "content"
+        },
+        {
+          "id": "curious",
+          "label": "Curious",
+          "chat_text": "curious"
+        },
+        {
+          "id": "protective",
+          "label": "Protective",
+          "chat_text": "protective"
+        },
+        {
+          "id": "reckless",
+          "label": "Reckless",
+          "chat_text": "reckless"
+        },
+        {
+          "id": "cautious",
+          "label": "Cautious",
+          "chat_text": "cautious"
+        },
+        {
+          "id": "cynical",
+          "label": "Cynical",
+          "chat_text": "cynical"
+        },
+        {
+          "id": "idealistic",
+          "label": "Idealistic",
+          "chat_text": "idealistic"
+        },
+        {
+          "id": "romantic",
+          "label": "Romantic",
+          "chat_text": "romantic"
+        },
+        {
+          "id": "pragmatic",
+          "label": "Pragmatic",
+          "chat_text": "pragmatic"
+        },
+        {
+          "id": "adventurous",
+          "label": "Adventurous",
+          "chat_text": "adventurous"
+        },
+        {
+          "id": "homebody",
+          "label": "Homebody",
+          "chat_text": "a homebody"
+        },
+        {
+          "id": "bookish",
+          "label": "Bookish",
+          "chat_text": "bookish"
+        },
+        {
+          "id": "streetwise",
+          "label": "Streetwise",
+          "chat_text": "streetwise"
+        },
+        {
+          "id": "flirtatious",
+          "label": "Flirtatious",
+          "chat_text": "flirtatious"
+        },
+        {
+          "id": "brooding",
+          "label": "Brooding",
+          "chat_text": "brooding"
+        },
+        {
+          "id": "cheerful",
+          "label": "Cheerful",
+          "chat_text": "cheerful"
+        },
+        {
+          "id": "optimistic",
+          "label": "Optimistic",
+          "chat_text": "optimistic"
+        },
+        {
+          "id": "pessimistic",
+          "label": "Pessimistic",
+          "chat_text": "pessimistic"
+        },
+        {
+          "id": "anxious",
+          "label": "Anxious",
+          "chat_text": "anxious"
+        },
+        {
+          "id": "serene",
+          "label": "Serene",
+          "chat_text": "serene"
+        },
+        {
+          "id": "hot_tempered",
+          "label": "Hot-tempered",
+          "chat_text": "hot-tempered"
+        },
+        {
+          "id": "patient",
+          "label": "Patient",
+          "chat_text": "patient"
+        },
+        {
+          "id": "jealous",
+          "label": "Jealous",
+          "chat_text": "jealous"
+        },
+        {
+          "id": "easygoing",
+          "label": "Easygoing",
+          "chat_text": "easygoing"
+        },
+        {
+          "id": "forgiving",
+          "label": "Forgiving",
+          "chat_text": "forgiving"
+        },
+        {
+          "id": "grudge_holding",
+          "label": "Grudge-holding",
+          "chat_text": "holds grudges"
+        },
+        {
+          "id": "honorable",
+          "label": "Honorable",
+          "chat_text": "honorable"
+        },
+        {
+          "id": "sly",
+          "label": "Sly",
+          "chat_text": "sly"
+        },
+        {
+          "id": "blunt",
+          "label": "Blunt",
+          "chat_text": "blunt"
+        },
+        {
+          "id": "tactful",
+          "label": "Tactful",
+          "chat_text": "tactful"
+        },
+        {
+          "id": "superstitious",
+          "label": "Superstitious",
+          "chat_text": "superstitious"
+        },
+        {
+          "id": "skeptical",
+          "label": "Skeptical",
+          "chat_text": "skeptical"
+        },
+        {
+          "id": "devout",
+          "label": "Devout",
+          "chat_text": "devout"
+        },
+        {
+          "id": "irreverent",
+          "label": "Irreverent",
+          "chat_text": "irreverent"
+        },
+        {
+          "id": "hedonistic",
+          "label": "Hedonistic",
+          "chat_text": "hedonistic"
+        },
+        {
+          "id": "disciplined",
+          "label": "Disciplined",
+          "chat_text": "disciplined"
+        },
+        {
+          "id": "greedy",
+          "label": "Greedy",
+          "chat_text": "greedy"
+        },
+        {
+          "id": "generous",
+          "label": "Generous",
+          "chat_text": "generous"
+        },
+        {
+          "id": "vain",
+          "label": "Vain",
+          "chat_text": "vain"
+        },
+        {
+          "id": "humble",
+          "label": "Humble",
+          "chat_text": "humble"
+        },
+        {
+          "id": "paranoid",
+          "label": "Paranoid",
+          "chat_text": "paranoid"
+        },
+        {
+          "id": "trusting",
+          "label": "Trusting",
+          "chat_text": "trusting"
+        },
+        {
+          "id": "melancholic",
+          "label": "Melancholic",
+          "chat_text": "melancholic"
+        },
+        {
+          "id": "stoic",
+          "label": "Stoic",
+          "chat_text": "stoic"
+        },
+        {
+          "id": "dramatic",
+          "label": "Dramatic",
+          "chat_text": "dramatic"
+        },
+        {
+          "id": "aloof",
+          "label": "Aloof",
+          "chat_text": "aloof"
+        },
+        {
+          "id": "clingy",
+          "label": "Clingy",
+          "chat_text": "clingy"
+        },
+        {
+          "id": "independent",
+          "label": "Independent",
+          "chat_text": "independent"
+        },
+        {
+          "id": "nurturing",
+          "label": "Nurturing",
+          "chat_text": "nurturing"
+        },
+        {
+          "id": "ruthless",
+          "label": "Ruthless",
+          "chat_text": "ruthless"
+        },
+        {
+          "id": "squeamish",
+          "label": "Squeamish",
+          "chat_text": "squeamish"
+        },
+        {
+          "id": "fearless",
+          "label": "Fearless",
+          "chat_text": "fearless"
+        },
+        {
+          "id": "timid",
+          "label": "Timid",
+          "chat_text": "timid"
+        },
+        {
+          "id": "obsessive",
+          "label": "Obsessive",
+          "chat_text": "obsessive"
+        },
+        {
+          "id": "laid_back",
+          "label": "Laid-back",
+          "chat_text": "laid-back"
+        },
+        {
+          "id": "perfectionist",
+          "label": "Perfectionist",
+          "chat_text": "a perfectionist"
+        },
+        {
+          "id": "scatterbrained",
+          "label": "Scatterbrained",
+          "chat_text": "scatterbrained"
+        },
+        {
+          "id": "cunning",
+          "label": "Cunning",
+          "chat_text": "cunning"
+        },
+        {
+          "id": "naive",
+          "label": "Naive",
+          "chat_text": "naive"
+        },
+        {
+          "id": "worldly",
+          "label": "Worldly",
+          "chat_text": "worldly"
+        },
+        {
+          "id": "morbid",
+          "label": "Morbid",
+          "chat_text": "morbid"
+        },
+        {
+          "id": "gallant",
+          "label": "Gallant",
+          "chat_text": "gallant"
+        }
+      ]
+    },
+    {
+      "id": "flaws",
+      "_note": "C8. Intended cap 3 (unenforced).",
+      "label": "Flaws",
+      "kind": "pick_many",
+      "home": "persona",
+      "section": "Character",
+      "order": 507,
+      "options": [
+        {
+          "id": "quick_temper",
+          "label": "Quick temper",
+          "chat_text": "a quick temper"
+        },
+        {
+          "id": "self_doubt",
+          "label": "Self-doubt",
+          "chat_text": "plagued by self-doubt"
+        },
+        {
+          "id": "arrogance",
+          "label": "Arrogance",
+          "chat_text": "arrogant"
+        },
+        {
+          "id": "recklessness",
+          "label": "Recklessness",
+          "chat_text": "reckless"
+        },
+        {
+          "id": "freezes_under_pressure",
+          "label": "Freezes under pressure",
+          "chat_text": "freezes under pressure"
+        },
+        {
+          "id": "people_pleasing",
+          "label": "People-pleasing",
+          "chat_text": "a compulsive people-pleaser"
+        },
+        {
+          "id": "workaholism",
+          "label": "Workaholism",
+          "chat_text": "a workaholic"
+        },
+        {
+          "id": "jealousy",
+          "label": "Jealousy",
+          "chat_text": "prone to jealousy"
+        },
+        {
+          "id": "possessiveness",
+          "label": "Possessiveness",
+          "chat_text": "possessive"
+        },
+        {
+          "id": "small_habitual_lies",
+          "label": "Small habitual lies",
+          "chat_text": "tells small habitual lies"
+        },
+        {
+          "id": "rigid_oath_keeping",
+          "label": "Rigid oath-keeping",
+          "chat_text": "rigidly bound to their oaths"
+        },
+        {
+          "id": "survivors_guilt",
+          "label": "Survivor's guilt",
+          "chat_text": "carries survivor's guilt"
+        },
+        {
+          "id": "haunted_by_the_past",
+          "label": "Haunted by the past",
+          "chat_text": "haunted by the past"
+        },
+        {
+          "id": "fear_of_abandonment",
+          "label": "Fear of abandonment",
+          "chat_text": "fears abandonment"
+        },
+        {
+          "id": "fear_of_intimacy",
+          "label": "Fear of intimacy",
+          "chat_text": "fears intimacy"
+        },
+        {
+          "id": "commitment_aversion",
+          "label": "Commitment aversion",
+          "chat_text": "averse to commitment"
+        },
+        {
+          "id": "stubbornness",
+          "label": "Stubbornness",
+          "chat_text": "stubborn"
+        },
+        {
+          "id": "spitefulness",
+          "label": "Spitefulness",
+          "chat_text": "spiteful"
+        },
+        {
+          "id": "gullibility",
+          "label": "Gullibility",
+          "chat_text": "gullible"
+        },
+        {
+          "id": "indecision",
+          "label": "Indecision",
+          "chat_text": "indecisive"
+        },
+        {
+          "id": "perfection_paralysis",
+          "label": "Perfection paralysis",
+          "chat_text": "paralyzed by perfectionism"
+        },
+        {
+          "id": "self_sacrificing",
+          "label": "Self-sacrificing",
+          "chat_text": "self-sacrificing to a fault"
+        },
+        {
+          "id": "martyr_streak",
+          "label": "Martyr streak",
+          "chat_text": "a martyr streak"
+        },
+        {
+          "id": "vanity",
+          "label": "Vanity",
+          "chat_text": "vain"
+        },
+        {
+          "id": "greed",
+          "label": "Greed",
+          "chat_text": "greedy"
+        },
+        {
+          "id": "blunt_to_a_fault",
+          "label": "Blunt to a fault",
+          "chat_text": "blunt to a fault"
+        },
+        {
+          "id": "secret_keeping_reflex",
+          "label": "Secret-keeping reflex",
+          "chat_text": "reflexively keeps secrets"
+        },
+        {
+          "id": "trust_issues",
+          "label": "Trust issues",
+          "chat_text": "deep trust issues"
+        }
+      ]
+    },
+    {
+      "id": "quirks",
+      "_note": "C9. Intended cap 4 (unenforced).",
+      "label": "Quirks",
+      "kind": "pick_many",
+      "home": "persona",
+      "section": "Character",
+      "order": 508,
+      "options": [
+        {
+          "id": "hums_while_working",
+          "label": "Hums while working",
+          "chat_text": "hums while working"
+        },
+        {
+          "id": "talks_to_self",
+          "label": "Talks to self",
+          "chat_text": "talks to themselves"
+        },
+        {
+          "id": "terrible_puns",
+          "label": "Terrible puns",
+          "chat_text": "makes terrible puns"
+        },
+        {
+          "id": "quotes_proverbs",
+          "label": "Quotes proverbs",
+          "chat_text": "quotes proverbs"
+        },
+        {
+          "id": "collects_trinkets",
+          "label": "Collects trinkets",
+          "chat_text": "collects trinkets"
+        },
+        {
+          "id": "cracks_knuckles",
+          "label": "Cracks knuckles",
+          "chat_text": "cracks their knuckles"
+        },
+        {
+          "id": "fidgets_with_hair",
+          "label": "Fidgets with hair",
+          "chat_text": "fidgets with their hair"
+        },
+        {
+          "id": "taps_rhythms",
+          "label": "Taps rhythms",
+          "chat_text": "taps out rhythms"
+        },
+        {
+          "id": "doodles_everywhere",
+          "label": "Doodles everywhere",
+          "chat_text": "doodles everywhere"
+        },
+        {
+          "id": "always_cold",
+          "label": "Always cold",
+          "chat_text": "always cold"
+        },
+        {
+          "id": "always_hungry",
+          "label": "Always hungry",
+          "chat_text": "always hungry"
+        },
+        {
+          "id": "never_swears",
+          "label": "Never swears",
+          "chat_text": "never swears"
+        },
+        {
+          "id": "swears_like_a_sailor",
+          "label": "Swears like a sailor",
+          "chat_text": "swears like a sailor"
+        },
+        {
+          "id": "speaks_to_animals",
+          "label": "Speaks to animals",
+          "chat_text": "speaks to animals"
+        },
+        {
+          "id": "superstitious_rituals",
+          "label": "Superstitious rituals",
+          "chat_text": "keeps superstitious rituals"
+        },
+        {
+          "id": "insomniac",
+          "label": "Insomniac",
+          "chat_text": "an insomniac"
+        },
+        {
+          "id": "early_riser",
+          "label": "Early riser",
+          "chat_text": "an early riser"
+        },
+        {
+          "id": "chronic_napper",
+          "label": "Chronic napper",
+          "chat_text": "a chronic napper"
+        },
+        {
+          "id": "over_apologizes",
+          "label": "Over-apologizes",
+          "chat_text": "over-apologizes"
+        },
+        {
+          "id": "laughs_at_own_jokes",
+          "label": "Laughs at own jokes",
+          "chat_text": "laughs at their own jokes"
+        },
+        {
+          "id": "deadpan_delivery",
+          "label": "Deadpan delivery",
+          "chat_text": "deadpan delivery"
+        },
+        {
+          "id": "dramatic_sighs",
+          "label": "Dramatic sighs",
+          "chat_text": "given to dramatic sighs"
+        },
+        {
+          "id": "counts_things",
+          "label": "Counts things",
+          "chat_text": "counts things"
+        },
+        {
+          "id": "straightens_crooked_objects",
+          "label": "Straightens crooked objects",
+          "chat_text": "straightens crooked objects"
+        },
+        {
+          "id": "hoards_snacks",
+          "label": "Hoards snacks",
+          "chat_text": "hoards snacks"
+        },
+        {
+          "id": "names_inanimate_objects",
+          "label": "Names inanimate objects",
+          "chat_text": "names inanimate objects"
+        },
+        {
+          "id": "forgets_names_instantly",
+          "label": "Forgets names instantly",
+          "chat_text": "forgets names instantly"
+        },
+        {
+          "id": "never_forgets_a_face",
+          "label": "Never forgets a face",
+          "chat_text": "never forgets a face"
+        },
+        {
+          "id": "whistles",
+          "label": "Whistles",
+          "chat_text": "whistles absently"
+        },
+        {
+          "id": "chews_pens",
+          "label": "Chews pens",
+          "chat_text": "chews on pens"
+        },
+        {
+          "id": "stretches_constantly",
+          "label": "Stretches constantly",
+          "chat_text": "stretches constantly"
+        },
+        {
+          "id": "feet_up_on_furniture",
+          "label": "Feet up on furniture",
+          "chat_text": "props their feet on the furniture"
+        },
+        {
+          "id": "sings_when_alone",
+          "label": "Sings when alone",
+          "chat_text": "sings when alone"
+        },
+        {
+          "id": "bad_with_directions",
+          "label": "Bad with directions",
+          "chat_text": "bad with directions"
+        },
+        {
+          "id": "licks_thumb_to_turn_pages",
+          "label": "Licks thumb to turn pages",
+          "chat_text": "licks a thumb to turn pages"
+        },
+        {
+          "id": "carries_snacks_for_strays",
+          "label": "Carries snacks for strays",
+          "chat_text": "carries snacks for stray animals"
+        }
+      ]
+    },
+    {
+      "id": "vices",
+      "_note": "C10. Intended cap 3 (unenforced).",
+      "label": "Vices",
+      "kind": "pick_many",
+      "home": "persona",
+      "section": "Character",
+      "order": 509,
+      "options": [
+        {
+          "id": "smoking",
+          "label": "Smoking",
+          "chat_text": "smokes"
+        },
+        {
+          "id": "vaping",
+          "label": "Vaping",
+          "chat_text": "vapes"
+        },
+        {
+          "id": "drinking",
+          "label": "Drinking",
+          "chat_text": "drinks"
+        },
+        {
+          "id": "gambling",
+          "label": "Gambling",
+          "chat_text": "gambles"
+        },
+        {
+          "id": "gossip",
+          "label": "Gossip",
+          "chat_text": "loves gossip"
+        },
+        {
+          "id": "overspending",
+          "label": "Overspending",
+          "chat_text": "overspends"
+        },
+        {
+          "id": "sweet_tooth",
+          "label": "Sweet tooth",
+          "chat_text": "a sweet tooth"
+        },
+        {
+          "id": "caffeine_dependence",
+          "label": "Caffeine dependence",
+          "chat_text": "caffeine-dependent"
+        },
+        {
+          "id": "oversleeping",
+          "label": "Oversleeping",
+          "chat_text": "oversleeps"
+        },
+        {
+          "id": "brawling",
+          "label": "Brawling",
+          "chat_text": "prone to brawling"
+        },
+        {
+          "id": "doomscrolling",
+          "label": "Doomscrolling",
+          "chat_text": "doomscrolls"
+        },
+        {
+          "id": "binge_watching",
+          "label": "Binge-watching",
+          "chat_text": "binge-watches shows"
+        },
+        {
+          "id": "phone_always_in_hand",
+          "label": "Phone always in hand",
+          "chat_text": "always on their phone"
+        },
+        {
+          "id": "vanity_spending",
+          "label": "Vanity spending",
+          "chat_text": "spends on vanities"
+        },
+        {
+          "id": "petty_shoplifting",
+          "label": "Petty shoplifting",
+          "chat_text": "given to petty shoplifting"
+        }
+      ]
+    },
+    {
+      "id": "values",
+      "_note": "C11. Intended cap 3 (unenforced).",
+      "label": "Values",
+      "kind": "pick_many",
+      "home": "persona",
+      "section": "Character",
+      "order": 510,
+      "options": [
+        {
+          "id": "honor",
+          "label": "Honor",
+          "chat_text": "values honor"
+        },
+        {
+          "id": "freedom",
+          "label": "Freedom",
+          "chat_text": "values freedom"
+        },
+        {
+          "id": "family",
+          "label": "Family",
+          "chat_text": "values family"
+        },
+        {
+          "id": "knowledge",
+          "label": "Knowledge",
+          "chat_text": "values knowledge"
+        },
+        {
+          "id": "power",
+          "label": "Power",
+          "chat_text": "values power"
+        },
+        {
+          "id": "wealth",
+          "label": "Wealth",
+          "chat_text": "values wealth"
+        },
+        {
+          "id": "faith",
+          "label": "Faith",
+          "chat_text": "values faith"
+        },
+        {
+          "id": "love",
+          "label": "Love",
+          "chat_text": "values love"
+        },
+        {
+          "id": "loyalty",
+          "label": "Loyalty",
+          "chat_text": "values loyalty"
+        },
+        {
+          "id": "justice",
+          "label": "Justice",
+          "chat_text": "values justice"
+        },
+        {
+          "id": "mercy",
+          "label": "Mercy",
+          "chat_text": "values mercy"
+        },
+        {
+          "id": "beauty",
+          "label": "Beauty",
+          "chat_text": "values beauty"
+        },
+        {
+          "id": "craft_mastery",
+          "label": "Craft mastery",
+          "chat_text": "values mastery of a craft"
+        },
+        {
+          "id": "fame",
+          "label": "Fame",
+          "chat_text": "values fame"
+        },
+        {
+          "id": "comfort",
+          "label": "Comfort",
+          "chat_text": "values comfort"
+        },
+        {
+          "id": "duty",
+          "label": "Duty",
+          "chat_text": "values duty"
+        },
+        {
+          "id": "nature",
+          "label": "Nature",
+          "chat_text": "values nature"
+        },
+        {
+          "id": "progress",
+          "label": "Progress",
+          "chat_text": "values progress"
+        },
+        {
+          "id": "tradition",
+          "label": "Tradition",
+          "chat_text": "values tradition"
+        },
+        {
+          "id": "survival",
+          "label": "Survival",
+          "chat_text": "values survival"
+        },
+        {
+          "id": "whimsy",
+          "label": "Whimsy",
+          "chat_text": "values whimsy"
+        },
+        {
+          "id": "truth",
+          "label": "Truth",
+          "chat_text": "values truth"
+        }
+      ]
+    },
+    {
+      "id": "moral_compass",
+      "_note": "C12, ordinal(5) - segmented.",
+      "label": "Compass",
+      "kind": "pick_one",
+      "home": "persona",
+      "section": "Character",
+      "order": 511,
+      "options": [
+        {
+          "id": "principled",
+          "label": "Principled",
+          "chat_text": "principled and rule-bound"
+        },
+        {
+          "id": "honorable_pragmatic",
+          "label": "Honorable-pragmatic",
+          "chat_text": "honorable but pragmatic"
+        },
+        {
+          "id": "flexible",
+          "label": "Flexible",
+          "chat_text": "morally flexible"
+        },
+        {
+          "id": "opportunistic",
+          "label": "Opportunistic",
+          "chat_text": "opportunistic"
+        },
+        {
+          "id": "unscrupulous",
+          "label": "Unscrupulous",
+          "chat_text": "unscrupulous"
+        }
+      ]
+    },
+    {
+      "id": "fears",
+      "_note": "C13. Intended cap 3 (unenforced).",
+      "label": "Fears",
+      "kind": "pick_many",
+      "home": "persona",
+      "section": "Character",
+      "order": 512,
+      "options": [
+        {
+          "id": "heights",
+          "label": "Heights",
+          "chat_text": "afraid of heights"
+        },
+        {
+          "id": "deep_water",
+          "label": "Deep water",
+          "chat_text": "afraid of deep water"
+        },
+        {
+          "id": "fire",
+          "label": "Fire",
+          "chat_text": "afraid of fire"
+        },
+        {
+          "id": "enclosed_spaces",
+          "label": "Enclosed spaces",
+          "chat_text": "afraid of enclosed spaces"
+        },
+        {
+          "id": "crowds",
+          "label": "Crowds",
+          "chat_text": "afraid of crowds"
+        },
+        {
+          "id": "the_dark",
+          "label": "The dark",
+          "chat_text": "afraid of the dark"
+        },
+        {
+          "id": "storms",
+          "label": "Storms",
+          "chat_text": "afraid of storms"
+        },
+        {
+          "id": "insects",
+          "label": "Insects",
+          "chat_text": "afraid of insects"
+        },
+        {
+          "id": "blood",
+          "label": "Blood",
+          "chat_text": "squeamish at the sight of blood"
+        },
+        {
+          "id": "needles",
+          "label": "Needles",
+          "chat_text": "afraid of needles"
+        },
+        {
+          "id": "ghosts",
+          "label": "Ghosts",
+          "chat_text": "afraid of ghosts"
+        },
+        {
+          "id": "abandonment",
+          "label": "Abandonment",
+          "chat_text": "fears abandonment"
+        },
+        {
+          "id": "being_forgotten",
+          "label": "Being forgotten",
+          "chat_text": "fears being forgotten"
+        },
+        {
+          "id": "failure",
+          "label": "Failure",
+          "chat_text": "fears failure"
+        },
+        {
+          "id": "commitment",
+          "label": "Commitment",
+          "chat_text": "fears commitment"
+        },
+        {
+          "id": "their_own_power",
+          "label": "Their own power",
+          "chat_text": "fears their own power"
+        },
+        {
+          "id": "the_open_sea",
+          "label": "The open sea",
+          "chat_text": "fears the open sea"
+        },
+        {
+          "id": "thunder",
+          "label": "Thunder",
+          "chat_text": "afraid of thunder"
+        },
+        {
+          "id": "silence",
+          "label": "Silence",
+          "chat_text": "unsettled by silence"
+        },
+        {
+          "id": "being_seen_crying",
+          "label": "Being seen crying",
+          "chat_text": "dreads being seen crying"
+        },
+        {
+          "id": "hospitals",
+          "label": "Hospitals",
+          "chat_text": "afraid of hospitals"
+        },
+        {
+          "id": "going_home",
+          "label": "Going home",
+          "chat_text": "dreads going home"
+        }
+      ]
+    },
+    {
+      "id": "near_goal",
+      "_note": "C14.",
+      "label": "Current goal",
+      "kind": "pick_one",
+      "home": "persona",
+      "section": "Character",
+      "order": 513,
+      "options": [
+        {
+          "id": "pay_off_a_debt",
+          "label": "Pay off a debt",
+          "chat_text": "working to pay off a debt"
+        },
+        {
+          "id": "pay_off_student_loans",
+          "label": "Pay off the student loans",
+          "chat_text": "working to pay off the student loans"
+        },
+        {
+          "id": "make_rent",
+          "label": "Make rent this month",
+          "chat_text": "scrambling to make rent this month"
+        },
+        {
+          "id": "keep_the_job",
+          "label": "Keep the job",
+          "chat_text": "trying to keep their job"
+        },
+        {
+          "id": "get_the_promotion",
+          "label": "Get the promotion",
+          "chat_text": "angling for the promotion"
+        },
+        {
+          "id": "pass_licensing_exam",
+          "label": "Pass the licensing exam",
+          "chat_text": "studying to pass the licensing exam"
+        },
+        {
+          "id": "get_own_place",
+          "label": "Get their own place",
+          "chat_text": "trying to get their own place"
+        },
+        {
+          "id": "save_for_a_car",
+          "label": "Save for a car",
+          "chat_text": "saving for a car"
+        },
+        {
+          "id": "launch_the_business",
+          "label": "Launch the business",
+          "chat_text": "working to launch the business"
+        },
+        {
+          "id": "find_missing_person",
+          "label": "Find a missing person",
+          "chat_text": "searching for a missing person"
+        },
+        {
+          "id": "win_a_competition",
+          "label": "Win a competition",
+          "chat_text": "set on winning a competition"
+        },
+        {
+          "id": "master_a_technique",
+          "label": "Master a technique",
+          "chat_text": "training to master a technique"
+        },
+        {
+          "id": "open_a_shop",
+          "label": "Open a shop",
+          "chat_text": "working to open a shop"
+        },
+        {
+          "id": "finish_great_work",
+          "label": "Finish the great work",
+          "chat_text": "laboring to finish the great work"
+        },
+        {
+          "id": "clear_their_name",
+          "label": "Clear their name",
+          "chat_text": "trying to clear their name"
+        },
+        {
+          "id": "find_a_way_home",
+          "label": "Find a way home",
+          "chat_text": "searching for a way home"
+        },
+        {
+          "id": "repair_a_relationship",
+          "label": "Repair a relationship",
+          "chat_text": "trying to repair a relationship"
+        },
+        {
+          "id": "protect_someone",
+          "label": "Protect someone",
+          "chat_text": "bent on protecting someone"
+        },
+        {
+          "id": "earn_a_rank",
+          "label": "Earn a rank",
+          "chat_text": "striving to earn a rank"
+        },
+        {
+          "id": "survive_the_season",
+          "label": "Survive the season",
+          "chat_text": "just trying to survive the season"
+        },
+        {
+          "id": "court_someone",
+          "label": "Court someone",
+          "chat_text": "courting someone"
+        },
+        {
+          "id": "leave_town",
+          "label": "Leave town",
+          "chat_text": "planning to leave town"
+        },
+        {
+          "id": "settle_down",
+          "label": "Settle down",
+          "chat_text": "hoping to settle down"
+        },
+        {
+          "id": "uncover_a_truth",
+          "label": "Uncover a truth",
+          "chat_text": "determined to uncover a truth"
+        },
+        {
+          "id": "break_a_curse",
+          "label": "Break a curse",
+          "chat_text": "seeking to break a curse"
+        },
+        {
+          "id": "buy_back_family_land",
+          "label": "Buy back the family land",
+          "chat_text": "saving to buy back the family land"
+        },
+        {
+          "id": "settle_a_small_revenge",
+          "label": "Settle a small revenge",
+          "chat_text": "nursing a small revenge to settle"
+        },
+        {
+          "id": "make_a_friend",
+          "label": "Make a friend",
+          "chat_text": "quietly hoping to make a friend"
+        },
+        {
+          "id": "be_normal_for_once",
+          "label": "Be normal for once",
+          "chat_text": "wishing to be normal for once"
+        },
+        {
+          "id": "save_to_travel",
+          "label": "Save enough to travel",
+          "chat_text": "saving enough to travel"
+        }
+      ]
+    },
+    {
+      "id": "life_dream",
+      "_note": "C15.",
+      "label": "Life dream",
+      "kind": "pick_one",
+      "home": "persona",
+      "section": "Character",
+      "order": 514,
+      "options": [
+        {
+          "id": "a_place_to_belong",
+          "label": "A place to belong",
+          "chat_text": "dreams of a place to belong"
+        },
+        {
+          "id": "redemption",
+          "label": "Redemption",
+          "chat_text": "dreams of redemption"
+        },
+        {
+          "id": "greatness",
+          "label": "Greatness",
+          "chat_text": "dreams of greatness"
+        },
+        {
+          "id": "quiet_ordinary_life",
+          "label": "A quiet ordinary life",
+          "chat_text": "dreams of a quiet, ordinary life"
+        },
+        {
+          "id": "see_the_whole_world",
+          "label": "Seeing the whole world",
+          "chat_text": "dreams of seeing the whole world"
+        },
+        {
+          "id": "going_home",
+          "label": "Going home",
+          "chat_text": "dreams of going home"
+        },
+        {
+          "id": "true_love",
+          "label": "True love",
+          "chat_text": "dreams of true love"
+        },
+        {
+          "id": "family_of_their_own",
+          "label": "A family of their own",
+          "chat_text": "dreams of a family of their own"
+        },
+        {
+          "id": "mastery_of_the_craft",
+          "label": "Mastery of the craft",
+          "chat_text": "dreams of mastering their craft"
+        },
+        {
+          "id": "wealth_beyond_counting",
+          "label": "Wealth beyond counting",
+          "chat_text": "dreams of wealth beyond counting"
+        },
+        {
+          "id": "freedom_from_their_maker",
+          "label": "Freedom from their maker",
+          "chat_text": "dreams of freedom from their maker"
+        },
+        {
+          "id": "becoming_human",
+          "label": "Becoming human",
+          "chat_text": "dreams of becoming human"
+        },
+        {
+          "id": "immortality",
+          "label": "Immortality",
+          "chat_text": "dreams of immortality"
+        },
+        {
+          "id": "a_worthy_death",
+          "label": "A worthy death",
+          "chat_text": "dreams of a worthy death"
+        },
+        {
+          "id": "peace_for_their_people",
+          "label": "Peace for their people",
+          "chat_text": "dreams of peace for their people"
+        },
+        {
+          "id": "rebuild_what_was_lost",
+          "label": "Rebuilding what was lost",
+          "chat_text": "dreams of rebuilding what was lost"
+        },
+        {
+          "id": "giving_forgiveness",
+          "label": "Giving forgiveness",
+          "chat_text": "longs to give forgiveness"
+        },
+        {
+          "id": "receiving_forgiveness",
+          "label": "Receiving forgiveness",
+          "chat_text": "longs to receive forgiveness"
+        },
+        {
+          "id": "forbidden_knowledge",
+          "label": "Forbidden knowledge",
+          "chat_text": "dreams of forbidden knowledge"
+        },
+        {
+          "id": "to_matter_to_someone",
+          "label": "To matter to someone",
+          "chat_text": "longs to matter to someone"
+        }
+      ]
+    },
+    {
+      "id": "lines_never_cross",
+      "_note": "C16. Stable behavioral anchors (drift-tripwire-relevant). Intended cap 3 (unenforced).",
+      "label": "Never",
+      "kind": "pick_many",
+      "home": "persona",
+      "section": "Character",
+      "order": 515,
+      "options": [
+        {
+          "id": "betray_a_friend",
+          "label": "Betray a friend",
+          "chat_text": "would never betray a friend"
+        },
+        {
+          "id": "abandon_family",
+          "label": "Abandon family",
+          "chat_text": "would never abandon family"
+        },
+        {
+          "id": "harm_the_innocent",
+          "label": "Harm the innocent",
+          "chat_text": "would never harm the innocent"
+        },
+        {
+          "id": "break_a_sworn_oath",
+          "label": "Break a sworn oath",
+          "chat_text": "would never break a sworn oath"
+        },
+        {
+          "id": "lie_to_a_loved_one",
+          "label": "Lie to a loved one",
+          "chat_text": "would never lie to a loved one"
+        },
+        {
+          "id": "steal_from_the_poor",
+          "label": "Steal from the poor",
+          "chat_text": "would never steal from the poor"
+        },
+        {
+          "id": "kill_at_all",
+          "label": "Kill at all",
+          "chat_text": "would never take a life"
+        },
+        {
+          "id": "kill_the_defenseless",
+          "label": "Kill the defenseless",
+          "chat_text": "would never strike down the defenseless"
+        },
+        {
+          "id": "forsake_their_faith",
+          "label": "Forsake their faith",
+          "chat_text": "would never forsake their faith"
+        },
+        {
+          "id": "sell_crafts_secrets",
+          "label": "Sell the craft's secrets",
+          "chat_text": "would never sell the craft's secrets"
+        },
+        {
+          "id": "leave_a_debt_unpaid",
+          "label": "Leave a debt unpaid",
+          "chat_text": "would never leave a debt unpaid"
+        },
+        {
+          "id": "torture",
+          "label": "Torture",
+          "chat_text": "would never resort to torture"
+        },
+        {
+          "id": "work_for_the_old_enemy",
+          "label": "Work for the old enemy",
+          "chat_text": "would never work for the old enemy"
+        },
+        {
+          "id": "give_up_on_someone",
+          "label": "Give up on someone",
+          "chat_text": "would never give up on someone"
+        },
+        {
+          "id": "break_hospitality",
+          "label": "Break hospitality",
+          "chat_text": "would never break the rules of hospitality"
+        },
+        {
+          "id": "abandon_a_post",
+          "label": "Abandon a post",
+          "chat_text": "would never abandon a post"
+        }
+      ]
+    },
+    {
+      "id": "intellect_style",
+      "_note": "C17.",
+      "label": "Mind",
+      "kind": "pick_one",
+      "home": "persona",
+      "section": "Mind & Skill",
+      "order": 516,
+      "options": [
+        {
+          "id": "analytical",
+          "label": "Analytical",
+          "chat_text": "an analytical mind"
+        },
+        {
+          "id": "intuitive",
+          "label": "Intuitive",
+          "chat_text": "an intuitive mind"
+        },
+        {
+          "id": "scholarly",
+          "label": "Scholarly",
+          "chat_text": "a scholarly mind"
+        },
+        {
+          "id": "street_smart",
+          "label": "Street-smart",
+          "chat_text": "street-smart"
+        },
+        {
+          "id": "cunning",
+          "label": "Cunning",
+          "chat_text": "a cunning mind"
+        },
+        {
+          "id": "absent_minded_brilliant",
+          "label": "Absent-minded brilliant",
+          "chat_text": "absent-minded but brilliant"
+        },
+        {
+          "id": "simple_and_earnest",
+          "label": "Simple and earnest",
+          "chat_text": "simple and earnest of mind"
+        },
+        {
+          "id": "slow_but_deep",
+          "label": "Slow but deep",
+          "chat_text": "slow but deep of thought"
+        }
+      ]
+    },
+    {
+      "id": "skills",
+      "_note": "C18. Intended cap 6 (unenforced). MUST carry no visible_when - it is the referent of signature_skill's condition, which requires an always-visible referent (authoring note 2).",
+      "label": "Skills",
+      "kind": "pick_many",
+      "home": "persona",
+      "section": "Mind & Skill",
+      "order": 517,
+      "options": [
+        {
+          "id": "cooking",
+          "label": "Cooking",
+          "chat_text": "skilled at cooking"
+        },
+        {
+          "id": "baking",
+          "label": "Baking",
+          "chat_text": "skilled at baking"
+        },
+        {
+          "id": "brewing",
+          "label": "Brewing",
+          "chat_text": "skilled at brewing"
+        },
+        {
+          "id": "bartending",
+          "label": "Bartending",
+          "chat_text": "skilled at bartending"
+        },
+        {
+          "id": "mixology",
+          "label": "Mixology",
+          "chat_text": "skilled at mixology"
+        },
+        {
+          "id": "first_aid",
+          "label": "First aid",
+          "chat_text": "skilled at first aid"
+        },
+        {
+          "id": "medicine",
+          "label": "Medicine",
+          "chat_text": "skilled in medicine"
+        },
+        {
+          "id": "herbalism",
+          "label": "Herbalism",
+          "chat_text": "skilled in herbalism"
+        },
+        {
+          "id": "alchemy",
+          "label": "Alchemy",
+          "chat_text": "skilled in alchemy"
+        },
+        {
+          "id": "swordplay",
+          "label": "Swordplay",
+          "chat_text": "skilled at swordplay"
+        },
+        {
+          "id": "archery",
+          "label": "Archery",
+          "chat_text": "skilled at archery"
+        },
+        {
+          "id": "marksmanship",
+          "label": "Marksmanship",
+          "chat_text": "a skilled marksman"
+        },
+        {
+          "id": "hand_to_hand",
+          "label": "Hand-to-hand",
+          "chat_text": "skilled at hand-to-hand combat"
+        },
+        {
+          "id": "tactics",
+          "label": "Tactics",
+          "chat_text": "skilled at tactics"
+        },
+        {
+          "id": "stealth",
+          "label": "Stealth",
+          "chat_text": "skilled at stealth"
+        },
+        {
+          "id": "lockpicking",
+          "label": "Lockpicking",
+          "chat_text": "skilled at lockpicking"
+        },
+        {
+          "id": "pickpocketing",
+          "label": "Pickpocketing",
+          "chat_text": "skilled at pickpocketing"
+        },
+        {
+          "id": "tracking",
+          "label": "Tracking",
+          "chat_text": "skilled at tracking"
+        },
+        {
+          "id": "survival",
+          "label": "Survival",
+          "chat_text": "skilled at wilderness survival"
+        },
+        {
+          "id": "hunting",
+          "label": "Hunting",
+          "chat_text": "skilled at hunting"
+        },
+        {
+          "id": "fishing",
+          "label": "Fishing",
+          "chat_text": "skilled at fishing"
+        },
+        {
+          "id": "sailing",
+          "label": "Sailing",
+          "chat_text": "skilled at sailing"
+        },
+        {
+          "id": "riding",
+          "label": "Riding",
+          "chat_text": "skilled at riding"
+        },
+        {
+          "id": "piloting",
+          "label": "Piloting",
+          "chat_text": "skilled at piloting"
+        },
+        {
+          "id": "driving",
+          "label": "Driving",
+          "chat_text": "a skilled driver"
+        },
+        {
+          "id": "mechanics",
+          "label": "Mechanics",
+          "chat_text": "skilled at mechanics"
+        },
+        {
+          "id": "engineering",
+          "label": "Engineering",
+          "chat_text": "skilled at engineering"
+        },
+        {
+          "id": "tinkering",
+          "label": "Tinkering",
+          "chat_text": "skilled at tinkering"
+        },
+        {
+          "id": "home_repair",
+          "label": "Home repair",
+          "chat_text": "handy with home repair"
+        },
+        {
+          "id": "smithing",
+          "label": "Smithing",
+          "chat_text": "skilled at smithing"
+        },
+        {
+          "id": "tailoring",
+          "label": "Tailoring",
+          "chat_text": "skilled at tailoring"
+        },
+        {
+          "id": "carpentry",
+          "label": "Carpentry",
+          "chat_text": "skilled at carpentry"
+        },
+        {
+          "id": "hacking",
+          "label": "Hacking",
+          "chat_text": "skilled at hacking"
+        },
+        {
+          "id": "coding",
+          "label": "Coding",
+          "chat_text": "skilled at coding"
+        },
+        {
+          "id": "video_editing",
+          "label": "Video editing",
+          "chat_text": "skilled at video editing"
+        },
+        {
+          "id": "social_media",
+          "label": "Social media",
+          "chat_text": "skilled with social media"
+        },
+        {
+          "id": "electronics",
+          "label": "Electronics",
+          "chat_text": "skilled with electronics"
+        },
+        {
+          "id": "chemistry",
+          "label": "Chemistry",
+          "chat_text": "skilled in chemistry"
+        },
+        {
+          "id": "mathematics",
+          "label": "Mathematics",
+          "chat_text": "skilled in mathematics"
+        },
+        {
+          "id": "history",
+          "label": "History",
+          "chat_text": "well-versed in history"
+        },
+        {
+          "id": "languages",
+          "label": "Languages",
+          "chat_text": "skilled with languages"
+        },
+        {
+          "id": "calligraphy",
+          "label": "Calligraphy",
+          "chat_text": "skilled at calligraphy"
+        },
+        {
+          "id": "painting",
+          "label": "Painting",
+          "chat_text": "skilled at painting"
+        },
+        {
+          "id": "sculpting",
+          "label": "Sculpting",
+          "chat_text": "skilled at sculpting"
+        },
+        {
+          "id": "photography",
+          "label": "Photography",
+          "chat_text": "skilled at photography"
+        },
+        {
+          "id": "makeup_artistry",
+          "label": "Makeup artistry",
+          "chat_text": "skilled at makeup artistry"
+        },
+        {
+          "id": "string_instruments",
+          "label": "String instruments",
+          "chat_text": "plays string instruments"
+        },
+        {
+          "id": "keyboard_instruments",
+          "label": "Keyboard instruments",
+          "chat_text": "plays keyboard instruments"
+        },
+        {
+          "id": "wind_instruments",
+          "label": "Wind instruments",
+          "chat_text": "plays wind instruments"
+        },
+        {
+          "id": "singing",
+          "label": "Singing",
+          "chat_text": "a skilled singer"
+        },
+        {
+          "id": "dancing",
+          "label": "Dancing",
+          "chat_text": "a skilled dancer"
+        },
+        {
+          "id": "acting",
+          "label": "Acting",
+          "chat_text": "a skilled actor"
+        },
+        {
+          "id": "storytelling",
+          "label": "Storytelling",
+          "chat_text": "a skilled storyteller"
+        },
+        {
+          "id": "public_speaking",
+          "label": "Public speaking",
+          "chat_text": "a skilled public speaker"
+        },
+        {
+          "id": "persuasion",
+          "label": "Persuasion",
+          "chat_text": "skilled at persuasion"
+        },
+        {
+          "id": "haggling",
+          "label": "Haggling",
+          "chat_text": "skilled at haggling"
+        },
+        {
+          "id": "seduction",
+          "label": "Seduction",
+          "chat_text": "skilled at seduction"
+        },
+        {
+          "id": "gambling",
+          "label": "Gambling",
+          "chat_text": "skilled at gambling"
+        },
+        {
+          "id": "sleight_of_hand",
+          "label": "Sleight of hand",
+          "chat_text": "skilled at sleight of hand"
+        },
+        {
+          "id": "teaching",
+          "label": "Teaching",
+          "chat_text": "a skilled teacher"
+        },
+        {
+          "id": "animal_handling",
+          "label": "Animal handling",
+          "chat_text": "skilled at animal handling"
+        },
+        {
+          "id": "farming",
+          "label": "Farming",
+          "chat_text": "skilled at farming"
+        },
+        {
+          "id": "gardening",
+          "label": "Gardening",
+          "chat_text": "skilled at gardening"
+        },
+        {
+          "id": "navigation",
+          "label": "Navigation",
+          "chat_text": "skilled at navigation"
+        },
+        {
+          "id": "cartography",
+          "label": "Cartography",
+          "chat_text": "skilled at cartography"
+        },
+        {
+          "id": "elemental_magic",
+          "label": "Elemental magic",
+          "chat_text": "wields elemental magic"
+        },
+        {
+          "id": "healing_magic",
+          "label": "Healing magic",
+          "chat_text": "wields healing magic"
+        },
+        {
+          "id": "illusion_magic",
+          "label": "Illusion magic",
+          "chat_text": "wields illusion magic"
+        },
+        {
+          "id": "summoning_magic",
+          "label": "Summoning magic",
+          "chat_text": "wields summoning magic"
+        },
+        {
+          "id": "rune_magic",
+          "label": "Rune magic",
+          "chat_text": "wields rune magic"
+        },
+        {
+          "id": "accounting",
+          "label": "Accounting",
+          "chat_text": "skilled at accounting"
+        },
+        {
+          "id": "law",
+          "label": "Law",
+          "chat_text": "well-versed in law"
+        }
+      ]
+    },
+    {
+      "id": "signature_skill",
+      "_note": "C19. The doc spec is 'a single choice drawn from the C18 selection'; the format has no options-from-another-group's-selection widget, so this is a full-list single picker duplicating C18's 72 options, conditioned to appear once 'skills' has any selection. NOT restricted to the exact chosen subset (format limitation). Option id set mirrors 'skills' exactly.",
+      "label": "Best at",
+      "kind": "pick_one",
+      "home": "persona",
+      "visible_when": {
+        "group": "skills",
+        "any": true
+      },
+      "section": "Mind & Skill",
+      "order": 518,
+      "options": [
+        {
+          "id": "cooking",
+          "label": "Cooking",
+          "chat_text": "best known for their cooking"
+        },
+        {
+          "id": "baking",
+          "label": "Baking",
+          "chat_text": "best known for their baking"
+        },
+        {
+          "id": "brewing",
+          "label": "Brewing",
+          "chat_text": "best known for their brewing"
+        },
+        {
+          "id": "bartending",
+          "label": "Bartending",
+          "chat_text": "best known for their bartending"
+        },
+        {
+          "id": "mixology",
+          "label": "Mixology",
+          "chat_text": "best known for their mixology"
+        },
+        {
+          "id": "first_aid",
+          "label": "First aid",
+          "chat_text": "best known for their first aid"
+        },
+        {
+          "id": "medicine",
+          "label": "Medicine",
+          "chat_text": "best known for their medicine"
+        },
+        {
+          "id": "herbalism",
+          "label": "Herbalism",
+          "chat_text": "best known for their herbalism"
+        },
+        {
+          "id": "alchemy",
+          "label": "Alchemy",
+          "chat_text": "best known for their alchemy"
+        },
+        {
+          "id": "swordplay",
+          "label": "Swordplay",
+          "chat_text": "best known for their swordplay"
+        },
+        {
+          "id": "archery",
+          "label": "Archery",
+          "chat_text": "best known for their archery"
+        },
+        {
+          "id": "marksmanship",
+          "label": "Marksmanship",
+          "chat_text": "best known for their marksmanship"
+        },
+        {
+          "id": "hand_to_hand",
+          "label": "Hand-to-hand",
+          "chat_text": "best known for their hand-to-hand combat"
+        },
+        {
+          "id": "tactics",
+          "label": "Tactics",
+          "chat_text": "best known for their tactics"
+        },
+        {
+          "id": "stealth",
+          "label": "Stealth",
+          "chat_text": "best known for their stealth"
+        },
+        {
+          "id": "lockpicking",
+          "label": "Lockpicking",
+          "chat_text": "best known for their lockpicking"
+        },
+        {
+          "id": "pickpocketing",
+          "label": "Pickpocketing",
+          "chat_text": "best known for their pickpocketing"
+        },
+        {
+          "id": "tracking",
+          "label": "Tracking",
+          "chat_text": "best known for their tracking"
+        },
+        {
+          "id": "survival",
+          "label": "Survival",
+          "chat_text": "best known for their survival skills"
+        },
+        {
+          "id": "hunting",
+          "label": "Hunting",
+          "chat_text": "best known for their hunting"
+        },
+        {
+          "id": "fishing",
+          "label": "Fishing",
+          "chat_text": "best known for their fishing"
+        },
+        {
+          "id": "sailing",
+          "label": "Sailing",
+          "chat_text": "best known for their sailing"
+        },
+        {
+          "id": "riding",
+          "label": "Riding",
+          "chat_text": "best known for their riding"
+        },
+        {
+          "id": "piloting",
+          "label": "Piloting",
+          "chat_text": "best known for their piloting"
+        },
+        {
+          "id": "driving",
+          "label": "Driving",
+          "chat_text": "best known for their driving"
+        },
+        {
+          "id": "mechanics",
+          "label": "Mechanics",
+          "chat_text": "best known for their mechanics"
+        },
+        {
+          "id": "engineering",
+          "label": "Engineering",
+          "chat_text": "best known for their engineering"
+        },
+        {
+          "id": "tinkering",
+          "label": "Tinkering",
+          "chat_text": "best known for their tinkering"
+        },
+        {
+          "id": "home_repair",
+          "label": "Home repair",
+          "chat_text": "best known for their home repair"
+        },
+        {
+          "id": "smithing",
+          "label": "Smithing",
+          "chat_text": "best known for their smithing"
+        },
+        {
+          "id": "tailoring",
+          "label": "Tailoring",
+          "chat_text": "best known for their tailoring"
+        },
+        {
+          "id": "carpentry",
+          "label": "Carpentry",
+          "chat_text": "best known for their carpentry"
+        },
+        {
+          "id": "hacking",
+          "label": "Hacking",
+          "chat_text": "best known for their hacking"
+        },
+        {
+          "id": "coding",
+          "label": "Coding",
+          "chat_text": "best known for their coding"
+        },
+        {
+          "id": "video_editing",
+          "label": "Video editing",
+          "chat_text": "best known for their video editing"
+        },
+        {
+          "id": "social_media",
+          "label": "Social media",
+          "chat_text": "best known for their social media savvy"
+        },
+        {
+          "id": "electronics",
+          "label": "Electronics",
+          "chat_text": "best known for their electronics work"
+        },
+        {
+          "id": "chemistry",
+          "label": "Chemistry",
+          "chat_text": "best known for their chemistry"
+        },
+        {
+          "id": "mathematics",
+          "label": "Mathematics",
+          "chat_text": "best known for their mathematics"
+        },
+        {
+          "id": "history",
+          "label": "History",
+          "chat_text": "best known for their command of history"
+        },
+        {
+          "id": "languages",
+          "label": "Languages",
+          "chat_text": "best known for their languages"
+        },
+        {
+          "id": "calligraphy",
+          "label": "Calligraphy",
+          "chat_text": "best known for their calligraphy"
+        },
+        {
+          "id": "painting",
+          "label": "Painting",
+          "chat_text": "best known for their painting"
+        },
+        {
+          "id": "sculpting",
+          "label": "Sculpting",
+          "chat_text": "best known for their sculpting"
+        },
+        {
+          "id": "photography",
+          "label": "Photography",
+          "chat_text": "best known for their photography"
+        },
+        {
+          "id": "makeup_artistry",
+          "label": "Makeup artistry",
+          "chat_text": "best known for their makeup artistry"
+        },
+        {
+          "id": "string_instruments",
+          "label": "String instruments",
+          "chat_text": "best known for their string playing"
+        },
+        {
+          "id": "keyboard_instruments",
+          "label": "Keyboard instruments",
+          "chat_text": "best known for their keyboard playing"
+        },
+        {
+          "id": "wind_instruments",
+          "label": "Wind instruments",
+          "chat_text": "best known for their wind playing"
+        },
+        {
+          "id": "singing",
+          "label": "Singing",
+          "chat_text": "best known for their singing"
+        },
+        {
+          "id": "dancing",
+          "label": "Dancing",
+          "chat_text": "best known for their dancing"
+        },
+        {
+          "id": "acting",
+          "label": "Acting",
+          "chat_text": "best known for their acting"
+        },
+        {
+          "id": "storytelling",
+          "label": "Storytelling",
+          "chat_text": "best known for their storytelling"
+        },
+        {
+          "id": "public_speaking",
+          "label": "Public speaking",
+          "chat_text": "best known for their public speaking"
+        },
+        {
+          "id": "persuasion",
+          "label": "Persuasion",
+          "chat_text": "best known for their persuasion"
+        },
+        {
+          "id": "haggling",
+          "label": "Haggling",
+          "chat_text": "best known for their haggling"
+        },
+        {
+          "id": "seduction",
+          "label": "Seduction",
+          "chat_text": "best known for their seduction"
+        },
+        {
+          "id": "gambling",
+          "label": "Gambling",
+          "chat_text": "best known for their gambling"
+        },
+        {
+          "id": "sleight_of_hand",
+          "label": "Sleight of hand",
+          "chat_text": "best known for their sleight of hand"
+        },
+        {
+          "id": "teaching",
+          "label": "Teaching",
+          "chat_text": "best known for their teaching"
+        },
+        {
+          "id": "animal_handling",
+          "label": "Animal handling",
+          "chat_text": "best known for their animal handling"
+        },
+        {
+          "id": "farming",
+          "label": "Farming",
+          "chat_text": "best known for their farming"
+        },
+        {
+          "id": "gardening",
+          "label": "Gardening",
+          "chat_text": "best known for their gardening"
+        },
+        {
+          "id": "navigation",
+          "label": "Navigation",
+          "chat_text": "best known for their navigation"
+        },
+        {
+          "id": "cartography",
+          "label": "Cartography",
+          "chat_text": "best known for their cartography"
+        },
+        {
+          "id": "elemental_magic",
+          "label": "Elemental magic",
+          "chat_text": "best known for their elemental magic"
+        },
+        {
+          "id": "healing_magic",
+          "label": "Healing magic",
+          "chat_text": "best known for their healing magic"
+        },
+        {
+          "id": "illusion_magic",
+          "label": "Illusion magic",
+          "chat_text": "best known for their illusion magic"
+        },
+        {
+          "id": "summoning_magic",
+          "label": "Summoning magic",
+          "chat_text": "best known for their summoning magic"
+        },
+        {
+          "id": "rune_magic",
+          "label": "Rune magic",
+          "chat_text": "best known for their rune magic"
+        },
+        {
+          "id": "accounting",
+          "label": "Accounting",
+          "chat_text": "best known for their accounting"
+        },
+        {
+          "id": "law",
+          "label": "Law",
+          "chat_text": "best known for their command of law"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,168 @@
+{
+  "format": 1,
+  "rating": "standard",
+  "groups": [
+    {
+      "id": "body_type",
+      "_note": "V2 B1: silhouette now carries overall mass - the deleted weight slider's job. Height/weight/muscle sliders removed at 5.6c (V2 flag 3); replaced by height_band + muscle_def below.",
+      "label": "Silhouette",
+      "kind": "pick_one",
+      "home": "identity",
+      "priority": "should",
+      "section": "Body",
+      "order": 40,
+      "hint": "Overall silhouette - the main body descriptor in every render.",
+      "_v1": {
+        "quick": true,
+        "required": true
+      },
+      "options": [
+        {
+          "id": "petite",
+          "label": "Petite",
+          "image_text": "petite build"
+        },
+        {
+          "id": "slim",
+          "label": "Slim",
+          "image_text": "slim build"
+        },
+        {
+          "id": "willowy",
+          "label": "Willowy",
+          "image_text": "willowy build"
+        },
+        {
+          "id": "lithe",
+          "label": "Lithe",
+          "image_text": "lithe build"
+        },
+        {
+          "id": "average",
+          "label": "Average",
+          "image_text": "average build"
+        },
+        {
+          "id": "athletic",
+          "label": "Athletic",
+          "image_text": "athletic build"
+        },
+        {
+          "id": "curvy",
+          "label": "Curvy",
+          "image_text": "curvy build"
+        },
+        {
+          "id": "voluptuous",
+          "label": "Voluptuous",
+          "image_text": "voluptuous"
+        },
+        {
+          "id": "stocky",
+          "label": "Stocky",
+          "image_text": "stocky build"
+        },
+        {
+          "id": "muscular",
+          "label": "Muscular",
+          "image_text": "muscular build"
+        },
+        {
+          "id": "heavyset",
+          "label": "Heavyset",
+          "image_text": "heavyset build"
+        },
+        {
+          "id": "hulking",
+          "label": "Hulking",
+          "image_text": "hulking build"
+        }
+      ]
+    },
+    {
+      "id": "height_band",
+      "_note": "V2 B2: species-relative - measured against their kind's norm; the species tag anchors absolute scale. Extremes weak-honor on non-standard frames (kept-or-cut at 5.6e).",
+      "label": "Height",
+      "kind": "pick_one",
+      "home": "identity",
+      "priority": "flavor",
+      "section": "Body",
+      "order": 41,
+      "hint": "Species-relative height (a tall dwarf is tall for a dwarf).",
+      "options": [
+        {
+          "id": "very_short",
+          "label": "Very Short",
+          "image_text": "very short"
+        },
+        {
+          "id": "short",
+          "label": "Short",
+          "image_text": "short stature"
+        },
+        {
+          "id": "touch_short",
+          "label": "A Touch Short",
+          "image_text": "slightly short"
+        },
+        {
+          "id": "average",
+          "label": "Average",
+          "image_text": ""
+        },
+        {
+          "id": "touch_tall",
+          "label": "A Touch Tall",
+          "image_text": "slightly tall"
+        },
+        {
+          "id": "tall",
+          "label": "Tall",
+          "image_text": "tall"
+        },
+        {
+          "id": "towering",
+          "label": "Towering",
+          "image_text": "very tall, towering"
+        }
+      ]
+    },
+    {
+      "id": "muscle_def",
+      "label": "Muscle",
+      "kind": "pick_one",
+      "home": "identity",
+      "priority": "flavor",
+      "section": "Body",
+      "order": 42,
+      "hint": "Visible muscle definition on top of the silhouette.",
+      "options": [
+        {
+          "id": "soft",
+          "label": "Soft",
+          "image_text": "soft body"
+        },
+        {
+          "id": "toned",
+          "label": "Toned",
+          "image_text": "toned"
+        },
+        {
+          "id": "defined",
+          "label": "Defined",
+          "image_text": "well-defined muscles"
+        },
+        {
+          "id": "powerfully_built",
+          "label": "Powerfully Built",
+          "image_text": "powerfully built"
+        },
+        {
+          "id": "massive",
+          "label": "Massive",
+          "image_text": "extremely muscular"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,488 @@
+{
+  "format": 1,
+  "rating": "standard",
+  "groups": [
+    {
+      "id": "marks",
+      "_note": "V2 B43 (replaces distinctive_features; legacy values load leniently and lint). Old horns/wings/tail/scales entries moved to the dedicated species-feature groups. 5.7 UI pass (user decision 2026-07-18): options gain kind classes for grouped-picker subsections and the list grows fur/feather/scale/plating/stone marks - deliberately NOT surface-conditional, per the user's call.",
+      "label": "Distinctive Marks",
+      "kind": "pick_many",
+      "home": "identity",
+      "priority": "flavor",
+      "section": "Marks",
+      "order": 72,
+      "hint": "Stackable distinctive marks, grouped by kind. Every surface's options are always available - mix freely.",
+      "options": [
+        {
+          "id": "freckles",
+          "label": "Freckles",
+          "image_text": "freckles",
+          "tags": [
+            "face"
+          ]
+        },
+        {
+          "id": "beauty_mark",
+          "label": "Beauty Mark",
+          "image_text": "beauty mark",
+          "tags": [
+            "face"
+          ]
+        },
+        {
+          "id": "mole_under_eye",
+          "label": "Mole Under Eye",
+          "image_text": "mole under eye",
+          "tags": [
+            "face"
+          ]
+        },
+        {
+          "id": "dimples",
+          "label": "Dimples",
+          "image_text": "dimples",
+          "tags": [
+            "face"
+          ]
+        },
+        {
+          "id": "visible_fangs",
+          "label": "Visible Fangs",
+          "image_text": "fangs",
+          "tags": [
+            "face"
+          ]
+        },
+        {
+          "id": "gold_tooth",
+          "label": "Gold Tooth",
+          "image_text": "gold tooth",
+          "tags": [
+            "face"
+          ]
+        },
+        {
+          "id": "vitiligo",
+          "label": "Vitiligo",
+          "image_text": "vitiligo patches",
+          "tags": [
+            "skin"
+          ]
+        },
+        {
+          "id": "birthmark",
+          "label": "Birthmark",
+          "image_text": "birthmark",
+          "tags": [
+            "skin"
+          ]
+        },
+        {
+          "id": "facial_scar",
+          "label": "Facial Scar",
+          "image_text": "facial scar",
+          "tags": [
+            "scars"
+          ]
+        },
+        {
+          "id": "scar_across_eye",
+          "label": "Scar Across Eye",
+          "image_text": "scar across eye",
+          "tags": [
+            "scars"
+          ]
+        },
+        {
+          "id": "torso_scar",
+          "label": "Torso Scar",
+          "image_text": "torso scar",
+          "tags": [
+            "scars"
+          ]
+        },
+        {
+          "id": "arm_scars",
+          "label": "Arm Scars",
+          "image_text": "scarred arms",
+          "tags": [
+            "scars"
+          ]
+        },
+        {
+          "id": "burn_scar",
+          "label": "Burn Scar",
+          "image_text": "burn scar",
+          "tags": [
+            "scars"
+          ]
+        },
+        {
+          "id": "ritual_scarring",
+          "label": "Ritual Scarring",
+          "image_text": "ritual scarification",
+          "tags": [
+            "scars"
+          ]
+        },
+        {
+          "id": "stitches",
+          "label": "Stitches",
+          "image_text": "stitches",
+          "tags": [
+            "scars"
+          ]
+        },
+        {
+          "id": "branded_mark",
+          "label": "Brand",
+          "image_text": "branded mark",
+          "tags": [
+            "scars"
+          ]
+        },
+        {
+          "id": "notched_ear",
+          "label": "Notched Ear",
+          "image_text": "notched ear",
+          "tags": [
+            "fur"
+          ]
+        },
+        {
+          "id": "torn_ear",
+          "label": "Torn Ear",
+          "image_text": "torn ear",
+          "tags": [
+            "fur"
+          ]
+        },
+        {
+          "id": "missing_fur_patch",
+          "label": "Missing Fur Patch",
+          "image_text": "patch of missing fur",
+          "tags": [
+            "fur"
+          ]
+        },
+        {
+          "id": "singed_fur",
+          "label": "Singed Fur",
+          "image_text": "singed fur",
+          "tags": [
+            "fur"
+          ]
+        },
+        {
+          "id": "frayed_feathers",
+          "label": "Frayed Feathers",
+          "image_text": "frayed feathers",
+          "tags": [
+            "feathers"
+          ]
+        },
+        {
+          "id": "missing_feathers",
+          "label": "Missing Feathers",
+          "image_text": "patch of missing feathers",
+          "tags": [
+            "feathers"
+          ]
+        },
+        {
+          "id": "chipped_scales",
+          "label": "Chipped Scales",
+          "image_text": "chipped scales",
+          "tags": [
+            "scales"
+          ]
+        },
+        {
+          "id": "missing_scales",
+          "label": "Missing Scales",
+          "image_text": "patch of missing scales",
+          "tags": [
+            "scales"
+          ]
+        },
+        {
+          "id": "scale_scar",
+          "label": "Scale Scar",
+          "image_text": "scarred scales",
+          "tags": [
+            "scales"
+          ]
+        },
+        {
+          "id": "cracked_plating",
+          "label": "Cracked Plating",
+          "image_text": "cracked plating",
+          "tags": [
+            "plating"
+          ]
+        },
+        {
+          "id": "dented_chassis",
+          "label": "Dents",
+          "image_text": "dented chassis",
+          "tags": [
+            "plating"
+          ]
+        },
+        {
+          "id": "weld_seams",
+          "label": "Weld Seams",
+          "image_text": "visible weld seams",
+          "tags": [
+            "plating"
+          ]
+        },
+        {
+          "id": "patina",
+          "label": "Patina",
+          "image_text": "weathered patina",
+          "tags": [
+            "plating"
+          ]
+        },
+        {
+          "id": "rust_streaks",
+          "label": "Rust Streaks",
+          "image_text": "rust streaks",
+          "tags": [
+            "plating"
+          ]
+        },
+        {
+          "id": "stone_cracks",
+          "label": "Stone Cracks",
+          "image_text": "cracked stone skin",
+          "tags": [
+            "stone"
+          ]
+        },
+        {
+          "id": "moss_growth",
+          "label": "Moss Growth",
+          "image_text": "moss growth",
+          "tags": [
+            "stone"
+          ]
+        },
+        {
+          "id": "glowing_runes",
+          "label": "Glowing Runes",
+          "image_text": "glowing runic markings",
+          "tags": [
+            "arcane"
+          ]
+        },
+        {
+          "id": "subdermal_cyber_lines",
+          "label": "Subdermal Cyber Lines",
+          "image_text": "subdermal circuit lines",
+          "tags": [
+            "synthetic"
+          ]
+        },
+        {
+          "id": "serial_barcode",
+          "label": "Serial Barcode",
+          "image_text": "serial number barcode",
+          "tags": [
+            "synthetic"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tattoo_placement",
+      "_note": "No 'none' option - an empty multi selection is none, which lets tattoo_motif key on any:true.",
+      "label": "Tattoos",
+      "kind": "pick_many",
+      "home": "identity",
+      "priority": "flavor",
+      "section": "Marks",
+      "order": 73,
+      "options": [
+        {
+          "id": "left_sleeve",
+          "label": "Left Sleeve",
+          "image_text": "left arm tattoo"
+        },
+        {
+          "id": "right_sleeve",
+          "label": "Right Sleeve",
+          "image_text": "right arm tattoo"
+        },
+        {
+          "id": "both_sleeves",
+          "label": "Both Sleeves",
+          "image_text": "tattoo sleeves"
+        },
+        {
+          "id": "back_piece",
+          "label": "Back Piece",
+          "image_text": "large back tattoo"
+        },
+        {
+          "id": "chest",
+          "label": "Chest",
+          "image_text": "chest tattoo"
+        },
+        {
+          "id": "neck",
+          "label": "Neck",
+          "image_text": "neck tattoo"
+        },
+        {
+          "id": "face",
+          "label": "Face",
+          "image_text": "facial tattoo"
+        },
+        {
+          "id": "hands",
+          "label": "Hands",
+          "image_text": "hand tattoos"
+        },
+        {
+          "id": "thigh",
+          "label": "Thigh",
+          "image_text": "thigh tattoo"
+        }
+      ]
+    },
+    {
+      "id": "tattoo_motif",
+      "label": "Tattoo Motif",
+      "kind": "pick_one",
+      "home": "identity",
+      "priority": "flavor",
+      "visible_when": {
+        "group": "tattoo_placement",
+        "any": true
+      },
+      "section": "Marks",
+      "order": 74,
+      "options": [
+        {
+          "id": "tribal",
+          "label": "Tribal",
+          "image_text": "tribal tattoo design"
+        },
+        {
+          "id": "floral",
+          "label": "Floral",
+          "image_text": "floral tattoo design"
+        },
+        {
+          "id": "runic",
+          "label": "Runic",
+          "image_text": "runic tattoo design"
+        },
+        {
+          "id": "geometric",
+          "label": "Geometric",
+          "image_text": "geometric tattoo design"
+        },
+        {
+          "id": "irezumi",
+          "label": "Irezumi",
+          "image_text": "irezumi tattoo design"
+        },
+        {
+          "id": "circuitry",
+          "label": "Circuitry",
+          "image_text": "circuit tattoo design"
+        },
+        {
+          "id": "script",
+          "label": "Script",
+          "image_text": "script tattoo design"
+        },
+        {
+          "id": "minimalist_line",
+          "label": "Minimalist Line",
+          "image_text": "fine-line tattoo design"
+        },
+        {
+          "id": "gothic",
+          "label": "Gothic",
+          "image_text": "gothic tattoo design"
+        },
+        {
+          "id": "nautical",
+          "label": "Nautical",
+          "image_text": "nautical tattoo design"
+        }
+      ]
+    },
+    {
+      "id": "piercings",
+      "_note": "Gated placements append from app/data/options_gated (V2 flag 7).",
+      "label": "Piercings",
+      "kind": "pick_many",
+      "home": "identity",
+      "priority": "flavor",
+      "section": "Marks",
+      "order": 75,
+      "options": [
+        {
+          "id": "ear_studs",
+          "label": "Ear Studs",
+          "image_text": "ear piercing"
+        },
+        {
+          "id": "multiple_ear_rings",
+          "label": "Multiple Ear Rings",
+          "image_text": "multiple ear piercings"
+        },
+        {
+          "id": "industrial",
+          "label": "Industrial",
+          "image_text": "industrial piercing"
+        },
+        {
+          "id": "eyebrow",
+          "label": "Eyebrow",
+          "image_text": "eyebrow piercing"
+        },
+        {
+          "id": "nose_stud",
+          "label": "Nose Stud",
+          "image_text": "nose piercing"
+        },
+        {
+          "id": "septum",
+          "label": "Septum",
+          "image_text": "septum piercing"
+        },
+        {
+          "id": "lip",
+          "label": "Lip",
+          "image_text": "lip piercing"
+        },
+        {
+          "id": "labret",
+          "label": "Labret",
+          "image_text": "labret piercing"
+        },
+        {
+          "id": "tongue",
+          "label": "Tongue",
+          "image_text": "tongue piercing"
+        },
+        {
+          "id": "navel",
+          "label": "Navel",
+          "image_text": "navel piercing"
+        },
+        {
+          "id": "dermal",
+          "label": "Dermal",
+          "image_text": "dermal piercings"
+        }
+      ]
+    }
+  ]
+}

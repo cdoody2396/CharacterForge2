@@ -1,0 +1,2245 @@
+{
+  "format": 1,
+  "rating": "standard",
+  "groups": [
+    {
+      "id": "race",
+      "label": "Species",
+      "kind": "pick_one",
+      "home": "persona",
+      "priority": "must",
+      "section": "Identity",
+      "order": 10,
+      "hint": "Base species: sets the core look in every render, which feature groups apply, and the suggested surface.",
+      "_v1": {
+        "quick": true,
+        "required": true
+      },
+      "options": [
+        {
+          "id": "human",
+          "label": "Human",
+          "image_text": "human"
+        },
+        {
+          "id": "demigod",
+          "label": "Demigod",
+          "image_text": "demigod, divine aura",
+          "tags": [
+            "fantasy"
+          ]
+        },
+        {
+          "id": "changeling",
+          "label": "Changeling",
+          "image_text": "changeling, shifting features",
+          "tags": [
+            "fantasy"
+          ]
+        },
+        {
+          "id": "dhampir",
+          "label": "Dhampir",
+          "image_text": "dhampir, subtle fangs",
+          "tags": [
+            "fantasy"
+          ]
+        },
+        {
+          "id": "half_elf",
+          "label": "Half-Elf",
+          "image_text": "half-elf, subtly pointed ears",
+          "tags": [
+            "fantasy"
+          ]
+        },
+        {
+          "id": "half_orc",
+          "label": "Half-Orc",
+          "image_text": "half-orc, small tusks",
+          "tags": [
+            "fantasy"
+          ]
+        },
+        {
+          "id": "cambion",
+          "label": "Cambion (Half-Demon)",
+          "image_text": "half-demon, small horns",
+          "tags": [
+            "fantasy"
+          ]
+        },
+        {
+          "id": "nephilim",
+          "label": "Nephilim (Half-Angel)",
+          "image_text": "nephilim, faint halo",
+          "tags": [
+            "fantasy"
+          ]
+        },
+        {
+          "id": "half_dragon",
+          "label": "Half-Dragon",
+          "image_text": "half-dragon, scale accents",
+          "tags": [
+            "scaled",
+            "fantasy"
+          ]
+        },
+        {
+          "id": "half_fae",
+          "label": "Half-Fae",
+          "image_text": "half-fae, fey features",
+          "tags": [
+            "fantasy"
+          ]
+        },
+        {
+          "id": "elf",
+          "label": "High Elf",
+          "image_text": "elf, pointed ears",
+          "tags": [
+            "fantasy"
+          ]
+        },
+        {
+          "id": "wood_elf",
+          "label": "Wood Elf",
+          "image_text": "wood elf, pointed ears",
+          "tags": [
+            "fantasy"
+          ]
+        },
+        {
+          "id": "dark_elf",
+          "label": "Dark Elf",
+          "image_text": "dark elf, pointed ears",
+          "tags": [
+            "fantasy"
+          ]
+        },
+        {
+          "id": "snow_elf",
+          "label": "Snow Elf",
+          "image_text": "snow elf, pointed ears",
+          "tags": [
+            "fantasy"
+          ]
+        },
+        {
+          "id": "desert_elf",
+          "label": "Desert Elf",
+          "image_text": "desert elf, pointed ears",
+          "tags": [
+            "fantasy"
+          ]
+        },
+        {
+          "id": "sea_elf",
+          "label": "Sea Elf",
+          "image_text": "sea elf, pointed ears",
+          "tags": [
+            "fantasy"
+          ]
+        },
+        {
+          "id": "fae",
+          "label": "Fae",
+          "image_text": "fae, otherworldly beauty",
+          "tags": [
+            "fantasy"
+          ]
+        },
+        {
+          "id": "fairy",
+          "label": "Fairy",
+          "image_text": "fairy",
+          "tags": [
+            "fantasy",
+            "nonhuman"
+          ]
+        },
+        {
+          "id": "pixie",
+          "label": "Pixie",
+          "image_text": "pixie",
+          "tags": [
+            "fantasy",
+            "nonhuman"
+          ]
+        },
+        {
+          "id": "nymph",
+          "label": "Nymph",
+          "image_text": "nymph",
+          "tags": [
+            "fantasy"
+          ]
+        },
+        {
+          "id": "dryad",
+          "label": "Dryad",
+          "image_text": "dryad, plant features",
+          "tags": [
+            "fantasy",
+            "nonhuman"
+          ]
+        },
+        {
+          "id": "sylph",
+          "label": "Sylph",
+          "image_text": "sylph, airy grace",
+          "tags": [
+            "fantasy",
+            "nonhuman"
+          ]
+        },
+        {
+          "id": "satyr",
+          "label": "Satyr",
+          "image_text": "satyr, goat legs",
+          "tags": [
+            "fantasy",
+            "nonhuman"
+          ]
+        },
+        {
+          "id": "dwarf",
+          "label": "Dwarf",
+          "image_text": "dwarf, stocky build",
+          "tags": [
+            "fantasy"
+          ]
+        },
+        {
+          "id": "gnome",
+          "label": "Gnome",
+          "image_text": "gnome",
+          "tags": [
+            "fantasy"
+          ]
+        },
+        {
+          "id": "halfling",
+          "label": "Halfling",
+          "image_text": "halfling",
+          "tags": [
+            "fantasy"
+          ]
+        },
+        {
+          "id": "goblin",
+          "label": "Goblin",
+          "image_text": "goblin, long pointed ears",
+          "tags": [
+            "fantasy",
+            "nonhuman"
+          ]
+        },
+        {
+          "id": "hobgoblin",
+          "label": "Hobgoblin",
+          "image_text": "hobgoblin",
+          "tags": [
+            "fantasy",
+            "nonhuman"
+          ]
+        },
+        {
+          "id": "kobold",
+          "label": "Kobold",
+          "image_text": "kobold",
+          "tags": [
+            "scaled",
+            "fantasy",
+            "nonhuman"
+          ]
+        },
+        {
+          "id": "orc",
+          "label": "Orc",
+          "image_text": "orc, tusks, green skin",
+          "tags": [
+            "fantasy"
+          ]
+        },
+        {
+          "id": "ogre",
+          "label": "Ogre",
+          "image_text": "ogre, heavy tusks",
+          "tags": [
+            "fantasy",
+            "nonhuman"
+          ]
+        },
+        {
+          "id": "troll",
+          "label": "Troll",
+          "image_text": "troll",
+          "tags": [
+            "fantasy",
+            "nonhuman"
+          ]
+        },
+        {
+          "id": "oni",
+          "label": "Oni",
+          "image_text": "oni",
+          "tags": [
+            "fantasy",
+            "nonhuman"
+          ]
+        },
+        {
+          "id": "half_giant",
+          "label": "Half-Giant",
+          "image_text": "half-giant",
+          "tags": [
+            "fantasy"
+          ]
+        },
+        {
+          "id": "catfolk",
+          "label": "Catfolk",
+          "image_text": "catfolk, feline ears and tail",
+          "tags": [
+            "beastfolk",
+            "beastfolk-mammal",
+            "fantasy",
+            "nonhuman"
+          ]
+        },
+        {
+          "id": "kitsune",
+          "label": "Kitsune",
+          "image_text": "kitsune",
+          "tags": [
+            "beastfolk",
+            "beastfolk-mammal",
+            "fantasy",
+            "nonhuman"
+          ]
+        },
+        {
+          "id": "wolffolk",
+          "label": "Wolffolk",
+          "image_text": "wolffolk",
+          "tags": [
+            "beastfolk",
+            "beastfolk-mammal",
+            "fantasy",
+            "nonhuman"
+          ]
+        },
+        {
+          "id": "dogfolk",
+          "label": "Dogfolk",
+          "image_text": "dogfolk",
+          "tags": [
+            "beastfolk",
+            "beastfolk-mammal",
+            "fantasy",
+            "nonhuman"
+          ]
+        },
+        {
+          "id": "rabbitfolk",
+          "label": "Rabbitfolk",
+          "image_text": "rabbitfolk",
+          "tags": [
+            "beastfolk",
+            "beastfolk-mammal",
+            "fantasy",
+            "nonhuman"
+          ]
+        },
+        {
+          "id": "mousefolk",
+          "label": "Mousefolk",
+          "image_text": "mousefolk",
+          "tags": [
+            "beastfolk",
+            "beastfolk-mammal",
+            "fantasy",
+            "nonhuman"
+          ]
+        },
+        {
+          "id": "ratfolk",
+          "label": "Ratfolk",
+          "image_text": "ratfolk",
+          "tags": [
+            "beastfolk",
+            "beastfolk-mammal",
+            "fantasy",
+            "nonhuman"
+          ]
+        },
+        {
+          "id": "deerfolk",
+          "label": "Deerfolk",
+          "image_text": "deerfolk",
+          "tags": [
+            "beastfolk",
+            "beastfolk-mammal",
+            "fantasy",
+            "nonhuman"
+          ]
+        },
+        {
+          "id": "bearfolk",
+          "label": "Bearfolk",
+          "image_text": "bearfolk",
+          "tags": [
+            "beastfolk",
+            "beastfolk-mammal",
+            "fantasy",
+            "nonhuman"
+          ]
+        },
+        {
+          "id": "cowfolk",
+          "label": "Cowfolk",
+          "image_text": "cowfolk",
+          "tags": [
+            "beastfolk",
+            "beastfolk-mammal",
+            "fantasy",
+            "nonhuman"
+          ]
+        },
+        {
+          "id": "sheepfolk",
+          "label": "Sheepfolk",
+          "image_text": "sheepfolk",
+          "tags": [
+            "beastfolk",
+            "beastfolk-mammal",
+            "fantasy",
+            "nonhuman"
+          ]
+        },
+        {
+          "id": "batfolk",
+          "label": "Batfolk",
+          "image_text": "batfolk",
+          "tags": [
+            "beastfolk",
+            "beastfolk-mammal",
+            "fantasy",
+            "nonhuman"
+          ]
+        },
+        {
+          "id": "birdfolk",
+          "label": "Birdfolk",
+          "image_text": "birdfolk",
+          "tags": [
+            "beastfolk",
+            "feathered",
+            "fantasy",
+            "nonhuman"
+          ]
+        },
+        {
+          "id": "crowfolk",
+          "label": "Crowfolk (Tengu)",
+          "image_text": "tengu, crow features",
+          "tags": [
+            "beastfolk",
+            "feathered",
+            "fantasy",
+            "nonhuman"
+          ]
+        },
+        {
+          "id": "owlfolk",
+          "label": "Owlfolk",
+          "image_text": "owlfolk",
+          "tags": [
+            "beastfolk",
+            "feathered",
+            "fantasy",
+            "nonhuman"
+          ]
+        },
+        {
+          "id": "otterfolk",
+          "label": "Otterfolk",
+          "image_text": "otterfolk",
+          "tags": [
+            "beastfolk",
+            "beastfolk-mammal",
+            "fantasy",
+            "nonhuman"
+          ]
+        },
+        {
+          "id": "lizardfolk",
+          "label": "Lizardfolk",
+          "image_text": "lizardfolk",
+          "tags": [
+            "beastfolk",
+            "scaled",
+            "fantasy",
+            "nonhuman"
+          ]
+        },
+        {
+          "id": "snakefolk",
+          "label": "Snakefolk",
+          "image_text": "snakefolk",
+          "tags": [
+            "beastfolk",
+            "scaled",
+            "fantasy",
+            "nonhuman"
+          ]
+        },
+        {
+          "id": "sharkfolk",
+          "label": "Sharkfolk",
+          "image_text": "sharkfolk",
+          "tags": [
+            "beastfolk",
+            "scaled",
+            "fantasy",
+            "nonhuman"
+          ]
+        },
+        {
+          "id": "mothfolk",
+          "label": "Mothfolk",
+          "image_text": "mothfolk",
+          "tags": [
+            "beastfolk",
+            "beastfolk-mammal",
+            "fantasy",
+            "nonhuman"
+          ]
+        },
+        {
+          "id": "beefolk",
+          "label": "Beefolk",
+          "image_text": "beefolk",
+          "tags": [
+            "beastfolk",
+            "beastfolk-mammal",
+            "fantasy",
+            "nonhuman"
+          ]
+        },
+        {
+          "id": "mantisfolk",
+          "label": "Mantisfolk",
+          "image_text": "mantisfolk",
+          "tags": [
+            "beastfolk",
+            "fantasy",
+            "nonhuman"
+          ]
+        },
+        {
+          "id": "lamia",
+          "label": "Lamia",
+          "image_text": "lamia",
+          "tags": [
+            "monstrous",
+            "scaled",
+            "fantasy",
+            "nonhuman"
+          ]
+        },
+        {
+          "id": "merfolk",
+          "label": "Merfolk",
+          "image_text": "merfolk",
+          "tags": [
+            "monstrous",
+            "scaled",
+            "fantasy",
+            "nonhuman"
+          ]
+        },
+        {
+          "id": "centaur",
+          "label": "Centaur",
+          "image_text": "centaur",
+          "tags": [
+            "monstrous",
+            "beastfolk-mammal",
+            "fantasy",
+            "nonhuman"
+          ]
+        },
+        {
+          "id": "harpy",
+          "label": "Harpy",
+          "image_text": "harpy",
+          "tags": [
+            "monstrous",
+            "feathered",
+            "fantasy",
+            "nonhuman"
+          ]
+        },
+        {
+          "id": "arachne",
+          "label": "Arachne",
+          "image_text": "arachne",
+          "tags": [
+            "monstrous",
+            "fantasy",
+            "nonhuman"
+          ]
+        },
+        {
+          "id": "slime",
+          "label": "Slime",
+          "image_text": "slime, gelatinous body",
+          "tags": [
+            "monstrous",
+            "fantasy",
+            "nonhuman"
+          ]
+        },
+        {
+          "id": "gorgon",
+          "label": "Gorgon",
+          "image_text": "gorgon",
+          "tags": [
+            "monstrous",
+            "scaled",
+            "fantasy",
+            "nonhuman"
+          ]
+        },
+        {
+          "id": "minotaur",
+          "label": "Minotaur",
+          "image_text": "minotaur",
+          "tags": [
+            "monstrous",
+            "beastfolk-mammal",
+            "fantasy",
+            "nonhuman"
+          ]
+        },
+        {
+          "id": "alraune",
+          "label": "Alraune (Plantfolk)",
+          "image_text": "alraune, plant body",
+          "tags": [
+            "monstrous",
+            "fantasy",
+            "nonhuman"
+          ]
+        },
+        {
+          "id": "scylla",
+          "label": "Scylla",
+          "image_text": "scylla, tentacles",
+          "tags": [
+            "monstrous",
+            "fantasy",
+            "nonhuman"
+          ]
+        },
+        {
+          "id": "dragonkin",
+          "label": "Dragonkin (Scaled Humanoid)",
+          "image_text": "dragonkin",
+          "tags": [
+            "scaled",
+            "fantasy",
+            "nonhuman"
+          ]
+        },
+        {
+          "id": "dragon_anthro",
+          "label": "Dragon (Anthro)",
+          "image_text": "anthro dragon",
+          "tags": [
+            "scaled",
+            "fantasy",
+            "nonhuman"
+          ]
+        },
+        {
+          "id": "demon",
+          "label": "Demon",
+          "image_text": "demon, horns, otherworldly features",
+          "tags": [
+            "fantasy",
+            "nonhuman"
+          ]
+        },
+        {
+          "id": "imp",
+          "label": "Imp",
+          "image_text": "imp",
+          "tags": [
+            "fantasy",
+            "nonhuman"
+          ]
+        },
+        {
+          "id": "succubus_incubus",
+          "label": "Succubus / Incubus",
+          "image_text": "succubus",
+          "tags": [
+            "fantasy",
+            "nonhuman"
+          ]
+        },
+        {
+          "id": "devil",
+          "label": "Devil",
+          "image_text": "devil",
+          "tags": [
+            "fantasy",
+            "nonhuman"
+          ]
+        },
+        {
+          "id": "tiefling",
+          "label": "Tiefling",
+          "image_text": "tiefling, horns, tail",
+          "tags": [
+            "fantasy"
+          ]
+        },
+        {
+          "id": "angel",
+          "label": "Angel",
+          "image_text": "angelic being, feathered wings, halo",
+          "tags": [
+            "ethereal",
+            "fantasy",
+            "nonhuman"
+          ]
+        },
+        {
+          "id": "fallen_angel",
+          "label": "Fallen Angel",
+          "image_text": "fallen angel, dark wings",
+          "tags": [
+            "ethereal",
+            "fantasy",
+            "nonhuman"
+          ]
+        },
+        {
+          "id": "aasimar",
+          "label": "Aasimar",
+          "image_text": "aasimar, celestial radiance",
+          "tags": [
+            "fantasy"
+          ]
+        },
+        {
+          "id": "valkyrie",
+          "label": "Valkyrie",
+          "image_text": "valkyrie",
+          "tags": [
+            "fantasy"
+          ]
+        },
+        {
+          "id": "starborn_celestial",
+          "label": "Starborn Celestial",
+          "image_text": "celestial being, starlit skin",
+          "tags": [
+            "ethereal",
+            "fantasy",
+            "nonhuman"
+          ]
+        },
+        {
+          "id": "vampire",
+          "label": "Vampire",
+          "image_text": "vampire, fangs",
+          "tags": [
+            "undead",
+            "fantasy"
+          ]
+        },
+        {
+          "id": "ghost",
+          "label": "Ghost",
+          "image_text": "ghost",
+          "tags": [
+            "undead",
+            "ethereal",
+            "fantasy",
+            "nonhuman"
+          ]
+        },
+        {
+          "id": "wraith",
+          "label": "Wraith",
+          "image_text": "wraith",
+          "tags": [
+            "undead",
+            "ethereal",
+            "fantasy",
+            "nonhuman"
+          ]
+        },
+        {
+          "id": "banshee",
+          "label": "Banshee",
+          "image_text": "banshee",
+          "tags": [
+            "undead",
+            "ethereal",
+            "fantasy",
+            "nonhuman"
+          ]
+        },
+        {
+          "id": "revenant",
+          "label": "Revenant",
+          "image_text": "revenant",
+          "tags": [
+            "undead",
+            "fantasy",
+            "nonhuman"
+          ]
+        },
+        {
+          "id": "lich",
+          "label": "Lich",
+          "image_text": "lich",
+          "tags": [
+            "undead",
+            "fantasy",
+            "nonhuman"
+          ]
+        },
+        {
+          "id": "preserved_undead",
+          "label": "Preserved Undead",
+          "image_text": "preserved undead",
+          "tags": [
+            "undead",
+            "fantasy",
+            "nonhuman"
+          ]
+        },
+        {
+          "id": "skeletal_undead",
+          "label": "Skeletal Undead",
+          "image_text": "skeletal undead",
+          "tags": [
+            "undead",
+            "fantasy",
+            "nonhuman"
+          ]
+        },
+        {
+          "id": "jiangshi",
+          "label": "Jiangshi",
+          "image_text": "jiangshi",
+          "tags": [
+            "undead",
+            "fantasy",
+            "nonhuman"
+          ]
+        },
+        {
+          "id": "dullahan",
+          "label": "Dullahan",
+          "image_text": "dullahan",
+          "tags": [
+            "undead",
+            "fantasy",
+            "nonhuman"
+          ]
+        },
+        {
+          "id": "android",
+          "label": "Android",
+          "image_text": "android",
+          "tags": [
+            "construct",
+            "scifi",
+            "nonhuman"
+          ]
+        },
+        {
+          "id": "cyborg",
+          "label": "Cyborg",
+          "image_text": "cyborg",
+          "tags": [
+            "construct",
+            "scifi"
+          ]
+        },
+        {
+          "id": "humanoid_robot",
+          "label": "Humanoid Robot",
+          "image_text": "humanoid robot",
+          "tags": [
+            "construct",
+            "scifi",
+            "nonhuman"
+          ]
+        },
+        {
+          "id": "clockwork_automaton",
+          "label": "Clockwork Automaton",
+          "image_text": "clockwork automaton",
+          "tags": [
+            "construct",
+            "fantasy",
+            "nonhuman"
+          ]
+        },
+        {
+          "id": "golem_stone",
+          "label": "Golem (Stone)",
+          "image_text": "stone golem",
+          "tags": [
+            "construct",
+            "fantasy",
+            "nonhuman"
+          ]
+        },
+        {
+          "id": "golem_iron",
+          "label": "Golem (Iron)",
+          "image_text": "iron golem",
+          "tags": [
+            "construct",
+            "fantasy",
+            "nonhuman"
+          ]
+        },
+        {
+          "id": "golem_clay",
+          "label": "Golem (Clay)",
+          "image_text": "clay golem",
+          "tags": [
+            "construct",
+            "fantasy",
+            "nonhuman"
+          ]
+        },
+        {
+          "id": "living_doll",
+          "label": "Living Doll",
+          "image_text": "living doll",
+          "tags": [
+            "construct",
+            "fantasy",
+            "nonhuman"
+          ]
+        },
+        {
+          "id": "animated_puppet",
+          "label": "Animated Puppet",
+          "image_text": "animated puppet",
+          "tags": [
+            "construct",
+            "fantasy",
+            "nonhuman"
+          ]
+        },
+        {
+          "id": "ai_hologram",
+          "label": "AI Hologram",
+          "image_text": "hologram",
+          "tags": [
+            "construct",
+            "ethereal",
+            "scifi",
+            "nonhuman"
+          ]
+        },
+        {
+          "id": "vat_grown_bioform",
+          "label": "Vat-Grown Bioform",
+          "image_text": "vat-grown bioform",
+          "tags": [
+            "scifi",
+            "nonhuman"
+          ]
+        },
+        {
+          "id": "flamekin",
+          "label": "Flamekin",
+          "image_text": "flamekin, flame-wreathed",
+          "tags": [
+            "elemental-cosmic",
+            "ethereal",
+            "fantasy",
+            "nonhuman"
+          ]
+        },
+        {
+          "id": "frostkin",
+          "label": "Frostkin",
+          "image_text": "frostkin, ice-crystal accents",
+          "tags": [
+            "elemental-cosmic",
+            "ethereal",
+            "fantasy",
+            "nonhuman"
+          ]
+        },
+        {
+          "id": "stormkin",
+          "label": "Stormkin",
+          "image_text": "stormkin, crackling static",
+          "tags": [
+            "elemental-cosmic",
+            "ethereal",
+            "fantasy",
+            "nonhuman"
+          ]
+        },
+        {
+          "id": "stonekin",
+          "label": "Stonekin",
+          "image_text": "stonekin, rocky skin",
+          "tags": [
+            "elemental-cosmic",
+            "ethereal",
+            "fantasy",
+            "nonhuman"
+          ]
+        },
+        {
+          "id": "verdantkin",
+          "label": "Verdantkin",
+          "image_text": "verdantkin, leafy accents",
+          "tags": [
+            "elemental-cosmic",
+            "ethereal",
+            "fantasy",
+            "nonhuman"
+          ]
+        },
+        {
+          "id": "shadowkin",
+          "label": "Shadowkin",
+          "image_text": "shadowkin, wreathed in shadow",
+          "tags": [
+            "elemental-cosmic",
+            "ethereal",
+            "fantasy",
+            "nonhuman"
+          ]
+        },
+        {
+          "id": "lightkin",
+          "label": "Lightkin",
+          "image_text": "lightkin, radiant glow",
+          "tags": [
+            "elemental-cosmic",
+            "ethereal",
+            "fantasy",
+            "nonhuman"
+          ]
+        },
+        {
+          "id": "void_touched",
+          "label": "Void-Touched",
+          "image_text": "void-touched, dark starfield markings",
+          "tags": [
+            "elemental-cosmic",
+            "fantasy",
+            "nonhuman"
+          ]
+        },
+        {
+          "id": "eldritch_touched",
+          "label": "Eldritch-Touched",
+          "image_text": "eldritch-touched, uncanny features",
+          "tags": [
+            "elemental-cosmic",
+            "fantasy",
+            "nonhuman"
+          ]
+        },
+        {
+          "id": "alien",
+          "label": "Alien (Humanoid)",
+          "image_text": "humanoid alien, exotic skin",
+          "tags": [
+            "scifi",
+            "nonhuman"
+          ]
+        },
+        {
+          "id": "alien_grey",
+          "label": "Alien (Grey)",
+          "image_text": "grey alien, large black eyes",
+          "tags": [
+            "scifi",
+            "nonhuman"
+          ]
+        },
+        {
+          "id": "alien_exotic",
+          "label": "Alien (Exotic)",
+          "image_text": "exotic alien, otherworldly anatomy",
+          "tags": [
+            "scifi",
+            "nonhuman"
+          ]
+        },
+        {
+          "id": "shade",
+          "label": "Shade",
+          "image_text": "shade, translucent darkness",
+          "tags": [
+            "elemental-cosmic",
+            "ethereal",
+            "fantasy",
+            "nonhuman"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hybrid_race",
+      "_note": "Same list as race (V2 A7); class metadata lives on race only - visible_when conditions read race.",
+      "label": "Second Heritage",
+      "kind": "pick_one",
+      "home": "persona",
+      "priority": "flavor",
+      "section": "Identity",
+      "order": 11,
+      "hint": "A second heritage blended into the prompt. Surface and features stay your choice.",
+      "options": [
+        {
+          "id": "human",
+          "label": "Human",
+          "image_text": "human"
+        },
+        {
+          "id": "demigod",
+          "label": "Demigod",
+          "image_text": "demigod, divine aura"
+        },
+        {
+          "id": "changeling",
+          "label": "Changeling",
+          "image_text": "changeling, shifting features"
+        },
+        {
+          "id": "dhampir",
+          "label": "Dhampir",
+          "image_text": "dhampir, subtle fangs"
+        },
+        {
+          "id": "half_elf",
+          "label": "Half-Elf",
+          "image_text": "half-elf, subtly pointed ears"
+        },
+        {
+          "id": "half_orc",
+          "label": "Half-Orc",
+          "image_text": "half-orc, small tusks"
+        },
+        {
+          "id": "cambion",
+          "label": "Cambion (Half-Demon)",
+          "image_text": "half-demon, small horns"
+        },
+        {
+          "id": "nephilim",
+          "label": "Nephilim (Half-Angel)",
+          "image_text": "nephilim, faint halo"
+        },
+        {
+          "id": "half_dragon",
+          "label": "Half-Dragon",
+          "image_text": "half-dragon, scale accents"
+        },
+        {
+          "id": "half_fae",
+          "label": "Half-Fae",
+          "image_text": "half-fae, fey features"
+        },
+        {
+          "id": "elf",
+          "label": "High Elf",
+          "image_text": "elf, pointed ears"
+        },
+        {
+          "id": "wood_elf",
+          "label": "Wood Elf",
+          "image_text": "wood elf, pointed ears"
+        },
+        {
+          "id": "dark_elf",
+          "label": "Dark Elf",
+          "image_text": "dark elf, pointed ears"
+        },
+        {
+          "id": "snow_elf",
+          "label": "Snow Elf",
+          "image_text": "snow elf, pointed ears"
+        },
+        {
+          "id": "desert_elf",
+          "label": "Desert Elf",
+          "image_text": "desert elf, pointed ears"
+        },
+        {
+          "id": "sea_elf",
+          "label": "Sea Elf",
+          "image_text": "sea elf, pointed ears"
+        },
+        {
+          "id": "fae",
+          "label": "Fae",
+          "image_text": "fae, otherworldly beauty"
+        },
+        {
+          "id": "fairy",
+          "label": "Fairy",
+          "image_text": "fairy"
+        },
+        {
+          "id": "pixie",
+          "label": "Pixie",
+          "image_text": "pixie"
+        },
+        {
+          "id": "nymph",
+          "label": "Nymph",
+          "image_text": "nymph"
+        },
+        {
+          "id": "dryad",
+          "label": "Dryad",
+          "image_text": "dryad, plant features"
+        },
+        {
+          "id": "sylph",
+          "label": "Sylph",
+          "image_text": "sylph, airy grace"
+        },
+        {
+          "id": "satyr",
+          "label": "Satyr",
+          "image_text": "satyr, goat legs"
+        },
+        {
+          "id": "dwarf",
+          "label": "Dwarf",
+          "image_text": "dwarf, stocky build"
+        },
+        {
+          "id": "gnome",
+          "label": "Gnome",
+          "image_text": "gnome"
+        },
+        {
+          "id": "halfling",
+          "label": "Halfling",
+          "image_text": "halfling"
+        },
+        {
+          "id": "goblin",
+          "label": "Goblin",
+          "image_text": "goblin, long pointed ears"
+        },
+        {
+          "id": "hobgoblin",
+          "label": "Hobgoblin",
+          "image_text": "hobgoblin"
+        },
+        {
+          "id": "kobold",
+          "label": "Kobold",
+          "image_text": "kobold"
+        },
+        {
+          "id": "orc",
+          "label": "Orc",
+          "image_text": "orc, tusks, green skin"
+        },
+        {
+          "id": "ogre",
+          "label": "Ogre",
+          "image_text": "ogre, heavy tusks"
+        },
+        {
+          "id": "troll",
+          "label": "Troll",
+          "image_text": "troll"
+        },
+        {
+          "id": "oni",
+          "label": "Oni",
+          "image_text": "oni"
+        },
+        {
+          "id": "half_giant",
+          "label": "Half-Giant",
+          "image_text": "half-giant"
+        },
+        {
+          "id": "catfolk",
+          "label": "Catfolk",
+          "image_text": "catfolk, feline ears and tail"
+        },
+        {
+          "id": "kitsune",
+          "label": "Kitsune",
+          "image_text": "kitsune"
+        },
+        {
+          "id": "wolffolk",
+          "label": "Wolffolk",
+          "image_text": "wolffolk"
+        },
+        {
+          "id": "dogfolk",
+          "label": "Dogfolk",
+          "image_text": "dogfolk"
+        },
+        {
+          "id": "rabbitfolk",
+          "label": "Rabbitfolk",
+          "image_text": "rabbitfolk"
+        },
+        {
+          "id": "mousefolk",
+          "label": "Mousefolk",
+          "image_text": "mousefolk"
+        },
+        {
+          "id": "ratfolk",
+          "label": "Ratfolk",
+          "image_text": "ratfolk"
+        },
+        {
+          "id": "deerfolk",
+          "label": "Deerfolk",
+          "image_text": "deerfolk"
+        },
+        {
+          "id": "bearfolk",
+          "label": "Bearfolk",
+          "image_text": "bearfolk"
+        },
+        {
+          "id": "cowfolk",
+          "label": "Cowfolk",
+          "image_text": "cowfolk"
+        },
+        {
+          "id": "sheepfolk",
+          "label": "Sheepfolk",
+          "image_text": "sheepfolk"
+        },
+        {
+          "id": "batfolk",
+          "label": "Batfolk",
+          "image_text": "batfolk"
+        },
+        {
+          "id": "birdfolk",
+          "label": "Birdfolk",
+          "image_text": "birdfolk"
+        },
+        {
+          "id": "crowfolk",
+          "label": "Crowfolk (Tengu)",
+          "image_text": "tengu, crow features"
+        },
+        {
+          "id": "owlfolk",
+          "label": "Owlfolk",
+          "image_text": "owlfolk"
+        },
+        {
+          "id": "otterfolk",
+          "label": "Otterfolk",
+          "image_text": "otterfolk"
+        },
+        {
+          "id": "lizardfolk",
+          "label": "Lizardfolk",
+          "image_text": "lizardfolk"
+        },
+        {
+          "id": "snakefolk",
+          "label": "Snakefolk",
+          "image_text": "snakefolk"
+        },
+        {
+          "id": "sharkfolk",
+          "label": "Sharkfolk",
+          "image_text": "sharkfolk"
+        },
+        {
+          "id": "mothfolk",
+          "label": "Mothfolk",
+          "image_text": "mothfolk"
+        },
+        {
+          "id": "beefolk",
+          "label": "Beefolk",
+          "image_text": "beefolk"
+        },
+        {
+          "id": "mantisfolk",
+          "label": "Mantisfolk",
+          "image_text": "mantisfolk"
+        },
+        {
+          "id": "lamia",
+          "label": "Lamia",
+          "image_text": "lamia"
+        },
+        {
+          "id": "merfolk",
+          "label": "Merfolk",
+          "image_text": "merfolk"
+        },
+        {
+          "id": "centaur",
+          "label": "Centaur",
+          "image_text": "centaur"
+        },
+        {
+          "id": "harpy",
+          "label": "Harpy",
+          "image_text": "harpy"
+        },
+        {
+          "id": "arachne",
+          "label": "Arachne",
+          "image_text": "arachne"
+        },
+        {
+          "id": "slime",
+          "label": "Slime",
+          "image_text": "slime, gelatinous body"
+        },
+        {
+          "id": "gorgon",
+          "label": "Gorgon",
+          "image_text": "gorgon"
+        },
+        {
+          "id": "minotaur",
+          "label": "Minotaur",
+          "image_text": "minotaur"
+        },
+        {
+          "id": "alraune",
+          "label": "Alraune (Plantfolk)",
+          "image_text": "alraune, plant body"
+        },
+        {
+          "id": "scylla",
+          "label": "Scylla",
+          "image_text": "scylla, tentacles"
+        },
+        {
+          "id": "dragonkin",
+          "label": "Dragonkin (Scaled Humanoid)",
+          "image_text": "dragonkin"
+        },
+        {
+          "id": "dragon_anthro",
+          "label": "Dragon (Anthro)",
+          "image_text": "anthro dragon"
+        },
+        {
+          "id": "demon",
+          "label": "Demon",
+          "image_text": "demon, horns, otherworldly features"
+        },
+        {
+          "id": "imp",
+          "label": "Imp",
+          "image_text": "imp"
+        },
+        {
+          "id": "succubus_incubus",
+          "label": "Succubus / Incubus",
+          "image_text": "succubus"
+        },
+        {
+          "id": "devil",
+          "label": "Devil",
+          "image_text": "devil"
+        },
+        {
+          "id": "tiefling",
+          "label": "Tiefling",
+          "image_text": "tiefling, horns, tail"
+        },
+        {
+          "id": "angel",
+          "label": "Angel",
+          "image_text": "angelic being, feathered wings, halo"
+        },
+        {
+          "id": "fallen_angel",
+          "label": "Fallen Angel",
+          "image_text": "fallen angel, dark wings"
+        },
+        {
+          "id": "aasimar",
+          "label": "Aasimar",
+          "image_text": "aasimar, celestial radiance"
+        },
+        {
+          "id": "valkyrie",
+          "label": "Valkyrie",
+          "image_text": "valkyrie"
+        },
+        {
+          "id": "starborn_celestial",
+          "label": "Starborn Celestial",
+          "image_text": "celestial being, starlit skin"
+        },
+        {
+          "id": "vampire",
+          "label": "Vampire",
+          "image_text": "vampire, fangs"
+        },
+        {
+          "id": "ghost",
+          "label": "Ghost",
+          "image_text": "ghost"
+        },
+        {
+          "id": "wraith",
+          "label": "Wraith",
+          "image_text": "wraith"
+        },
+        {
+          "id": "banshee",
+          "label": "Banshee",
+          "image_text": "banshee"
+        },
+        {
+          "id": "revenant",
+          "label": "Revenant",
+          "image_text": "revenant"
+        },
+        {
+          "id": "lich",
+          "label": "Lich",
+          "image_text": "lich"
+        },
+        {
+          "id": "preserved_undead",
+          "label": "Preserved Undead",
+          "image_text": "preserved undead"
+        },
+        {
+          "id": "skeletal_undead",
+          "label": "Skeletal Undead",
+          "image_text": "skeletal undead"
+        },
+        {
+          "id": "jiangshi",
+          "label": "Jiangshi",
+          "image_text": "jiangshi"
+        },
+        {
+          "id": "dullahan",
+          "label": "Dullahan",
+          "image_text": "dullahan"
+        },
+        {
+          "id": "android",
+          "label": "Android",
+          "image_text": "android"
+        },
+        {
+          "id": "cyborg",
+          "label": "Cyborg",
+          "image_text": "cyborg"
+        },
+        {
+          "id": "humanoid_robot",
+          "label": "Humanoid Robot",
+          "image_text": "humanoid robot"
+        },
+        {
+          "id": "clockwork_automaton",
+          "label": "Clockwork Automaton",
+          "image_text": "clockwork automaton"
+        },
+        {
+          "id": "golem_stone",
+          "label": "Golem (Stone)",
+          "image_text": "stone golem"
+        },
+        {
+          "id": "golem_iron",
+          "label": "Golem (Iron)",
+          "image_text": "iron golem"
+        },
+        {
+          "id": "golem_clay",
+          "label": "Golem (Clay)",
+          "image_text": "clay golem"
+        },
+        {
+          "id": "living_doll",
+          "label": "Living Doll",
+          "image_text": "living doll"
+        },
+        {
+          "id": "animated_puppet",
+          "label": "Animated Puppet",
+          "image_text": "animated puppet"
+        },
+        {
+          "id": "ai_hologram",
+          "label": "AI Hologram",
+          "image_text": "hologram"
+        },
+        {
+          "id": "vat_grown_bioform",
+          "label": "Vat-Grown Bioform",
+          "image_text": "vat-grown bioform"
+        },
+        {
+          "id": "flamekin",
+          "label": "Flamekin",
+          "image_text": "flamekin, flame-wreathed"
+        },
+        {
+          "id": "frostkin",
+          "label": "Frostkin",
+          "image_text": "frostkin, ice-crystal accents"
+        },
+        {
+          "id": "stormkin",
+          "label": "Stormkin",
+          "image_text": "stormkin, crackling static"
+        },
+        {
+          "id": "stonekin",
+          "label": "Stonekin",
+          "image_text": "stonekin, rocky skin"
+        },
+        {
+          "id": "verdantkin",
+          "label": "Verdantkin",
+          "image_text": "verdantkin, leafy accents"
+        },
+        {
+          "id": "shadowkin",
+          "label": "Shadowkin",
+          "image_text": "shadowkin, wreathed in shadow"
+        },
+        {
+          "id": "lightkin",
+          "label": "Lightkin",
+          "image_text": "lightkin, radiant glow"
+        },
+        {
+          "id": "void_touched",
+          "label": "Void-Touched",
+          "image_text": "void-touched, dark starfield markings"
+        },
+        {
+          "id": "eldritch_touched",
+          "label": "Eldritch-Touched",
+          "image_text": "eldritch-touched, uncanny features"
+        },
+        {
+          "id": "alien",
+          "label": "Alien (Humanoid)",
+          "image_text": "humanoid alien, exotic skin"
+        },
+        {
+          "id": "alien_grey",
+          "label": "Alien (Grey)",
+          "image_text": "grey alien, large black eyes"
+        },
+        {
+          "id": "alien_exotic",
+          "label": "Alien (Exotic)",
+          "image_text": "exotic alien, otherworldly anatomy"
+        },
+        {
+          "id": "shade",
+          "label": "Shade",
+          "image_text": "shade, translucent darkness"
+        }
+      ]
+    },
+    {
+      "id": "gender_presentation",
+      "_render_note": "The image-prompt subject anchor (solo, 1girl/1boy/1other) is derived from this field in code (prompt.py); emitting the option fragment too would double the token.",
+      "label": "Gender Presentation",
+      "kind": "pick_one",
+      "home": "persona",
+      "section": "Identity",
+      "order": 12,
+      "hint": "Sets how renders are framed (feminine / masculine / androgynous subject). Identity and pronouns are chat-side only.",
+      "_v1": {
+        "quick": true,
+        "required": true
+      },
+      "options": [
+        {
+          "id": "feminine",
+          "label": "Feminine",
+          "chat_text": "feminine"
+        },
+        {
+          "id": "masculine",
+          "label": "Masculine",
+          "chat_text": "masculine"
+        },
+        {
+          "id": "androgynous",
+          "label": "Androgynous",
+          "chat_text": "androgynous"
+        }
+      ]
+    },
+    {
+      "id": "gender_identity",
+      "label": "Identity",
+      "kind": "pick_one",
+      "home": "persona",
+      "section": "Identity",
+      "order": 13,
+      "hint": "Chat-side only - never affects images.",
+      "options": [
+        {
+          "id": "woman",
+          "label": "Woman",
+          "chat_text": "woman"
+        },
+        {
+          "id": "man",
+          "label": "Man",
+          "chat_text": "man"
+        },
+        {
+          "id": "nonbinary",
+          "label": "Nonbinary",
+          "chat_text": "nonbinary"
+        },
+        {
+          "id": "genderfluid",
+          "label": "Genderfluid",
+          "chat_text": "genderfluid"
+        },
+        {
+          "id": "agender",
+          "label": "Agender",
+          "chat_text": "agender"
+        },
+        {
+          "id": "unlabeled",
+          "label": "Unlabeled",
+          "chat_text": "unlabeled"
+        }
+      ]
+    },
+    {
+      "id": "pronouns",
+      "label": "Pronouns",
+      "kind": "pick_one",
+      "home": "persona",
+      "section": "Identity",
+      "order": 14,
+      "hint": "Chat-side only - never affects images.",
+      "options": [
+        {
+          "id": "she_her",
+          "label": "She / Her",
+          "chat_text": "she/her"
+        },
+        {
+          "id": "he_him",
+          "label": "He / Him",
+          "chat_text": "he/him"
+        },
+        {
+          "id": "they_them",
+          "label": "They / Them",
+          "chat_text": "they/them"
+        },
+        {
+          "id": "she_they",
+          "label": "She / They",
+          "chat_text": "she/they"
+        },
+        {
+          "id": "he_they",
+          "label": "He / They",
+          "chat_text": "he/they"
+        },
+        {
+          "id": "it_its",
+          "label": "It / Its",
+          "chat_text": "it/its"
+        },
+        {
+          "id": "xe_xem",
+          "label": "Xe / Xem",
+          "chat_text": "xe/xem"
+        },
+        {
+          "id": "name_only",
+          "label": "Name Only",
+          "chat_text": "name only"
+        }
+      ]
+    },
+    {
+      "id": "apparent_age",
+      "_note": "V2 A4: every band is adult; exists for the elf/vampire/android case where looks differ from years. 5.7 (user sign-off 2026-07-18, reopening 2026-07-16): quick, header-hosted next to Age, auto-defaulted from the entered age on CREATE only - a manual pick always wins, edits never auto-fill.",
+      "label": "Apparent Age",
+      "kind": "pick_one",
+      "home": "identity",
+      "priority": "should",
+      "section": "Identity",
+      "order": 15,
+      "hint": "Drives the visible age in every image. The Age number is the hard adult anchor and library display; this band is what actually renders.",
+      "_v1": {
+        "quick": true
+      },
+      "options": [
+        {
+          "id": "early_20s",
+          "label": "Early 20s",
+          "image_text": "young adult"
+        },
+        {
+          "id": "mid_late_20s",
+          "label": "Mid-to-late 20s",
+          "image_text": "adult"
+        },
+        {
+          "id": "30s",
+          "label": "30s",
+          "image_text": "mature adult"
+        },
+        {
+          "id": "40s",
+          "label": "40s",
+          "image_text": "middle aged adult"
+        },
+        {
+          "id": "50s",
+          "label": "50s",
+          "image_text": "older adult"
+        },
+        {
+          "id": "60s",
+          "label": "60s",
+          "image_text": "aged adult"
+        },
+        {
+          "id": "elderly",
+          "label": "Elderly",
+          "image_text": "elderly"
+        },
+        {
+          "id": "ageless_adult",
+          "label": "Ageless Adult",
+          "image_text": "ageless"
+        }
+      ]
+    },
+    {
+      "id": "age_reality",
+      "label": "True Age Is…",
+      "kind": "pick_one",
+      "home": "persona",
+      "section": "Identity",
+      "order": 16,
+      "hint": "Chat-side lore (how old they really are). Never rendered.",
+      "options": [
+        {
+          "id": "matches_appearance",
+          "label": "Matches Appearance",
+          "chat_text": "true age matches appearance"
+        },
+        {
+          "id": "older_by_decades",
+          "label": "Older by Decades",
+          "chat_text": "older than they look by decades"
+        },
+        {
+          "id": "centuries_old",
+          "label": "Centuries Old",
+          "chat_text": "centuries old"
+        },
+        {
+          "id": "millennia_old",
+          "label": "Millennia Old",
+          "chat_text": "millennia old"
+        },
+        {
+          "id": "unknown_even_to_them",
+          "label": "Unknown Even to Them",
+          "chat_text": "true age unknown even to them"
+        },
+        {
+          "id": "newly_created",
+          "label": "Newly Created",
+          "chat_text": "newly created"
+        },
+        {
+          "id": "reborn",
+          "label": "Reborn Into This Life",
+          "chat_text": "reborn into this life"
+        }
+      ]
+    },
+    {
+      "id": "archetype",
+      "_note": "V2 A11: narrative flavor only - the day job lives in D7 occupation (5.6d). Kind changed tags->single per A11; legacy tag values load leniently and lint. 5.7 (user decision 2026-07-18): relabeled 'Class' (id + options untouched - these ARE class-like by design); the personality axis is the new personality_archetype in 50_mind.json. 5.7 UI pass (user decision 2026-07-18): render:false + untiered - the class no longer enters image prompts (wardrobe carries the look, matching occupation's D7 rule); label stays 'Class', not 'Job' - Occupation owns the day-job axis. Options gain genre classes for grouped-picker subsections; seven genre fill-ins appended.",
+      "label": "Class",
+      "kind": "pick_one",
+      "home": "persona",
+      "section": "Identity",
+      "order": 17,
+      "hint": "Narrative class flavor, grouped by genre. Chat-side only - the rendered look comes from Wardrobe and Accessories; the day job lives in Occupation.",
+      "options": [
+        {
+          "id": "adventurer",
+          "label": "Adventurer",
+          "chat_text": "adventurer",
+          "tags": [
+            "any-genre"
+          ]
+        },
+        {
+          "id": "wanderer",
+          "label": "Wanderer",
+          "chat_text": "wanderer",
+          "tags": [
+            "any-genre"
+          ]
+        },
+        {
+          "id": "commoner",
+          "label": "Commoner",
+          "chat_text": "commoner",
+          "tags": [
+            "any-genre"
+          ]
+        },
+        {
+          "id": "warrior",
+          "label": "Warrior",
+          "chat_text": "warrior",
+          "tags": [
+            "any-genre"
+          ]
+        },
+        {
+          "id": "mercenary",
+          "label": "Mercenary",
+          "chat_text": "mercenary",
+          "tags": [
+            "any-genre"
+          ]
+        },
+        {
+          "id": "assassin",
+          "label": "Assassin",
+          "chat_text": "assassin",
+          "tags": [
+            "any-genre"
+          ]
+        },
+        {
+          "id": "spy",
+          "label": "Spy",
+          "chat_text": "spy",
+          "tags": [
+            "any-genre"
+          ]
+        },
+        {
+          "id": "monk",
+          "label": "Monk",
+          "chat_text": "monk",
+          "tags": [
+            "any-genre"
+          ]
+        },
+        {
+          "id": "priest",
+          "label": "Priest",
+          "chat_text": "priest",
+          "tags": [
+            "any-genre"
+          ]
+        },
+        {
+          "id": "healer",
+          "label": "Healer",
+          "chat_text": "healer",
+          "tags": [
+            "any-genre"
+          ]
+        },
+        {
+          "id": "merchant",
+          "label": "Merchant",
+          "chat_text": "merchant",
+          "tags": [
+            "any-genre"
+          ]
+        },
+        {
+          "id": "scholar",
+          "label": "Scholar",
+          "chat_text": "scholar, bookish",
+          "tags": [
+            "any-genre"
+          ]
+        },
+        {
+          "id": "noble",
+          "label": "Noble",
+          "chat_text": "noble, refined",
+          "tags": [
+            "any-genre"
+          ]
+        },
+        {
+          "id": "royal",
+          "label": "Royal",
+          "chat_text": "royal, regal bearing",
+          "tags": [
+            "any-genre"
+          ]
+        },
+        {
+          "id": "courtesan",
+          "label": "Courtesan",
+          "chat_text": "courtesan, alluring",
+          "tags": [
+            "any-genre"
+          ]
+        },
+        {
+          "id": "knight",
+          "label": "Knight",
+          "chat_text": "armored knight",
+          "tags": [
+            "fantasy"
+          ]
+        },
+        {
+          "id": "paladin",
+          "label": "Paladin",
+          "chat_text": "paladin",
+          "tags": [
+            "fantasy"
+          ]
+        },
+        {
+          "id": "ranger",
+          "label": "Ranger",
+          "chat_text": "ranger",
+          "tags": [
+            "fantasy"
+          ]
+        },
+        {
+          "id": "rogue",
+          "label": "Rogue",
+          "chat_text": "rogue, roguish",
+          "tags": [
+            "fantasy"
+          ]
+        },
+        {
+          "id": "bard",
+          "label": "Bard",
+          "chat_text": "bard",
+          "tags": [
+            "fantasy"
+          ]
+        },
+        {
+          "id": "mage",
+          "label": "Mage",
+          "chat_text": "mage, arcane",
+          "tags": [
+            "fantasy"
+          ]
+        },
+        {
+          "id": "sorcerer",
+          "label": "Sorcerer",
+          "chat_text": "sorcerer",
+          "tags": [
+            "fantasy"
+          ]
+        },
+        {
+          "id": "witch",
+          "label": "Witch",
+          "chat_text": "witch",
+          "tags": [
+            "fantasy"
+          ]
+        },
+        {
+          "id": "druid",
+          "label": "Druid",
+          "chat_text": "druid",
+          "tags": [
+            "fantasy"
+          ]
+        },
+        {
+          "id": "necromancer",
+          "label": "Necromancer",
+          "chat_text": "necromancer",
+          "tags": [
+            "fantasy"
+          ]
+        },
+        {
+          "id": "alchemist",
+          "label": "Alchemist",
+          "chat_text": "alchemist",
+          "tags": [
+            "fantasy"
+          ]
+        },
+        {
+          "id": "samurai",
+          "label": "Samurai",
+          "chat_text": "samurai",
+          "tags": [
+            "historical"
+          ]
+        },
+        {
+          "id": "ninja",
+          "label": "Ninja",
+          "chat_text": "ninja",
+          "tags": [
+            "historical"
+          ]
+        },
+        {
+          "id": "pirate",
+          "label": "Pirate",
+          "chat_text": "pirate",
+          "tags": [
+            "historical"
+          ]
+        },
+        {
+          "id": "gunslinger",
+          "label": "Gunslinger",
+          "chat_text": "gunslinger",
+          "tags": [
+            "historical"
+          ]
+        },
+        {
+          "id": "outlaw",
+          "label": "Outlaw",
+          "chat_text": "outlaw, rugged",
+          "tags": [
+            "historical"
+          ]
+        },
+        {
+          "id": "inventor",
+          "label": "Inventor",
+          "chat_text": "inventor",
+          "tags": [
+            "historical"
+          ]
+        },
+        {
+          "id": "soldier",
+          "label": "Soldier",
+          "chat_text": "soldier",
+          "tags": [
+            "modern"
+          ]
+        },
+        {
+          "id": "detective",
+          "label": "Detective",
+          "chat_text": "detective",
+          "tags": [
+            "modern"
+          ]
+        },
+        {
+          "id": "engineer",
+          "label": "Engineer",
+          "chat_text": "engineer",
+          "tags": [
+            "modern"
+          ]
+        },
+        {
+          "id": "pilot",
+          "label": "Pilot",
+          "chat_text": "pilot, flight gear",
+          "tags": [
+            "modern"
+          ]
+        },
+        {
+          "id": "idol",
+          "label": "Idol",
+          "chat_text": "idol, stage presence",
+          "tags": [
+            "modern"
+          ]
+        },
+        {
+          "id": "hacker",
+          "label": "Hacker",
+          "chat_text": "hacker, neon tech",
+          "tags": [
+            "sci-fi"
+          ]
+        },
+        {
+          "id": "bounty_hunter",
+          "label": "Bounty Hunter",
+          "chat_text": "bounty hunter",
+          "tags": [
+            "sci-fi"
+          ]
+        },
+        {
+          "id": "mech_pilot",
+          "label": "Mech Pilot",
+          "chat_text": "mech pilot",
+          "tags": [
+            "sci-fi"
+          ]
+        },
+        {
+          "id": "smuggler",
+          "label": "Smuggler",
+          "chat_text": "smuggler",
+          "tags": [
+            "sci-fi"
+          ]
+        }
+      ]
+    }
+  ]
+}
