@@ -1,0 +1,21 @@
+{
+  "_note": "Guard fixture (spec §0/§7.2): ids beginning example_ are ILLUSTRATIVE and legal ONLY here, in tests/fixtures/. The loader must refuse this file's ids with EXAMPLE_ID_IN_DATA.",
+  "format": 1,
+  "rating": "standard",
+  "groups": [
+    {
+      "id": "example_group",
+      "label": "Example group",
+      "kind": "pick_one",
+      "home": "identity",
+      "options": [{"id": "opt_ok", "label": "OK"}]
+    },
+    {
+      "id": "fx_group",
+      "label": "Fixture group",
+      "kind": "pick_one",
+      "home": "identity",
+      "options": [{"id": "example_option", "label": "Example option"}]
+    }
+  ]
+}

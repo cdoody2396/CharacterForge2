@@ -1,0 +1,26 @@
+{
+  "_note": "A minimal known-good option directory for CLI happy-path tests. Neutral fx_ ids — NOT example_ ids, so it loads clean; illustrative example_ data lives in ../example_guard/.",
+  "format": 1,
+  "rating": "standard",
+  "groups": [
+    {
+      "id": "fx_pick",
+      "label": "Fixture pick",
+      "kind": "pick_one",
+      "home": "identity",
+      "priority": "should",
+      "options": [
+        {"id": "fx_a", "label": "A", "image_text": "fx a", "chat_text": "is fx a"},
+        {"id": "fx_old", "label": "Old", "status": "retired"}
+      ]
+    },
+    {
+      "id": "fx_note",
+      "label": "Fixture note",
+      "kind": "free_text",
+      "home": "persona",
+      "feeds": "chat",
+      "max_chars": 120
+    }
+  ]
+}
