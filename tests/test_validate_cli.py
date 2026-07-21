@@ -123,11 +123,15 @@ def test_multiple_directories_merge_in_order(tmp_path):
     assert payload["options"] == 2
 
 
-def test_shipped_data_directory_is_empty_and_clean():
-    # §0 structural guard 1: app/data/options ships EMPTY of data — the
-    # gatekeeper agrees: zero files, zero groups, exit 0.
+def test_shipped_data_directory_is_clean():
+    # §0 structural guard 1 ("ships empty") ended by design at stage O2: the
+    # harvest populated the tree. The standing invariant is the gate itself —
+    # the shipped data validates clean at the harvested counts.
     result = run_cli("--json", REPO_ROOT / "app" / "data" / "options")
     assert result.returncode == 0
     payload = json.loads(result.stdout)
-    assert payload["files"] == 0
-    assert payload["groups"] == 0
+    assert payload["errors"] == []
+    assert payload["files"] == 12
+    assert payload["groups"] == 135  # 136 emitted entries, outfit merges
+    assert payload["options"] == 2357
+    assert payload["ratings"] == {"standard": 2334, "mature": 0, "explicit": 23}
