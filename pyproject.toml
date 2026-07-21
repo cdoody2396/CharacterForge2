@@ -1,0 +1,12 @@
+[project]
+name = "characterforge2"
+version = "0.1.0"
+description = "CharacterForge v2 — option format loader, catalog, age bands, validator (stage O1)"
+requires-python = ">=3.12"
+dependencies = []
+
+[dependency-groups]
+dev = ["pytest"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
