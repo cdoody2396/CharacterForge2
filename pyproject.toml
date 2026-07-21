@@ -1,7 +1,7 @@
 [project]
 name = "characterforge2"
 version = "0.1.0"
-description = "CharacterForge v2 — option format loader, catalog, age bands, validator (stage O1)"
+description = "CharacterForge v2 — option format loader, catalog, validator, harvest tooling (stages O1–O2)"
 requires-python = ">=3.12"
 dependencies = []
 

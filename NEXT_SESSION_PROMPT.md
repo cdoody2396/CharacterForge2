@@ -1,80 +1,61 @@
-# NEXT_SESSION_PROMPT — stage O2 (harvest tooling) — DRAFT
+# NEXT_SESSION_PROMPT — stage O3 — DRAFT
 
-Status: DRAFT. Do not paste until the planning chat has answered the
-"Needed before O2 can start" list below and this prompt has been updated
-with those answers.
+Status: DRAFT. Do not paste until the planning chat has closed the
+"Gates before O3" list below and this prompt has been updated with those
+answers (including what stage O3 actually is — the builder does not choose
+its own scope).
 
 ---
 
-## Ready-to-paste prompt (fill the [BRACKETS] first)
+## Gates before O3 — planning-side decisions owed on O2's artifacts
 
-You are the builder for stage O2 of CharacterForge v2: harvest tooling that
-converts the v1 option data into the v2 option format, gated by the stage-O1
-validator.
+These come back for decisions first; they are review items O2 explicitly
+emitted for the gate and may change committed data:
 
-READ FIRST, FULLY: OPTION_FORMAT_SPEC.md (the contract, §0 marking
-convention binding) and SESSION_REPORT.md (stage O1's decisions, ambiguity
-findings, and NOT_DECIDED list) in the repo root.
+1. **Priority review** — `harvest_report/PRIORITY_REVIEW.md` (66 rows,
+   §1.6 default map applied, zero overrides). Decide every override, noting
+   why (§1.6). Also decide HOW overrides land: hand-edit of the emitted
+   files, or an override table consumed by a re-run of
+   `python -m tools.harvest` (the tool currently applies the default map
+   only — an override input would be a small, decided extension).
+2. **POLISH_FLAGS** — `harvest_report/POLISH_FLAGS.md` (66 groups whose v1
+   `_note` marks wording provisional; detection rule stated in the file).
+   Decide the polish pass: who re-cuts the text, against what style rules,
+   and whether it is its own stage or folds into another.
+3. **Flag 1: `92_piercings_intimate`** (SESSION_REPORT_O2.md) — the held
+   piercings fragment: rule whether `piercings` is `identity` (fragment
+   emits, file home row struck) or worn-jewelry `persona` (then the
+   38_marks group moves and the record semantics change). Until ruled, the
+   two gated piercing placements are not in the tree.
+4. **Merge-lock wording** (SESSION_REPORT_O2 discrepancy 1) — confirm
+   "touching = error" as built, or relax to answer 8.3's literal
+   "mismatch = error".
+5. **Name stage O3.** Spec §2's out-of-stage list is the menu; the
+   character record model + construction gate is the natural next
+   dependency (the orphaned-selection report and every future gate need
+   records), but that choice is the planning chat's.
 
-Ground rules carried over from O1:
-1. Build only harvest tooling and its tests. No creator UI, no record model,
-   no safety code, no service spine.
-2. Invent nothing. Spec-silent → SESSION_REPORT.md `NOT_DECIDED`, build
-   nothing for it.
-3. `python -m app.options.validate` (strict laws, exit 0/1, `--json`) is the
-   gatekeeper: no harvested file lands in `app/data/options/` unless the
-   validator exits 0 on the full data tree.
-4. §11 holding list: old keys that do not map 1:1 are carried in
-   `_`-prefixed comment keys or the harvest log, never silently dropped.
-   `_note` provenance survives verbatim (§1.9).
-5. All tests green before any commit is pushed.
+## What O3 will likely need from the planning chat (once scoped)
 
-Inputs:
-- v1 repository at [PATH — c:\Projects\game\CharacterForge on the build
-  machine], data in [CONFIRM: app/data/options, app/data/options_gated;
-  builders are OUT of §2 scope for options — confirm whether any builder
-  data harvests this stage].
-- Key mappings (DECIDED in spec): old `tier` → priority per §1.6 default map
-  (P0→must, P1→should, P2→flavor, P3→flavor) except the overrides listed
-  below; old `class`+`tags` → one `tags` list (§1.8); `image` → `thumb`
-  (§1.12); `prompt` → [CONFIRM: image_text? chat_text? both?]; gated-dir
-  placement → in-file `rating` per the assignment below; `field`/`quick`/
-  `required`/`widget`/`region`/`attribute`/`aliases`/`prompt_ranges`/
-  `render` → held aside per §11.
+If O3 is the record model + construction gate, at minimum:
 
-## Needed from the planning chat before O2 can start
+- The record shape: values keyed by group id (§1.10) — storage format,
+  one-vs-many per kind, free-text slots, provenance/versioning against
+  catalog changes (retired options resolve per Decision 6 — what else?).
+- The typed age number and the 20+ construction gate mechanics (answer 6
+  kept age on the record; chat speaks digits).
+- `home` semantics at the record layer: identity locked at finalization,
+  persona editable, `scene_overridable` behavior (Decision 4/4a).
+- What "construction gate" refuses vs warns (missing `must` groups?
+  hidden-group values? rating admissibility per option — answer 8.4).
+- Whether the personal runtime drop-in pass (answer 1: same harvest tool,
+  separate pass) happens before, with, or after O3.
 
-1. **Source inventory** — the exact v1 files/directories to harvest, and
-   whether the runtime `data/options` drop-in dirs are included.
-2. **`prompt` → text mapping** — v1 options carry one `prompt` string; v2
-   has `image_text` and `chat_text` with presence-is-meaning (Decision 3).
-   Which old prompts become which text(s), per group or per rule.
-3. **Rating assignment** — which old gated-dir content becomes `mature` vs
-   `explicit`; everything ungated presumably `standard` (confirm).
-4. **Priority overrides** — any group where the §1.6 default map is wrong,
-   "noting why" (§1.6).
-5. **Per-key holding action** — for each §11 held key: carried as `_`-comment
-   in the emitted file, or logged only.
-6. **Age-band content** — the real bands and their image texts (old
-   `prompt_ranges` age content pours into §8; floor is 20, one open band).
-7. **Home assignment** — v1 groups have no `home`; every harvested group
-   needs `identity`/`persona`/`session` assigned. Source of truth for that
-   mapping.
-8. **O1's NOT_DECIDED list** (SESSION_REPORT.md) — answers, or explicit
-   deferrals, for the 8 recorded questions; at minimum: empty pick groups,
-   group-id hygiene, whether `home` is extension-fixed, and null-clears.
-9. **Rating display names** — user-facing names for
-   `standard`/`mature`/`explicit` are chosen at content authoring (§1.1);
-   confirm whether O2 needs them at all (likely no — they never appear in
-   data files).
+## Ground rules to carry forward (unchanged)
 
-## What O2 will build (once the above is answered)
-
-- A harvest script (`app/harvest/` or similar — planning chat names it)
-  reading v1 files, emitting v2-format files, writing a harvest log of every
-  held-aside key and every transformation.
-- Validator-gated output: the emitted tree must pass
-  `python -m app.options.validate` (exit 0) before it is committed.
-- Tests: transformation rules (each §11 key), provenance survival, the §1.6
-  map and its overrides, idempotence of re-harvest, refusal to emit
-  `example_` ids.
+1. Build only what the prompt scopes. Invent nothing; ambiguity →
+   SESSION_REPORT_O3.md `NOT_DECIDED`, build nothing for it.
+2. `python -m app.options.validate` stays the gatekeeper for any data
+   change; all tests green before any push.
+3. OPTION_FORMAT_SPEC.md as amended by O2_INPUTS.md (and any O3 input
+   sheet) is the contract; §0 marking convention binding.
