@@ -57,6 +57,15 @@ def test_resilient_records_catalog_law_violations(write_file):
     assert "ft_two" in catalog
 
 
+def test_resilient_records_empty_pick_group(write_file):
+    # O2_INPUTS answer 8.1: recorded in resilient mode, raised in strict;
+    # the group itself remains in the catalog.
+    d = write_file("00.json", minimal_file(groups=[group(options=[])]))
+    catalog = load_catalog([d])
+    assert [e.code for e in catalog.errors] == [E.EMPTY_PICK_GROUP]
+    assert "g1" in catalog
+
+
 def test_strict_raises_catalog_error_for_law_violations(write_file):
     d = write_file(
         "00.json", minimal_file(groups=[group(priority="must")])

@@ -72,6 +72,56 @@ def test_example_guard_names_file_and_id():
     assert "example_group" in rec.message
 
 
+# --- empty pick groups (O2_INPUTS answer 8.1) ------------------------------
+
+
+def test_refuses_empty_pick_group(write_file):
+    # Zero options DEFINED after merge is a catalog error, replacing O1's
+    # derives-hidden — hidden would vanish a group silently.
+    d = write_file("00.json", minimal_file(groups=[group(options=[])]))
+    err = refuse_catalog(d, E.EMPTY_PICK_GROUP)
+    assert any(r.subject == "g1" for r in err.records)
+
+
+def test_refuses_empty_pick_many_group(write_file):
+    d = write_file(
+        "00.json", minimal_file(groups=[group(kind="pick_many", options=[])])
+    )
+    refuse_catalog(d, E.EMPTY_PICK_GROUP)
+
+
+def test_all_retired_group_is_not_empty(write_file):
+    # "Empty" means zero options DEFINED; all-retired still derives hidden
+    # and is NOT a catalog error.
+    d = write_file(
+        "00.json",
+        minimal_file(
+            groups=[
+                group(options=[{"id": "opt_old", "label": "Old", "status": "retired"}])
+            ]
+        ),
+    )
+    catalog = load_strict(d)
+    assert catalog.errors == []
+    assert catalog.get("g1").hidden is True
+
+
+def test_empty_base_filled_by_extension_loads(write_file):
+    # The law reads the MERGED group: a base declared empty is legal once a
+    # later file appends options.
+    write_file("00_base.json", minimal_file(groups=[group(options=[])]))
+    d = write_file(
+        "10_ext.json",
+        {
+            "format": 1,
+            "rating": "standard",
+            "groups": [{"id": "g1", "options": [{"id": "opt_a", "label": "A"}]}],
+        },
+    )
+    catalog = load_strict(d)
+    assert [o.id for o in catalog.get("g1").options] == ["opt_a"]
+
+
 # --- §4 priority law on the merged group ----------------------------------
 
 

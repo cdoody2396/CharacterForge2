@@ -16,7 +16,6 @@ def test_minimal_valid_file(write_file):
     assert g.kind == "pick_one"
     assert g.home == "identity"
     assert [o.id for o in g.options] == ["opt_a"]
-    assert g.rating == "standard"
     assert g.options[0].rating == "standard"  # Decision 5: the file is the mark
     assert catalog.errors == []
 

@@ -62,10 +62,12 @@ def test_redeclared_option_replaces_in_place(write_file):
     assert [o.id for o in g1.options] == ["opt_a", "opt_b"]  # position kept
     assert g1.resolve("opt_a").label == "A v2"  # later file wins
     # Decision 5: the replacing option carries ITS file's rating and source.
+    # Rating is an OPTION-level fact only (O2_INPUTS answer 8.4) — the group
+    # model carries no rating of its own.
     assert g1.resolve("opt_a").rating == "mature"
     assert g1.resolve("opt_a").source_file == "10_ext.json"
     assert g1.resolve("opt_b").rating == "standard"
-    assert g1.rating == "standard"  # group keeps its defining file's rating
+    assert not hasattr(g1, "rating")
 
 
 def test_extension_fragment_may_omit_required_keys(write_file):
@@ -92,7 +94,46 @@ def test_refuses_kind_change_on_extension(write_file):
             "groups": [{"id": "g1", "kind": "pick_many"}],
         },
     )
-    refuse(d, E.KIND_CHANGED)
+    refuse(d, E.MERGE_LOCKED_KEY)
+
+
+def test_refuses_extension_touching_any_merge_locked_key(write_file):
+    # O2_INPUTS answer 8.3: kind, home, feeds, scene_overridable are
+    # merge-locked — a fragment touching any of them is a format error,
+    # even restating the existing value (restatement invites drift).
+    for key, value in [
+        ("kind", "pick_one"),  # identical to the base value
+        ("home", "identity"),  # identical to the base value
+        ("feeds", "image"),
+        ("scene_overridable", True),
+    ]:
+        write_file("00_base.json", minimal_file())
+        d = write_file(
+            "10_ext.json",
+            {
+                "format": 1,
+                "rating": "standard",
+                "groups": [{"id": "g1", key: value}],
+            },
+        )
+        err = refuse(d, E.MERGE_LOCKED_KEY)
+        assert key in str(err)
+
+
+def test_unlocked_scalars_keep_override_semantics(write_file):
+    # Answer 8.3: all OTHER scalars keep v1 override semantics.
+    write_file("00_base.json", minimal_file())
+    d = write_file(
+        "10_ext.json",
+        {
+            "format": 1,
+            "rating": "standard",
+            "groups": [{"id": "g1", "label": "Renamed", "section": "S"}],
+        },
+    )
+    g1 = load_strict(d).get("g1")
+    assert g1.label == "Renamed"
+    assert g1.section == "S"
 
 
 def test_refuses_duplicate_option_id_within_one_file(write_file):

@@ -19,7 +19,9 @@ VISIBLE_WHEN_PREDICATES = ("any", "in", "not_in", "has_tag")
 @dataclass(frozen=True)
 class Option:
     """One selectable option (§5). ``rating`` and ``source_file`` come from
-    the file that (last) declared it — Decision 5: the file is the mark."""
+    the file that (last) declared it — Decision 5: the file is the mark.
+    Rating is an OPTION-level fact only (O2_INPUTS answer 8.4); the group
+    model carries no rating of its own."""
 
     id: str
     label: str
@@ -56,7 +58,6 @@ class Group:
     hint: str | None = None  # display-only, never enters any prompt
     tags: tuple[str, ...] = ()
     options: list[Option] = field(default_factory=list)
-    rating: str = ""  # rating of the file that first defined the group
     sources: list[str] = field(default_factory=list)  # provenance
 
     @property

@@ -11,7 +11,9 @@ Carryover from v1 (spec §4, DECIDED, proven):
 - Default load is resilient (bad file skipped, error recorded on the
   catalog); ``strict=True`` raises for tests and authoring.
 - An extension fragment is partial: required keys are enforced at first
-  definition only; ``kind`` is fixed and may never change.
+  definition only. ``kind``, ``home``, ``feeds``, and ``scene_overridable``
+  are merge-locked (O2_INPUTS answer 8.3): a fragment touching any of them
+  is a format error.
 
 v2 tightenings over v1: unknown keys are format errors (§1.9, ``_``-prefixed
 comment keys legal and ignored anywhere); a present-but-invalid
@@ -49,7 +51,12 @@ VALID_FEEDS = ("image", "chat", "both")  # §4
 FREE_TEXT_CEILING = 240  # §1.2 — the format refuses any limit above this
 
 # §5: option ids are stable and chat-emittable — lowercase a–z0–9_, ≤ 40.
-_OPTION_ID_RE = re.compile(r"^[a-z0-9_]{1,40}$")
+# O2_INPUTS answer 8.2: group ids obey the same hygiene rule.
+_ID_RE = re.compile(r"^[a-z0-9_]{1,40}$")
+
+# O2_INPUTS answer 8.3: merge-locked group keys — an extension fragment
+# touching any of them is a format error.
+_MERGE_LOCKED_KEYS = ("kind", "home", "feeds", "scene_overridable")
 # §5: color is a #rrggbb swatch hint (hex case not significant).
 _COLOR_RE = re.compile(r"^#[0-9a-fA-F]{6}$")
 
@@ -160,7 +167,7 @@ def _parse_option(
         raise _err(file, E.MISSING_KEY, group_id, f"{where} is missing 'id'")
     oid = data["id"]
     subject = f"{group_id}/{oid}"
-    if not isinstance(oid, str) or not _OPTION_ID_RE.match(oid):
+    if not isinstance(oid, str) or not _ID_RE.match(oid):
         raise _err(
             file,
             E.BAD_OPTION_ID,
@@ -466,9 +473,9 @@ def _new_group(data: dict, file: str, rating: str) -> Group:
             gid,
             f"{where} is free_text and may not carry 'options'",
         )
-    group = Group(
-        id=gid, label="", kind=kind, home="", rating=rating, sources=[file]
-    )
+    # Rating is an OPTION-level fact only (O2_INPUTS answer 8.4): each option
+    # is stamped with its file's rating; the group model carries none.
+    group = Group(id=gid, label="", kind=kind, home="", sources=[file])
     _scalar_setters(data, file, gid, group)
     if "options" in data:
         group.options = _parse_options_list(data, file, gid, rating)
@@ -479,16 +486,19 @@ def _merge_group(existing: Group, data: dict, file: str, rating: str) -> None:
     """Extend an existing group from a later file's fragment (v1 semantics):
     scalar keys override; options append, with a re-declared option id
     replacing the earlier one in place (later file wins, position kept).
-    ``kind`` is fixed."""
+    ``kind``, ``home``, ``feeds``, ``scene_overridable`` are merge-locked
+    (O2_INPUTS answer 8.3): a fragment touching any of them — even with an
+    identical value — is a format error."""
     gid = existing.id
-    if "kind" in data and data["kind"] != existing.kind:
-        raise _err(
-            file,
-            E.KIND_CHANGED,
-            gid,
-            f"group {gid!r} redefined with kind {data['kind']!r} (was "
-            f"{existing.kind!r}); a group's kind is fixed",
-        )
+    for key in _MERGE_LOCKED_KEYS:
+        if key in data:
+            raise _err(
+                file,
+                E.MERGE_LOCKED_KEY,
+                gid,
+                f"group {gid!r} extension touches merge-locked key {key!r}; "
+                f"{_MERGE_LOCKED_KEYS} are fixed at first definition",
+            )
     _scalar_setters(data, file, gid, existing)
     if "options" in data:
         incoming = _parse_options_list(data, file, gid, rating)
@@ -509,6 +519,15 @@ def _apply_group(data: object, staged: dict[str, Group], file: str, rating: str)
     gid = data.get("id")
     if not isinstance(gid, str) or not gid:
         raise _err(file, E.MISSING_KEY, None, "a group is missing 'id'")
+    if not _ID_RE.match(gid):
+        # O2_INPUTS answer 8.2: group ids obey the option-id hygiene rule.
+        raise _err(
+            file,
+            E.BAD_GROUP_ID,
+            gid,
+            f"group id {gid!r} violates the id rule (lowercase a-z0-9_, "
+            f"1-40 chars)",
+        )
     existing = staged.get(gid)
     if existing is None:
         staged[gid] = _new_group(data, file, rating)
@@ -633,6 +652,22 @@ def _check_catalog_laws(groups: dict[str, Group]) -> list[FormatErrorRecord]:
                         f"illustrative ids are legal only in test fixtures (§0)",
                     )
                 )
+
+    # O2_INPUTS answer 8.1: a pick-kind group with zero options DEFINED after
+    # merge is a catalog error — hidden would vanish a group silently. A group
+    # whose options are merely all retired (or rating-filtered by a future
+    # gate) is NOT empty; that family still derives hidden.
+    for g in groups.values():
+        if not g.is_free_text and not g.options:
+            records.append(
+                _rec(
+                    g.sources[-1],
+                    E.EMPTY_PICK_GROUP,
+                    g.id,
+                    f"group {g.id!r} is {g.kind} with zero options defined "
+                    f"after merge; a pick group must define options",
+                )
+            )
 
     # §4 priority law, on the MERGED group: priority is required iff any
     # option carries image_text, forbidden otherwise (a priority with nothing

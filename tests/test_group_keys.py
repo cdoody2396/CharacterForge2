@@ -15,6 +15,28 @@ def test_refuses_unknown_group_key(write_file):
     refuse(d, E.UNKNOWN_KEY)
 
 
+def test_refuses_uppercase_group_id(write_file):
+    # O2_INPUTS answer 8.2: group ids obey the option-id hygiene rule.
+    d = write_file("00.json", _file_with(group(id="Group_1")))
+    refuse(d, E.BAD_GROUP_ID)
+
+
+def test_refuses_group_id_with_illegal_chars(write_file):
+    d = write_file("00.json", _file_with(group(id="group-1")))
+    refuse(d, E.BAD_GROUP_ID)
+
+
+def test_refuses_group_id_over_40_chars(write_file):
+    d = write_file("00.json", _file_with(group(id="g" * 41)))
+    refuse(d, E.BAD_GROUP_ID)
+
+
+def test_group_id_exactly_40_chars_loads(write_file):
+    gid = "g" * 40
+    catalog = load_strict(write_file("00.json", _file_with(group(id=gid))))
+    assert catalog.get(gid) is not None
+
+
 def test_refuses_unknown_kind(write_file):
     d = write_file("00.json", _file_with(group(kind="single")))
     refuse(d, E.BAD_KIND)

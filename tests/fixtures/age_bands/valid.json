@@ -1,9 +1,0 @@
-{
-  "_note": "Valid age-band fixture (spec §8). The image_text values are ILLUSTRATIVE (example_-prefixed per §0) and legal only here in tests/fixtures/.",
-  "format": 1,
-  "bands": [
-    {"min": 20, "max": 29, "image_text": "example_young_adult_text"},
-    {"min": 30, "max": 49, "image_text": "example_adult_text"},
-    {"min": 50, "image_text": "example_older_adult_text"}
-  ]
-}
