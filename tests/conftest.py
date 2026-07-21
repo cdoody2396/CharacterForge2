@@ -10,7 +10,32 @@ from pathlib import Path
 
 import pytest
 
+from app.options import load_catalog
+from app.options.errors import CatalogError, OptionFormatError
+
 FIXTURES = Path(__file__).parent / "fixtures"
+
+
+def load_strict(directory):
+    return load_catalog([directory], strict=True)
+
+
+def refuse(directory, code):
+    """Assert a strict load refuses with the given per-file error code."""
+    with pytest.raises(OptionFormatError) as excinfo:
+        load_catalog([directory], strict=True)
+    assert excinfo.value.code == code, excinfo.value
+    return excinfo.value
+
+
+def refuse_catalog(directory, code):
+    """Assert a strict load refuses with the given catalog-law code (§7 /
+    merged-state checks raise CatalogError after all files merge)."""
+    with pytest.raises(CatalogError) as excinfo:
+        load_catalog([directory], strict=True)
+    codes = [r.code for r in excinfo.value.records]
+    assert code in codes, f"expected {code} in {codes}"
+    return excinfo.value
 
 
 @pytest.fixture
