@@ -1083,6 +1083,8 @@
       "label": "Lower Body",
       "kind": "pick_one",
       "home": "identity",
+      "required": true,
+      "_required_note": "O3_INPUTS N3: required added by the O3 planning gate (2026-07-22), completing the convention that every must-priority group is required-when-visible.",
       "priority": "must",
       "visible_when": {
         "group": "race",

@@ -8,6 +8,7 @@
       "label": "Silhouette",
       "kind": "pick_one",
       "home": "identity",
+      "required": true,
       "priority": "should",
       "section": "Body",
       "order": 40,
