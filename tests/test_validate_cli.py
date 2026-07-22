@@ -131,7 +131,9 @@ def test_shipped_data_directory_is_clean():
     assert result.returncode == 0
     payload = json.loads(result.stdout)
     assert payload["errors"] == []
-    assert payload["files"] == 12
-    assert payload["groups"] == 135  # 136 emitted entries, outfit merges
-    assert payload["options"] == 2357
-    assert payload["ratings"] == {"standard": 2334, "mature": 0, "explicit": 23}
+    # O2b counts: the 92_piercings fragment returned (gate ruled piercings
+    # identity), adding 1 file and its 2 explicit options to the O2 tree.
+    assert payload["files"] == 13
+    assert payload["groups"] == 135  # 137 emitted entries, 2 fragments merge
+    assert payload["options"] == 2359
+    assert payload["ratings"] == {"standard": 2334, "mature": 0, "explicit": 25}

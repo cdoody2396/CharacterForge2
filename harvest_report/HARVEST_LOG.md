@@ -1,8 +1,8 @@
 # HARVEST LOG — v1 → v2 option data (stage O2)
 
-- v1 source: https://github.com/cdoody2396/CharacterForge.git
+- v1 source: https://github.com/cdoody2396/CharacterForge
 - v1 commit: a9519863ff933709dc080bf6941f118853b05569
-- emitted files: 12
+- emitted files: 13
 
 ## Inventory — per-file counts vs v1
 
@@ -21,11 +21,11 @@
 | 70_life.json | standard | 34 | 669 | 34 | 669 | emitted |
 | 90_wardrobe_intimate.json | explicit | 1 | 4 | 1 | 4 | emitted |
 | 91_anatomy_intimate.json | explicit | 4 | 19 | 4 | 19 | emitted |
-| 92_piercings_intimate.json | explicit | 1 | 2 | 0 | 0 | held (no groups left) |
+| 92_piercings_intimate.json | explicit | 1 | 2 | 1 | 2 | emitted |
 
 ## Flags — groups held out of the emitted tree
 
-1. `92_piercings_intimate.json` / `piercings`: contradicts its file's home: fragment file '92_piercings_intimate.json' is 'persona' but group 'piercings' is defined in '38_marks.json' with home 'identity'
+(none)
 
 ## Consumed
 

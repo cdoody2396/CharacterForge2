@@ -543,7 +543,7 @@
       "label": "Second Hair Color",
       "kind": "pick_one",
       "home": "identity",
-      "priority": "flavor",
+      "priority": "should",
       "visible_when": {
         "group": "hair_length",
         "not_in": [
@@ -711,7 +711,7 @@
       "label": "Color Pattern",
       "kind": "pick_one",
       "home": "identity",
-      "priority": "flavor",
+      "priority": "should",
       "visible_when": {
         "group": "hair_color_2",
         "any": true
@@ -814,6 +814,7 @@
       "label": "Hair Style",
       "kind": "pick_one",
       "home": "identity",
+      "scene_overridable": true,
       "priority": "should",
       "visible_when": {
         "group": "hair_length",
@@ -1481,7 +1482,7 @@
       "label": "Facial Hair",
       "kind": "pick_one",
       "home": "identity",
-      "priority": "flavor",
+      "priority": "should",
       "section": "Appearance",
       "order": 28,
       "hint": "Renders regardless of gender presentation.",
@@ -1678,7 +1679,7 @@
       "label": "Heterochromia",
       "kind": "pick_one",
       "home": "identity",
-      "priority": "flavor",
+      "priority": "should",
       "section": "Appearance",
       "order": 30,
       "hint": "Pick a second color for heterochromia (one eye each).",
@@ -2039,6 +2040,7 @@
       "label": "Makeup",
       "kind": "pick_one",
       "home": "identity",
+      "scene_overridable": true,
       "priority": "flavor",
       "section": "Appearance",
       "order": 37,

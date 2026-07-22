@@ -423,6 +423,7 @@
       "label": "Piercings",
       "kind": "pick_many",
       "home": "identity",
+      "scene_overridable": true,
       "priority": "flavor",
       "section": "Marks",
       "order": 75,

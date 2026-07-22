@@ -89,7 +89,7 @@
       "label": "Horns",
       "kind": "pick_one",
       "home": "identity",
-      "priority": "flavor",
+      "priority": "should",
       "section": "Species Features",
       "order": 51,
       "hint": "Renders for any race - mix freely.",
@@ -248,7 +248,7 @@
       "label": "Wings",
       "kind": "pick_one",
       "home": "identity",
-      "priority": "flavor",
+      "priority": "should",
       "section": "Species Features",
       "order": 53,
       "hint": "Renders for any race - mix freely.",
@@ -478,7 +478,7 @@
       "label": "Fur Pattern",
       "kind": "pick_one",
       "home": "identity",
-      "priority": "flavor",
+      "priority": "should",
       "visible_when": {
         "group": "skin_type",
         "in": [
@@ -1083,7 +1083,7 @@
       "label": "Lower Body",
       "kind": "pick_one",
       "home": "identity",
-      "priority": "should",
+      "priority": "must",
       "visible_when": {
         "group": "race",
         "has_tag": "monstrous"

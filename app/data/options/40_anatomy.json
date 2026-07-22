@@ -7,7 +7,7 @@
       "label": "Chest",
       "kind": "pick_one",
       "home": "identity",
-      "priority": "flavor",
+      "priority": "should",
       "order": 100,
       "hint": "Categorical by design - the pipeline honors categories, not measurements.",
       "_v1": {

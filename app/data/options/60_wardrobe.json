@@ -8,7 +8,7 @@
       "label": "Wardrobe",
       "kind": "pick_many",
       "home": "persona",
-      "priority": "flavor",
+      "priority": "should",
       "section": "Wardrobe",
       "order": 90,
       "hint": "Stackable wardrobe pieces, grouped by style family. Search or expand a family.",
@@ -707,7 +707,7 @@
       "label": "Palette",
       "kind": "pick_many",
       "home": "persona",
-      "priority": "flavor",
+      "priority": "should",
       "section": "Wardrobe",
       "order": 91,
       "options": [
