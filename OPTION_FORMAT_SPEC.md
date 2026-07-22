@@ -4,6 +4,11 @@ Supersedes DECISIONS.md §15 and the §12 numeric reservation for the character 
 Consolidates planning Decisions 1–10 (incl. 4a, 7-amended, 8, 8a, 9, 9a) and the
 kickoff turn's promotions (§1).
 
+Changelog: 2026-07-22 (O3) — §4 gains the `required` group key
+(required-when-visible; pick kinds only, session home illegal), per
+O3_INPUTS.md N3/§D. Earlier amendments live in O2_INPUTS.md (§8 age bands
+struck; the eight O1 NOT_DECIDED answers).
+
 ---
 
 ## 0. Marking convention — read first, binding on the builder
@@ -98,6 +103,7 @@ One JSON object per file, UTF-8 (BOM tolerated), in a directory scanned in
 | `kind` | yes | §1.3 | interaction shape |
 | `home` | yes | §1.4 | identity = locked at finalization; persona = editable; session = app-side vocabulary, never on the record (Decision 4) |
 | `scene_overridable` | no (default false) | bool | legal ONLY when `home` is `identity`; elsewhere format error (Decision 4a) |
+| `required` | no (default false) | bool | required-when-visible: a finalizing character must hold a value for this group wherever it is visible (O3_INPUTS N5); legal on pick kinds only — meaningless on `free_text` and on `session` homes, format error there (O3_INPUTS N3) |
 | `priority` | conditional | §1.5 | REQUIRED if any option in the merged group carries `image_text`; FORBIDDEN otherwise (a priority with nothing to prioritize is a latent lie — Decision 3's principle) |
 | `max_picks` | no | int ≥ 1 | `pick_many` only; absent = uncapped; on other kinds, format error |
 | `feeds` | free_text only | `image` \| `chat` \| `both` | required on `free_text`, forbidden elsewhere (Decision 7 pt 1 — typed content can't declare its reader by presence) |

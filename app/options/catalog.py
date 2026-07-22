@@ -48,6 +48,10 @@ class Group:
     kind: str  # §1.3: pick_one | pick_many | free_text
     home: str  # §1.4: identity | persona | session
     scene_overridable: bool = False
+    # O3_INPUTS N3: required-when-visible; pick kinds only, session home
+    # illegal (checked at load). Read by the record layer's finalization
+    # gate (N5) — the loader itself only validates and carries it.
+    required: bool = False
     priority: str | None = None  # §1.5, conditional (priority law, §4)
     max_picks: int | None = None  # pick_many only
     feeds: str | None = None  # free_text only: image | chat | both

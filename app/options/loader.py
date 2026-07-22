@@ -68,6 +68,7 @@ _GROUP_KEYS = frozenset(
         "kind",
         "home",
         "scene_overridable",
+        "required",
         "priority",
         "max_picks",
         "feeds",
@@ -318,6 +319,13 @@ def _scalar_setters(data: dict, file: str, gid: str, group: Group) -> None:
                 file, E.BAD_KEY_TYPE, gid, f"{where} 'scene_overridable' must be a bool"
             )
         group.scene_overridable = value
+    if "required" in data:
+        value = data["required"]
+        if not isinstance(value, bool):
+            raise _err(
+                file, E.BAD_KEY_TYPE, gid, f"{where} 'required' must be a bool"
+            )
+        group.required = value
     if "priority" in data:
         priority = _require_str(data, "priority", file, gid, where)
         if priority not in VALID_PRIORITIES:
@@ -408,6 +416,16 @@ def _check_group_state(group: Group, file: str) -> None:
                 gid,
                 f"{where} is free_text and may not carry 'max_picks'",
             )
+        # O3_INPUTS N3: `required` is meaningless on free_text (the two-slot
+        # record law owns free text) — value-based, like scene_overridable.
+        if group.required:
+            raise _err(
+                file,
+                E.REQUIRED_ON_FREE_TEXT,
+                gid,
+                f"{where} is free_text and may not be 'required'; required is "
+                f"legal on pick kinds only (N3)",
+            )
     else:
         # §4: feeds/max_chars are free_text-only — typed content can't
         # declare its reader by presence (Decision 7 pt 1).
@@ -432,6 +450,16 @@ def _check_group_state(group: Group, file: str) -> None:
                 gid,
                 f"{where} is {group.kind} and may not carry 'max_picks'",
             )
+    # O3_INPUTS N3: `required` is meaningless on session homes — session
+    # vocabulary never lands on the record, so nothing could require it.
+    if group.required and group.home == "session":
+        raise _err(
+            file,
+            E.REQUIRED_ON_SESSION_HOME,
+            gid,
+            f"{where} has required with home 'session'; session values are "
+            f"never stored on a record, so 'required' is meaningless (N3)",
+        )
     # §4 / Decision 4a: scene_overridable is legal ONLY on home identity.
     if group.scene_overridable and group.home != "identity":
         raise _err(
