@@ -46,10 +46,14 @@ Stages O1–O3 of CharacterForge v2. This repository currently contains:
   WAL, injected path, one table only — N10); identity-staleness derived
   at query time, variable-staleness as a cached marker where **receipts
   win**; the R5 hook marks exactly what a persona edit touched;
-  `derive_grade` is the honest provider seam (the ladder definition is
-  NOT_DECIDED — see SESSION_REPORT_O3.md). No artifacts render at this
-  stage; synthetic sidecar fixtures test everything.
-- **Tests** (`tests/`) — 319 tests covering every format law with refusing
+  `derive_grade` rolls the G0/G1/G2 ladder up from ledger contents
+  ([O3_INPUTS_N8_LADDER.md](O3_INPUTS_N8_LADDER.md): exactly
+  (has-canonical-set, has-active-LoRA); G0 is every character's floor;
+  grade is never stored) through the injected ring provider — the Null
+  provider makes G1 honestly undeterminable until the image section
+  supplies the ring-derivation rule. No artifacts render at this stage;
+  synthetic sidecar fixtures test everything.
+- **Tests** (`tests/`) — 328 tests covering every format law with refusing
   tests, the harvest transformation rules, override consumption,
   refusals, the validator gate, byte-identical idempotence, and every
   record-layer refusal individually.

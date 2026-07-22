@@ -12,7 +12,13 @@ convention):
       "method": "...",
       "variables": { "<group_id>": "<option_id>" | ["..."] },   # {} legal
       "rating_at_render": "standard",
-      "created": "<stamp>", "artifact_path": "...", "content_hash": "..." }
+      "created": "<stamp>", "artifact_path": "...", "content_hash": "...",
+      "active": true }                                          # optional
+
+``active`` is the checkpoint's AR ledger-minimum "active flag" (delivered
+with the N8 grade ladder, O3_INPUTS_N8_LADDER.md): per-artifact, meaningful
+where one-of-many is live ("multiple LoRAs per version, one active"); the
+key is optional and absent reads false.
 
 The variable receipt is EXPLICIT-EMPTY legal (§A6): ``{}`` states "this
 render used no variables" — different in kind from a missing key, which is
@@ -46,6 +52,7 @@ _RECEIPT_KEYS = frozenset(
         "created",
         "artifact_path",
         "content_hash",
+        "active",
     }
 )
 
@@ -65,6 +72,7 @@ class Receipt:
     created: str
     artifact_path: str
     content_hash: str
+    active: bool = False  # AR ledger-minimum "active flag"; absent = false
 
 
 def _fail(code: str, file: str, subject: str | None, message: str) -> ReceiptError:
@@ -160,6 +168,11 @@ def load_receipt(path: Path | str) -> Receipt:
                 f"variable {group_id!r} must be an option id or a non-empty "
                 f"list of option ids",
             )
+    active = data.get("active", False)
+    if not isinstance(active, bool):
+        raise _fail(
+            E.RECEIPT_BAD_TYPE, file, "active", "'active' must be a bool"
+        )
     rating = _read_str(data, "rating_at_render", file)
     if rating not in VALID_RATINGS:
         raise _fail(
@@ -179,4 +192,5 @@ def load_receipt(path: Path | str) -> Receipt:
         created=_read_str(data, "created", file),
         artifact_path=_read_str(data, "artifact_path", file),
         content_hash=_read_str(data, "content_hash", file),
+        active=active,
     )

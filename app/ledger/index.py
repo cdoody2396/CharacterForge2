@@ -41,6 +41,7 @@ CREATE TABLE IF NOT EXISTS ledger_index (
     created          TEXT NOT NULL,
     artifact_path    TEXT NOT NULL,
     content_hash     TEXT NOT NULL,
+    active           INTEGER NOT NULL DEFAULT 0,  -- AR active flag (ladder)
     variable_stale   INTEGER NOT NULL DEFAULT 0   -- CACHE; receipts win
 )
 """
@@ -85,7 +86,7 @@ class Ledger:
             else False
         )
         self._conn.execute(
-            "INSERT OR REPLACE INTO ledger_index VALUES (?,?,?,?,?,?,?,?,?,?,?)",
+            "INSERT OR REPLACE INTO ledger_index VALUES (?,?,?,?,?,?,?,?,?,?,?,?)",
             (
                 receipt.sidecar_path,
                 receipt.character_id,
@@ -97,6 +98,7 @@ class Ledger:
                 receipt.created,
                 receipt.artifact_path,
                 receipt.content_hash,
+                int(receipt.active),
                 int(stale),
             ),
         )

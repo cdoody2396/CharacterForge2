@@ -9,13 +9,14 @@ builder does not choose its own scope.
 
 ## Open items O3 leaves on the table
 
-1. **The grade ladder (N8) — NOT_DECIDED, seam built.** The checkpoint's
-   G0/G1/G2 definition never reached the O3 session (the gate chose to
-   paste it; the text did not arrive). The rules land in exactly one
-   place, `app/ledger/grade.py::_apply_ladder`; the calling surface will
-   not move. Delivering the ladder text (paste it into the next kickoff,
-   or commit it as an inputs amendment) turns this into a small,
-   self-contained task for whichever session goes next.
+1. **The grade ladder (N8) — RESOLVED post-push, same session.** The gate
+   delivered the checkpoint text in-chat; it is committed verbatim as
+   O3_INPUTS_N8_LADDER.md and implemented (`_apply_ladder`, the AR
+   `active` receipt flag, 328 tests). Still OWED to the image-identity
+   section, named in that document: the ring-derivation rule (the
+   provider seam stands until then), the reference-core "LoRA seeds"
+   disambiguation, the G0 exotic-anatomy carve-out question, and the
+   ring-skip-to-LoRA execution call (graded as the floor until ruled).
 2. **hybrid_race required-always** (O3 gate decision 2, built as ruled):
    every character must pick a second heritage — no "none" option exists.
    If that reads wrong in use, it is a content-authoring fix (a none-style

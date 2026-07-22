@@ -106,6 +106,17 @@ def test_wrong_format_refused(tmp_path):
     refuse_receipt(sidecar(tmp_path, "p1", format=2), "RECEIPT_BAD_TYPE")
 
 
+def test_active_flag_loads_and_defaults_false(tmp_path):
+    # The AR ledger-minimum active flag (O3_INPUTS_N8_LADDER.md): optional,
+    # absent reads false.
+    assert load_receipt(sidecar(tmp_path, "p1")).active is False
+    assert load_receipt(sidecar(tmp_path, "p2", active=True)).active is True
+
+
+def test_non_bool_active_refused(tmp_path):
+    refuse_receipt(sidecar(tmp_path, "p1", active="yes"), "RECEIPT_BAD_TYPE")
+
+
 def test_invalid_json_refused(tmp_path):
     path = tmp_path / "bad.receipt.json"
     path.write_text("{not json", encoding="utf-8")
@@ -267,7 +278,27 @@ def test_rebuild_ignores_non_receipt_json(tmp_path, ledger):
     assert ledger.rebuild([sidecars]) == 1
 
 
-# --- the grade seam ---------------------------------------------------------
+# --- the grade ladder (O3_INPUTS_N8_LADDER.md) ------------------------------
+
+
+class FakeRingProvider:
+    """Test provider standing in for the owed ring-derivation rule."""
+
+    def __init__(self, canonical_set, rings=frozenset({"portrait_ring"})):
+        self._canonical_set = canonical_set
+        self._rings = rings
+
+    def ring_membership(self, character_id):
+        return self._rings
+
+    def has_canonical_set(self, character_id, ledger):
+        return self._canonical_set
+
+
+def lora_sidecar(directory, name, **overrides):
+    overrides.setdefault("kind", "identity_lora")
+    overrides.setdefault("variables", {})
+    return sidecar(directory, name, **overrides)
 
 
 def test_derive_grade_null_provider_is_honest(tmp_path, ledger):
@@ -281,22 +312,88 @@ def test_derive_grade_null_provider_is_honest(tmp_path, ledger):
     assert result.grade is None  # no guess, ever
     assert result.determinable is False
     assert result.g1_determinable is False  # the Null provider cannot know
-    assert result.ladder_decided is False  # NOT_DECIDED, recorded
+    assert result.ladder_decided is True
+    assert result.evidence["floor"] == "G0"  # the decided floor still holds
     assert result.evidence["artifacts"] == 1
     assert result.evidence["identity_stale"] == 0
     assert "rings" not in result.evidence  # unknown is not "no rings"
-    assert "G1 undeterminable" in result.notes
+    assert "at least G0" in result.notes and "owed" in result.notes
 
 
-def test_derive_grade_with_a_real_provider_gathers_rings(tmp_path, ledger):
-    class FakeRingProvider:
-        def ring_membership(self, character_id):
-            return frozenset({"portrait_ring"})
-
+def test_null_provider_still_reports_g2_evidence(tmp_path, ledger):
+    # N8: with G1 undeterminable the derivation reports G0/G2 evidence only.
+    ledger.index_receipt(load_receipt(lora_sidecar(tmp_path, "l1", active=True)))
     result = derive_grade(
-        "test_char", ledger=ledger, ring_provider=FakeRingProvider()
+        "test_char", ledger=ledger, ring_provider=NullRingProvider()
     )
+    assert result.grade is None and result.determinable is False
+    assert result.evidence["active_loras"] == 1
+    assert "G2 evidence" in result.notes
+
+
+def test_grade_g0_no_canonical_set(tmp_path, ledger):
+    result = derive_grade(
+        "test_char", ledger=ledger, ring_provider=FakeRingProvider(False)
+    )
+    assert (result.grade, result.determinable) == ("G0", True)
     assert result.g1_determinable is True
     assert result.evidence["rings"] == ["portrait_ring"]
-    # the ladder itself is still NOT_DECIDED — evidence, no verdict
-    assert result.ladder_decided is False and result.grade is None
+
+
+def test_grade_g1_canonical_set_without_lora(tmp_path, ledger):
+    ledger.index_receipt(load_receipt(sidecar(tmp_path, "ring_frame")))
+    result = derive_grade(
+        "test_char", ledger=ledger, ring_provider=FakeRingProvider(True)
+    )
+    assert (result.grade, result.determinable) == ("G1", True)
+
+
+def test_grade_g2_canonical_set_plus_active_lora(tmp_path, ledger):
+    ledger.index_receipt(load_receipt(lora_sidecar(tmp_path, "l1", active=True)))
+    result = derive_grade(
+        "test_char", ledger=ledger, ring_provider=FakeRingProvider(True)
+    )
+    assert (result.grade, result.determinable) == ("G2", True)
+    assert result.evidence["active_loras"] == 1
+
+
+def test_inactive_lora_is_not_g2(tmp_path, ledger):
+    # AR: multiple LoRAs per version, ONE active — inactive entries carry
+    # no grade force.
+    ledger.index_receipt(load_receipt(lora_sidecar(tmp_path, "l1")))
+    result = derive_grade(
+        "test_char", ledger=ledger, ring_provider=FakeRingProvider(True)
+    )
+    assert result.grade == "G1"
+    assert result.evidence["active_loras"] == 0
+
+
+def test_another_characters_lora_does_not_count(tmp_path, ledger):
+    ledger.index_receipt(
+        load_receipt(
+            lora_sidecar(tmp_path, "l1", active=True, character_id="other_char")
+        )
+    )
+    result = derive_grade(
+        "test_char", ledger=ledger, ring_provider=FakeRingProvider(True)
+    )
+    assert result.grade == "G1"
+
+
+def test_lora_without_canonical_set_is_the_floor_with_open_call_named(
+    tmp_path, ledger
+):
+    # Cumulative ladder: no set, no G1, no G2 — ring-skip-to-LoRA is an
+    # image-section execution call the derivation names, never pre-empts.
+    ledger.index_receipt(load_receipt(lora_sidecar(tmp_path, "l1", active=True)))
+    result = derive_grade(
+        "test_char", ledger=ledger, ring_provider=FakeRingProvider(False)
+    )
+    assert (result.grade, result.determinable) == ("G0", True)
+    assert "ring-skip" in result.notes
+
+
+def test_grade_is_derived_never_stored(tmp_path):
+    # AR: no stored per-entry grade exists to contradict the rollup — the
+    # receipt schema refuses a grade key outright.
+    refuse_receipt(sidecar(tmp_path, "p1", grade="G2"), "RECEIPT_UNKNOWN_KEY")

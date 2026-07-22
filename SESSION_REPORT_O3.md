@@ -173,3 +173,49 @@ runtime dependencies). O2b's 185 + 134 new: required key 8, record model
 hidden-refusal against the REAL maintained catalog), finalization 14,
 safety seam 21 (name law both directions), paragraph 8, orphans 5,
 ledger 26. Validator over the maintained tree: exit 0, clean.
+
+---
+
+## AMENDMENT (same session, after the push): the N8 ladder arrived
+
+Casey delivered the checkpoint's grade-ladder text in-chat immediately
+after the O3 push. It is committed verbatim as **O3_INPUTS_N8_LADDER.md**
+(AR markers carry decided force) and implemented; **the NOT_DECIDED above
+is RESOLVED**. Final state: **328 passed, 0 failed, 0 skipped** (9 net
+new ledger tests, file total 35).
+
+What the delivery decided, as built:
+
+- **The rollup**: grade derives from ledger contents, exactly
+  (has-canonical-set, has-active-LoRA); never stored. G0 is the floor of
+  every character; G1 = canonical set; G2 = G1 + one active identity
+  LoRA. `_apply_ladder` implements it verbatim; a `grade` key on a
+  receipt refuses (`RECEIPT_UNKNOWN_KEY`) — a stored grade could
+  contradict the derived one (AR).
+- **`active` receipt flag**: the AR ledger-minimum field O3's N8 list
+  lacked. Added as an OPTIONAL bool key on the sidecar schema (absent =
+  false; non-bool refused) and an `active` column on the index. The
+  one-active-per-version LoRA invariant is NOT enforced at this layer —
+  real receipt writing belongs to the image section.
+- **Ring provider protocol** gained `has_canonical_set(character_id,
+  ledger) -> bool | None` alongside `ring_membership` — the ladder's
+  actual question; the owed ring-derivation rule lives wholly behind the
+  seam. Null answers None to both (unknown, never "no").
+- **Honest edges, recorded**: has_canonical_set unknown → grade
+  undeterminable above the floor (`evidence["floor"] = "G0"`), G2
+  evidence still reported (N8's "G0/G2 evidence only"). Active LoRA
+  WITHOUT the canonical set → G0 under the decided cumulative table,
+  with the ring-skip-to-LoRA open call named in the notes, never
+  pre-empted.
+- **Builder spellings**: `IDENTITY_LORA_KIND = "identity_lora"` (the
+  kind id the rollup recognizes; only synthetic fixtures use it until
+  real receipts exist — the image section may re-pin it first),
+  `GRADE_FLOOR = "G0"`, `GradeDerivation.ladder_decided` now True.
+  The index CREATE changed in-place (12 columns); `user_version` stays 1
+  — the index is derived and rebuildable, and no database predates this
+  session.
+
+Still owed to the image-identity section (named in the delivery, not
+O3's): the ring-derivation rule, the reference-core "LoRA seeds"
+disambiguation, the G0 exotic-anatomy carve-out, the ring-skip execution
+call.
