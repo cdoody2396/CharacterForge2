@@ -1,43 +1,34 @@
 # NEXT_SESSION_PROMPT — stage O3 — DRAFT
 
-Status: DRAFT. Do not paste until the planning chat has closed the
-"Gates before O3" list below and this prompt has been updated with those
-answers (including what stage O3 actually is — the builder does not choose
-its own scope).
+Status: DRAFT. The O2 gate list below is closed (O2b, 2026-07-22) except
+polish, which runs as its own track; stage O3 is named: the character
+record model + construction gate. Do not paste until the planning chat has
+answered the O3 input list below and this prompt has been rewritten as a
+real kickoff — the builder does not choose its own scope.
 
 ---
 
-## Gates before O3 — planning-side decisions owed on O2's artifacts
+## Gates before O3 — status after O2b (see SESSION_REPORT_O2B.md)
 
-These come back for decisions first; they are review items O2 explicitly
-emitted for the gate and may change committed data:
+1. **Priority review** — **CLOSED at O2b.** The gate's 13 overrides landed
+   via `tools/harvest/overrides.json` (consumed by the tool, `why` strings
+   verbatim in `harvest_report/OVERRIDES_APPLIED.md`); the other 52
+   defaulted rows stand.
+2. **POLISH_FLAGS** — **OPEN, as its own track.** The wording-polish pass
+   is not part of O3; it gets its own scoping (who re-cuts the text,
+   against what style rules) when the planning chat opens that track.
+3. **Flag 1: `92_piercings_intimate`** — **CLOSED at O2b.** Ruled
+   `identity` with `scene_overridable: true`; the fragment emits (13
+   files, options 2359) and the answer-7 persona row is superseded by the
+   committed override.
+4. **Merge-lock wording** — **CLOSED as built.** "Touching = error"
+   stands (SESSION_REPORT_O2 discrepancy 1, confirmed at the gate).
+5. **Stage O3 = the character record model + construction gate**, per the
+   planning chat. This prompt still awaits the O3 input sheet below.
 
-1. **Priority review** — `harvest_report/PRIORITY_REVIEW.md` (66 rows,
-   §1.6 default map applied, zero overrides). Decide every override, noting
-   why (§1.6). Also decide HOW overrides land: hand-edit of the emitted
-   files, or an override table consumed by a re-run of
-   `python -m tools.harvest` (the tool currently applies the default map
-   only — an override input would be a small, decided extension).
-2. **POLISH_FLAGS** — `harvest_report/POLISH_FLAGS.md` (66 groups whose v1
-   `_note` marks wording provisional; detection rule stated in the file).
-   Decide the polish pass: who re-cuts the text, against what style rules,
-   and whether it is its own stage or folds into another.
-3. **Flag 1: `92_piercings_intimate`** (SESSION_REPORT_O2.md) — the held
-   piercings fragment: rule whether `piercings` is `identity` (fragment
-   emits, file home row struck) or worn-jewelry `persona` (then the
-   38_marks group moves and the record semantics change). Until ruled, the
-   two gated piercing placements are not in the tree.
-4. **Merge-lock wording** (SESSION_REPORT_O2 discrepancy 1) — confirm
-   "touching = error" as built, or relax to answer 8.3's literal
-   "mismatch = error".
-5. **Name stage O3.** Spec §2's out-of-stage list is the menu; the
-   character record model + construction gate is the natural next
-   dependency (the orphaned-selection report and every future gate need
-   records), but that choice is the planning chat's.
+## What O3 needs from the planning chat
 
-## What O3 will likely need from the planning chat (once scoped)
-
-If O3 is the record model + construction gate, at minimum:
+For the record model + construction gate, at minimum:
 
 - The record shape: values keyed by group id (§1.10) — storage format,
   one-vs-many per kind, free-text slots, provenance/versioning against
