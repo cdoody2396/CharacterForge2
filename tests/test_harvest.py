@@ -4,6 +4,7 @@ idempotence — all on small synthetic v1-shaped fixtures built in tmp_path
 with neutral ids (spec §0: committed example data lives only in fixtures)."""
 
 import json
+from pathlib import Path
 
 import pytest
 
@@ -692,6 +693,47 @@ def test_cli_loads_committed_overrides_by_default(tmp_path, capsys):
     assert code == 2
     assert "never landed" in capsys.readouterr().out
     assert not out.exists()
+
+
+def test_out_targeting_maintained_tree_requires_flag(tmp_path, capsys):
+    # O2b freeze: app/data/options/ is the maintained source; overwriting it
+    # is never implicit. The check fires before any work happens.
+    import tools.harvest.__main__ as cli_mod
+
+    maintained = Path(cli_mod.__file__).resolve().parents[2] / "app" / "data" / "options"
+    root = v1_tree(tmp_path, {"20_appearance.json": v1_file(v1_group())})
+    code = harvest_main(
+        [str(root), "--out", str(maintained), "--report", str(tmp_path / "report"),
+         "--overrides", str(empty_overrides(tmp_path))]
+    )
+    assert code == 2
+    out = capsys.readouterr().out
+    assert "MAINTAINED SOURCE" in out
+    assert "--i-know-this-overwrites-maintained-data" in out
+    assert not (tmp_path / "report").exists()  # refused before any work
+
+
+def test_out_targeting_maintained_tree_proceeds_with_flag(tmp_path):
+    # With the flag the guard steps aside; the foreign-file refusal then
+    # fires because the synthetic emission does not match the real tree —
+    # proof the run got past the guard without touching anything.
+    import tools.harvest.__main__ as cli_mod
+
+    maintained = Path(cli_mod.__file__).resolve().parents[2] / "app" / "data" / "options"
+    root = v1_tree(tmp_path, {"20_appearance.json": v1_file(v1_group())})
+    code = harvest_main(
+        [str(root), "--out", str(maintained), "--report", str(tmp_path / "report"),
+         "--overrides", str(empty_overrides(tmp_path)),
+         "--i-know-this-overwrites-maintained-data"]
+    )
+    assert code == 2  # foreign data files in the maintained tree, untouched
+
+
+def test_unrelated_out_dir_needs_no_flag(tmp_path):
+    root = v1_tree(tmp_path, {"20_appearance.json": v1_file(v1_group())})
+    out, report = tmp_path / "out", tmp_path / "report"
+    assert _run_cli(root, out, report, empty_overrides(tmp_path)) == 0
+    assert (out / "20_appearance.json").is_file()
 
 
 def test_cli_idempotent_byte_identical_with_overrides(tmp_path):

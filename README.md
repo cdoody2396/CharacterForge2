@@ -1,6 +1,6 @@
 # CharacterForge2
 
-Stages O1–O2 of CharacterForge v2. This repository currently contains:
+Stages O1–O2b of CharacterForge v2. This repository currently contains:
 
 - **Option-format loader and catalog** (`app/options/loader.py`,
   `app/options/catalog.py`) — parses and merges option JSON files
@@ -15,18 +15,21 @@ Stages O1–O2 of CharacterForge v2. This repository currently contains:
   `python -m app.options.validate <dir> [<dir> ...] [--json]`; prints every
   error plus a summary, exit 0 clean / 1 errors. The gatekeeper for all
   data.
-- **Harvest tool** (`tools/harvest/`) — converts v1 option data to the v2
-  format (see below).
-- **Harvested data** (`app/data/options/`) — 12 files, 135 merged groups,
-  2357 options, from v1 commit `a9519863` (see
-  [harvest_report/HARVEST_LOG.md](harvest_report/HARVEST_LOG.md)).
+- **Harvest tool** (`tools/harvest/`) — converted v1 option data to the v2
+  format; frozen at O2b (see below).
+- **Option data** (`app/data/options/`) — **THE MAINTAINED SOURCE** since
+  O2b: 13 files, 135 merged groups, 2359 options, harvested from v1 commit
+  `a9519863` with the O2 planning-gate overrides applied (see
+  [harvest_report/HARVEST_LOG.md](harvest_report/HARVEST_LOG.md) and
+  [harvest_report/OVERRIDES_APPLIED.md](harvest_report/OVERRIDES_APPLIED.md)).
 - **Harvest artifacts** (`harvest_report/`) — the harvest log, the priority
-  review table (overrides are decided there, not in the tool), and
+  review table (final column marks the gate's 13 overrides),
+  OVERRIDES_APPLIED (every override with its `why` verbatim), and
   POLISH_FLAGS (groups whose wording v1 marked provisional).
-- **Tests** (`tests/`) — 168 tests covering every format law with refusing
-  tests, plus the harvest transformation rules, refusals, the validator
-  gate, and byte-identical idempotence. `tests/fixtures/` is the only home
-  for illustrative data.
+- **Tests** (`tests/`) — 182 tests covering every format law with refusing
+  tests, plus the harvest transformation rules, override consumption,
+  refusals, the validator gate, and byte-identical idempotence.
+  `tests/fixtures/` is the only home for illustrative data.
 
 ## Running the tests
 
@@ -47,17 +50,24 @@ uv run python -m app.options.validate app/data/options
 
 Exit 0 clean / 1 errors; `--json` emits a machine-readable summary.
 
-## Running the harvest
+## The harvest tool — FROZEN at O2b
+
+The emitted tree in `app/data/options/` is now the **MAINTAINED SOURCE**:
+future content edits happen there directly, under the validator.
+`tools/harvest` exists only for the personal drop-in pass (O2_INPUTS
+answer 1) — it is never used to re-emit the bundled tree.
 
 ```
-git clone https://github.com/cdoody2396/CharacterForge <v1_root>
-uv run python -m tools.harvest <v1_root>
+uv run python -m tools.harvest <v1_root> --out <DIR> --report <DIR>
 ```
 
-Emits to `app/data/options/` and writes `harvest_report/`; nothing is
-written unless the staged emission set passes the full validator rule set.
-Re-running over the same v1 commit is byte-identical. Exit codes: 0 clean ·
-1 emission failed validation · 2 the tool refused the source.
+Applies the committed planning-gate overrides
+(`tools/harvest/overrides.json`; `--overrides` to substitute) and writes
+nothing unless the staged emission set passes the full validator rule set.
+Re-running over the same source is byte-identical. Exit codes: 0 clean ·
+1 emission failed validation · 2 the tool refused the source or an
+override. As a guard, `--out` targeting `app/data/options/` refuses to run
+without the explicit `--i-know-this-overwrites-maintained-data` flag.
 
 ## The spec
 

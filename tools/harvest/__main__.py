@@ -11,6 +11,12 @@ nothing is written unless the staged emission set loads with zero errors.
 Exit codes: 0 clean · 1 the emission set failed validation · 2 the tool
 refused the source (unknown file, null, example_ id, unreadable input, or
 a bad/unapplied override).
+
+FROZEN at O2b: the emitted tree in app/data/options/ is the MAINTAINED
+SOURCE — content edits happen there directly, under the validator. This
+tool remains only for the personal drop-in pass (O2_INPUTS answer 1);
+targeting the maintained tree with --out requires the explicit
+--i-know-this-overwrites-maintained-data flag.
 """
 
 from __future__ import annotations
@@ -47,7 +53,27 @@ def main(argv: list[str] | None = None) -> int:
         help="planning-gate overrides file (default: the committed "
         "tools/harvest/overrides.json)",
     )
+    parser.add_argument(
+        "--i-know-this-overwrites-maintained-data", action="store_true",
+        help="required when --out targets app/data/options/ — since O2b that "
+        "tree is the maintained source, not a harvest product",
+    )
     args = parser.parse_args(argv)
+
+    # O2b freeze: app/data/options/ is the MAINTAINED SOURCE. Overwriting it
+    # is never implicit — the flag is the operator saying so out loud.
+    maintained = Path(__file__).resolve().parents[2] / "app" / "data" / "options"
+    if (
+        args.out.resolve() == maintained
+        and not args.i_know_this_overwrites_maintained_data
+    ):
+        print(
+            "REFUSED: --out targets app/data/options/, the MAINTAINED SOURCE "
+            "(frozen at O2b — content edits happen there directly, under the "
+            "validator). If you really mean to overwrite it, pass "
+            "--i-know-this-overwrites-maintained-data."
+        )
+        return 2
 
     try:
         overrides = load_overrides(args.overrides)
