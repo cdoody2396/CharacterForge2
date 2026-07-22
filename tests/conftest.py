@@ -98,3 +98,166 @@ def free_text_group(**overrides):
     }
     data.update(overrides)
     return data
+
+
+# --- record-layer test catalog (O3) ----------------------------------------
+# Composed programmatically per §0 (no committed data outside fixtures).
+# Exercises every gate-relevant shape: required (always-visible and
+# tag-conditional, both homes), visibility chains, retired options, a
+# pick_many cap, a session-home group, a free_text slot, an explicit-rated
+# file for the rating gate.
+
+RECORD_STD_FILE = {
+    "format": 1,
+    "rating": "standard",
+    "groups": [
+        {
+            "id": "species",
+            "label": "Species",
+            "kind": "pick_one",
+            "home": "identity",
+            "required": True,
+            "options": [
+                {"id": "cat", "label": "Cat", "tags": ["furred"]},
+                {"id": "wolf", "label": "Wolf", "tags": ["furred"]},
+                {"id": "robot", "label": "Robot"},
+            ],
+        },
+        {
+            "id": "mane",
+            "label": "Mane",
+            "kind": "pick_one",
+            "home": "identity",
+            "required": True,
+            "visible_when": {"group": "species", "has_tag": "furred"},
+            "options": [
+                {"id": "short_mane", "label": "Short Mane"},
+                {"id": "long_mane", "label": "Long Mane"},
+            ],
+        },
+        {
+            "id": "fur_color",
+            "label": "Fur Color",
+            "kind": "pick_one",
+            "home": "identity",
+            "visible_when": {"group": "species", "has_tag": "furred"},
+            "options": [
+                {"id": "red", "label": "Red"},
+                {"id": "blue", "label": "Blue"},
+            ],
+        },
+        {
+            "id": "old_look",
+            "label": "Old Look",
+            "kind": "pick_many",
+            "home": "identity",
+            "options": [
+                {"id": "current", "label": "Current"},
+                {"id": "legacy", "label": "Legacy", "status": "retired"},
+                {"id": "extra", "label": "Extra"},
+            ],
+        },
+        {
+            "id": "traits",
+            "label": "Traits",
+            "kind": "pick_many",
+            "home": "persona",
+            "max_picks": 2,
+            "options": [
+                {"id": "brave", "label": "Brave"},
+                {"id": "shy", "label": "Shy"},
+                {"id": "calm", "label": "Calm"},
+            ],
+        },
+        {
+            "id": "callname",
+            "label": "Callname",
+            "kind": "pick_one",
+            "home": "persona",
+            "required": True,
+            "options": [
+                {"id": "soft", "label": "Soft"},
+                {"id": "loud", "label": "Loud"},
+            ],
+        },
+        {
+            "id": "purr",
+            "label": "Purr",
+            "kind": "pick_one",
+            "home": "persona",
+            "visible_when": {"group": "species", "has_tag": "furred"},
+            "options": [
+                {"id": "quiet", "label": "Quiet"},
+                {"id": "rumbling", "label": "Rumbling"},
+            ],
+        },
+        {
+            "id": "mood",
+            "label": "Mood",
+            "kind": "pick_one",
+            "home": "session",
+            "options": [
+                {"id": "happy", "label": "Happy"},
+                {"id": "sad", "label": "Sad"},
+            ],
+        },
+        {
+            "id": "looks",
+            "label": "Looks",
+            "kind": "free_text",
+            "home": "identity",
+            "feeds": "both",
+            "max_chars": 240,
+        },
+    ],
+}
+
+RECORD_EXPLICIT_FILE = {
+    "format": 1,
+    "rating": "explicit",
+    "groups": [
+        {
+            "id": "kink",
+            "label": "Kink",
+            "kind": "pick_one",
+            "home": "persona",
+            "options": [{"id": "k1", "label": "K1"}],
+        }
+    ],
+}
+
+
+def record_catalog_dir(tmp_path):
+    """Write the record-test catalog files into ``tmp_path/options`` and
+    return that directory (tests strict-load it themselves; orphan tests
+    remove/restore individual files)."""
+    directory = tmp_path / "options"
+    directory.mkdir(exist_ok=True)
+    (directory / "00_std.json").write_text(
+        json.dumps(RECORD_STD_FILE), encoding="utf-8"
+    )
+    (directory / "90_explicit.json").write_text(
+        json.dumps(RECORD_EXPLICIT_FILE), encoding="utf-8"
+    )
+    return directory
+
+
+def record_catalog(tmp_path):
+    return load_strict(record_catalog_dir(tmp_path))
+
+
+def new_record(character_id="test_char", age=25):
+    from app.record import CharacterRecord
+
+    return CharacterRecord.create(character_id, age)
+
+
+def refuse_gate(code, fn, *args, **kwargs):
+    """Assert a record mutation refuses with the given gate code and, when
+    a record is passed as the bound method's owner, leaves it unchanged."""
+    from app.record.errors import GateRefusal
+
+    with pytest.raises(GateRefusal) as excinfo:
+        fn(*args, **kwargs)
+    assert excinfo.value.code == code, excinfo.value
+    return excinfo.value
