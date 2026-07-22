@@ -8,8 +8,18 @@ from tools.harvest.harvest import (
     Flag,
     HarvestError,
     HarvestResult,
+    Overrides,
     harvest_tree,
+    load_overrides,
     write_output,
 )
 
-__all__ = ["Flag", "HarvestError", "HarvestResult", "harvest_tree", "write_output"]
+__all__ = [
+    "Flag",
+    "HarvestError",
+    "HarvestResult",
+    "Overrides",
+    "harvest_tree",
+    "load_overrides",
+    "write_output",
+]

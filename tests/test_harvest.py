@@ -8,7 +8,7 @@ import json
 import pytest
 
 from app.options import load_catalog
-from tools.harvest import HarvestError, harvest_tree, write_output
+from tools.harvest import HarvestError, harvest_tree, load_overrides, write_output
 from tools.harvest.__main__ import main as harvest_main
 
 
@@ -413,8 +413,10 @@ def test_example_option_id_refused(tmp_path):
 
 
 def test_priority_review_table(tmp_path):
+    # Final column repeats the default on rows the gate did not override.
     result = harvest_one(tmp_path, v1_group(tier="P1"))
-    assert "| 20_appearance.json | g1 | P1 | should |" in result.priority_md
+    assert "| 20_appearance.json | g1 | P1 | should | should |" in result.priority_md
+    assert "Overridden rows in this emission: 0." in result.priority_md
 
 
 def test_polish_flags_from_group_and_file_notes(tmp_path):
@@ -447,8 +449,18 @@ def test_log_counts_per_file_vs_v1(tmp_path):
 # --- CLI, validator gate, idempotence ---------------------------------------
 
 
-def _run_cli(root, out, report):
-    return harvest_main([str(root), "--out", str(out), "--report", str(report)])
+def empty_overrides(tmp_path):
+    """A minimal valid overrides file: nothing overridden (O2b)."""
+    path = tmp_path / "overrides_empty.json"
+    path.write_text(json.dumps({"format": 1}), encoding="utf-8")
+    return path
+
+
+def _run_cli(root, out, report, overrides):
+    return harvest_main(
+        [str(root), "--out", str(out), "--report", str(report),
+         "--overrides", str(overrides)]
+    )
 
 
 def test_cli_end_to_end_validator_clean(tmp_path):
@@ -458,12 +470,17 @@ def test_cli_end_to_end_validator_clean(tmp_path):
         {"91_anatomy_intimate.json": v1_file(v1_group(id="g2", field="g2"))},
     )
     out, report = tmp_path / "out", tmp_path / "report"
-    assert _run_cli(root, out, report) == 0
+    assert _run_cli(root, out, report, empty_overrides(tmp_path)) == 0
     assert sorted(p.name for p in out.glob("*.json")) == [
         "20_appearance.json",
         "91_anatomy_intimate.json",
     ]
-    for name in ("HARVEST_LOG.md", "PRIORITY_REVIEW.md", "POLISH_FLAGS.md"):
+    for name in (
+        "HARVEST_LOG.md",
+        "PRIORITY_REVIEW.md",
+        "POLISH_FLAGS.md",
+        "OVERRIDES_APPLIED.md",
+    ):
         assert (report / name).is_file()
     catalog = load_catalog([out], strict=True)  # the gate agrees
     assert catalog.errors == []
@@ -477,11 +494,12 @@ def test_cli_idempotent_byte_identical(tmp_path):
         {"90_wardrobe_intimate.json": v1_file(v1_group(id="g9", field="g9", render=False, tier=None))},
     )
     out, report = tmp_path / "out", tmp_path / "report"
-    assert _run_cli(root, out, report) == 0
+    ov = empty_overrides(tmp_path)
+    assert _run_cli(root, out, report, ov) == 0
     snapshot = {
         p.name: p.read_bytes() for d in (out, report) for p in d.iterdir()
     }
-    assert _run_cli(root, out, report) == 0
+    assert _run_cli(root, out, report, ov) == 0
     again = {p.name: p.read_bytes() for d in (out, report) for p in d.iterdir()}
     assert snapshot == again
 
@@ -493,7 +511,7 @@ def test_validation_failure_writes_nothing(tmp_path):
     g = v1_group(visible_when={"group": "no_such_group", "any": True})
     root = v1_tree(tmp_path, {"20_appearance.json": v1_file(g)})
     out, report = tmp_path / "out", tmp_path / "report"
-    assert _run_cli(root, out, report) == 1
+    assert _run_cli(root, out, report, empty_overrides(tmp_path)) == 1
     assert not out.exists()
     assert not report.exists()
 
@@ -503,7 +521,7 @@ def test_foreign_json_in_out_dir_refused(tmp_path):
     out = tmp_path / "out"
     out.mkdir()
     (out / "55_foreign.json").write_text("{}", encoding="utf-8")
-    assert _run_cli(root, out, tmp_path / "report") == 2  # REFUSED
+    assert _run_cli(root, out, tmp_path / "report", empty_overrides(tmp_path)) == 2
 
 
 def test_harvest_tree_is_deterministic(tmp_path):
@@ -511,3 +529,184 @@ def test_harvest_tree_is_deterministic(tmp_path):
     a, b = harvest_tree(root), harvest_tree(root)
     assert a.files == b.files
     assert a.log_md == b.log_md
+
+
+# --- planning-gate overrides (stage O2b) ------------------------------------
+
+
+def overrides_file(tmp_path, data, name="overrides.json"):
+    data.setdefault("format", 1)
+    path = tmp_path / name
+    path.write_text(json.dumps(data), encoding="utf-8")
+    return path
+
+
+def ov(tmp_path, **sections):
+    return load_overrides(overrides_file(tmp_path, dict(sections)))
+
+
+def test_home_override_supersedes_table_on_first_definition(tmp_path):
+    # g1 sits in 50_mind -> persona by the answer-7 table; the gate moves it.
+    root = v1_tree(tmp_path, {"50_mind.json": v1_file(v1_group())})
+    overrides = ov(tmp_path, home={"g1": {"to": "identity", "why": "gate ruling"}})
+    result = harvest_tree(root, overrides)
+    assert one_group(result, "50_mind.json")["home"] == "identity"
+
+
+def test_home_override_clears_fragment_contradiction(tmp_path):
+    # The real 92_piercings case in miniature: table homes disagree
+    # (38_marks identity vs 92 persona) until the override makes both say
+    # identity — the hold clears itself and the fragment emits.
+    root = v1_tree(
+        tmp_path,
+        {"38_marks.json": v1_file(v1_group(id="piercings", field="piercings", kind="multi", tier="P3"))},
+        {
+            "92_piercings_intimate.json": v1_file(
+                {"id": "piercings", "options": [{"id": "opt_x", "label": "X", "prompt": "x"}]}
+            )
+        },
+    )
+    overrides = ov(tmp_path, home={"piercings": {"to": "identity", "why": "gate ruling"}})
+    result = harvest_tree(root, overrides)
+    assert not result.flags
+    assert "92_piercings_intimate.json" in result.files
+    frag = emitted(result, "92_piercings_intimate.json")["groups"][0]
+    assert frag["options"][0]["image_text"] == "x"
+    assert one_group(result, "38_marks.json")["home"] == "identity"
+
+
+def test_priority_override_applies_after_default_map(tmp_path):
+    root = v1_tree(tmp_path, {"20_appearance.json": v1_file(v1_group(tier="P2"))})
+    overrides = ov(tmp_path, priority={"g1": {"to": "must", "why": "gate ruling"}})
+    result = harvest_tree(root, overrides)
+    assert one_group(result)["priority"] == "must"
+    assert "| 20_appearance.json | g1 | P2 | flavor | must — OVERRIDE |" in result.priority_md
+    assert "Overridden rows in this emission: 1." in result.priority_md
+
+
+def test_scene_overridable_true_emitted_on_identity_first_definition(tmp_path):
+    root = v1_tree(tmp_path, {"20_appearance.json": v1_file(v1_group())})
+    overrides = ov(tmp_path, scene_overridable={"g1": {"value": True, "why": "gate ruling"}})
+    g = one_group(harvest_tree(root, overrides))
+    assert g["scene_overridable"] is True
+    keys = list(g)
+    assert keys.index("home") < keys.index("scene_overridable") < keys.index("priority")
+
+
+def test_scene_overridable_false_emits_nothing(tmp_path):
+    root = v1_tree(tmp_path, {"20_appearance.json": v1_file(v1_group())})
+    overrides = ov(tmp_path, scene_overridable={"g1": {"value": False, "why": "gate ruling"}})
+    assert "scene_overridable" not in one_group(harvest_tree(root, overrides))
+
+
+def test_scene_override_on_persona_home_fails_the_gate(tmp_path):
+    # The spec §4 format error (scene_overridable on non-identity) is the
+    # live safety net: the emission fails validation and nothing is written.
+    root = v1_tree(tmp_path, {"50_mind.json": v1_file(v1_group())})
+    overrides = overrides_file(
+        tmp_path, {"scene_overridable": {"g1": {"value": True, "why": "bad ruling"}}}
+    )
+    out, report = tmp_path / "out", tmp_path / "report"
+    assert _run_cli(root, out, report, overrides) == 1
+    assert not out.exists()
+
+
+def test_override_without_why_is_tool_error(tmp_path):
+    with pytest.raises(HarvestError, match="why"):
+        ov(tmp_path, priority={"g1": {"to": "must"}})
+    with pytest.raises(HarvestError, match="why"):
+        ov(tmp_path, home={"g1": {"to": "identity", "why": "   "}})
+
+
+def test_override_bad_value_is_tool_error(tmp_path):
+    with pytest.raises(HarvestError, match="not in"):
+        ov(tmp_path, priority={"g1": {"to": "urgent", "why": "w"}})
+    with pytest.raises(HarvestError, match="bool"):
+        ov(tmp_path, scene_overridable={"g1": {"value": "yes", "why": "w"}})
+
+
+def test_override_unknown_section_or_key_is_tool_error(tmp_path):
+    with pytest.raises(HarvestError, match="unknown overrides section"):
+        ov(tmp_path, colour={"g1": {"to": "must", "why": "w"}})
+    with pytest.raises(HarvestError, match="unknown key"):
+        ov(tmp_path, priority={"g1": {"to": "must", "why": "w", "extra": 1}})
+    with pytest.raises(HarvestError, match="format"):
+        load_overrides(overrides_file(tmp_path, {"format": 2}))
+
+
+def test_unapplied_override_is_tool_error(tmp_path):
+    root = v1_tree(tmp_path, {"20_appearance.json": v1_file(v1_group())})
+    overrides = ov(tmp_path, priority={"no_such_group": {"to": "must", "why": "w"}})
+    with pytest.raises(HarvestError, match="never landed"):
+        harvest_tree(root, overrides)
+    overrides = ov(tmp_path, home={"no_such_group": {"to": "identity", "why": "w"}})
+    with pytest.raises(HarvestError, match="never landed"):
+        harvest_tree(root, overrides)
+
+
+def test_comment_record_entries_not_applied_but_reported(tmp_path):
+    root = v1_tree(tmp_path, {"20_appearance.json": v1_file(v1_group())})
+    overrides = ov(
+        tmp_path,
+        scene_overridable={"_denied_g1": {"value": False, "why": "recorded refusal"}},
+    )
+    result = harvest_tree(root, overrides)
+    assert "scene_overridable" not in one_group(result)  # never applied as a key
+    assert "`scene_overridable` / `_denied_g1`" in result.overrides_md
+    assert "recorded refusal" in result.overrides_md
+
+
+def test_overrides_applied_report_content(tmp_path):
+    root = v1_tree(
+        tmp_path,
+        {
+            "20_appearance.json": v1_file(v1_group(tier="P2")),
+            "50_mind.json": v1_file(v1_group(id="g_m", field="g_m", tier="P1")),
+        },
+    )
+    overrides = ov(
+        tmp_path,
+        _note="gate note",
+        priority={"g1": {"to": "must", "why": "the gate's exact words"}},
+        home={"g_m": {"to": "identity", "why": "moves home"}},
+    )
+    result = harvest_tree(root, overrides)
+    md = result.overrides_md
+    assert "- source `_note`, verbatim: gate note" in md
+    assert "| g1 | flavor | must | the gate's exact words |" in md
+    assert "| g_m | identity | persona (50_mind.json) | moves home |" in md
+    # Mechanical counts: two first-definition priority rows, one overridden.
+    assert (
+        "First-definition priority rows in this emission: 2; overridden: 1; "
+        "standing as defaulted: 1." in md
+    )
+
+
+def test_cli_loads_committed_overrides_by_default(tmp_path, capsys):
+    # No --overrides flag: the committed tools/harvest/overrides.json loads;
+    # its entries target real v1 groups absent from this synthetic tree, so
+    # the unapplied-override refusal proves the default file was consumed.
+    root = v1_tree(tmp_path, {"20_appearance.json": v1_file(v1_group())})
+    out, report = tmp_path / "out", tmp_path / "report"
+    code = harvest_main([str(root), "--out", str(out), "--report", str(report)])
+    assert code == 2
+    assert "never landed" in capsys.readouterr().out
+    assert not out.exists()
+
+
+def test_cli_idempotent_byte_identical_with_overrides(tmp_path):
+    root = v1_tree(tmp_path, {"20_appearance.json": v1_file(v1_group(tier="P2"))})
+    overrides = overrides_file(
+        tmp_path,
+        {
+            "priority": {"g1": {"to": "must", "why": "gate ruling"}},
+            "scene_overridable": {"g1": {"value": True, "why": "gate ruling"}},
+        },
+    )
+    out, report = tmp_path / "out", tmp_path / "report"
+    assert _run_cli(root, out, report, overrides) == 0
+    snapshot = {p.name: p.read_bytes() for d in (out, report) for p in d.iterdir()}
+    assert "OVERRIDES_APPLIED.md" in snapshot
+    assert _run_cli(root, out, report, overrides) == 0
+    again = {p.name: p.read_bytes() for d in (out, report) for p in d.iterdir()}
+    assert snapshot == again

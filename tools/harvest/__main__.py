@@ -1,14 +1,16 @@
-"""Harvest CLI (stage O2).
+"""Harvest CLI (stages O2/O2b).
 
-    python -m tools.harvest <v1_root> [--out DIR] [--report DIR]
+    python -m tools.harvest <v1_root> [--out DIR] [--report DIR] [--overrides FILE]
 
-Reads a v1 CharacterForge checkout, emits the v2 option tree and the three
-harvest artifacts (HARVEST_LOG.md, PRIORITY_REVIEW.md, POLISH_FLAGS.md).
-The v2 validator is the gatekeeper: nothing is written unless the staged
-emission set loads with zero errors.
+Reads a v1 CharacterForge checkout, applies the planning gate's overrides
+(default: the committed tools/harvest/overrides.json), and emits the v2
+option tree plus the harvest artifacts (HARVEST_LOG.md, PRIORITY_REVIEW.md,
+POLISH_FLAGS.md, OVERRIDES_APPLIED.md). The v2 validator is the gatekeeper:
+nothing is written unless the staged emission set loads with zero errors.
 
 Exit codes: 0 clean · 1 the emission set failed validation · 2 the tool
-refused the source (unknown file, null, example_ id, unreadable input).
+refused the source (unknown file, null, example_ id, unreadable input, or
+a bad/unapplied override).
 """
 
 from __future__ import annotations
@@ -17,7 +19,12 @@ import argparse
 import sys
 from pathlib import Path
 
-from tools.harvest.harvest import HarvestError, harvest_tree, write_output
+from tools.harvest.harvest import (
+    HarvestError,
+    harvest_tree,
+    load_overrides,
+    write_output,
+)
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -34,10 +41,17 @@ def main(argv: list[str] | None = None) -> int:
         "--report", type=Path, default=Path("harvest_report"),
         help="harvest artifact directory (default: harvest_report)",
     )
+    parser.add_argument(
+        "--overrides", type=Path,
+        default=Path(__file__).resolve().parent / "overrides.json",
+        help="planning-gate overrides file (default: the committed "
+        "tools/harvest/overrides.json)",
+    )
     args = parser.parse_args(argv)
 
     try:
-        result = harvest_tree(args.v1_root)
+        overrides = load_overrides(args.overrides)
+        result = harvest_tree(args.v1_root, overrides)
         errors = write_output(result, args.out, args.report)
     except HarvestError as exc:
         print(f"REFUSED: {exc}")

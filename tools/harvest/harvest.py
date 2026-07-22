@@ -20,6 +20,18 @@ FLAGS or REFUSES anything outside them — it never improvises:
   prefixed comment keys carried verbatim at their original level (§1.9);
   ``render`` and ``tier`` are LOG-ONLY.
 - ``00_age.json`` is CONSUMED, not emitted (answer 6; spec §8 struck).
+- O2b: the planning gate's overrides file (``tools/harvest/overrides.json``)
+  is consumed on top. Load order is DECIDED: the answer-7 home table first,
+  THEN ``home`` overrides by group id (superseding the table wherever the
+  group appears), then contradiction flagging on whatever remains.
+  ``priority`` overrides apply after the §1.6 default map;
+  ``scene_overridable`` entries with value true emit the group key on the
+  first definition (identity homes only — the format error for a
+  non-identity flag is the live safety net). Underscore-prefixed entries
+  are comment records, not keys. ``why`` is required on every entry — an
+  override without a reason is a tool error, and so is an override that
+  never lands on an emitted group. Every override travels verbatim into
+  ``OVERRIDES_APPLIED.md``.
 - Any group contradicting its file's home, any numeric kind other than age,
   any un-mapped construct: FLAGGED in the log and HELD out of the emitted
   tree.
@@ -93,6 +105,15 @@ HOME_BY_FILE = {
 TIER_MAP = {"P0": "must", "P1": "should", "P2": "flavor", "P3": "flavor"}  # §1.6
 KIND_MAP = {"single": "pick_one", "multi": "pick_many"}
 
+# O2b: the shape of a planning-gate overrides file. Each section maps group
+# ids to an entry carrying one value key and a required 'why'; the allowed
+# value set is per section (None = must be a JSON bool).
+OVERRIDE_SECTIONS = {
+    "priority": ("to", {"must", "should", "flavor"}),
+    "home": ("to", {"identity", "persona", "session"}),
+    "scene_overridable": ("value", None),
+}
+
 # Answer 5: held in the per-group "_v1" comment object (field only if it
 # differs from the group id), plus any unexpected leftover key.
 HELD_GROUP_KEYS = ("field", "quick", "required", "widget", "region", "attribute", "aliases")
@@ -126,6 +147,19 @@ class Flag:
 
 
 @dataclass
+class Overrides:
+    """A validated planning-gate overrides file (O2b). ``why`` strings are
+    authoritative and travel verbatim into OVERRIDES_APPLIED.md."""
+
+    display: str  # how the reports name the source file
+    note: str | None  # top-level _note, verbatim
+    priority: dict[str, dict]  # gid -> {"to": ..., "why": ...}
+    home: dict[str, dict]  # gid -> {"to": ..., "why": ...}
+    scene_overridable: dict[str, dict]  # gid -> {"value": ..., "why": ...}
+    comments: list  # (section, key, value) — comment records, never applied
+
+
+@dataclass
 class HarvestResult:
     source: dict  # {"url": ..., "commit": ...} of the v1 checkout
     files: dict[str, bytes]  # emitted filename -> serialized v2 file
@@ -134,6 +168,7 @@ class HarvestResult:
     log_md: str
     priority_md: str
     polish_md: str
+    overrides_md: str = ""  # empty when no overrides file was given
 
 
 @dataclass
@@ -156,6 +191,8 @@ class _Part:
     options: list | None = None  # emitted option dicts
     has_image: bool = False
     priority: str | None = None
+    priority_default: str | None = None  # the §1.6 value before any override
+    scene_over: bool = False  # O2b: gate override emits scene_overridable
     hold_reason: str | None = None
 
     def hold(self, reason: str) -> None:
@@ -194,12 +231,100 @@ def _load_file(path: Path) -> dict:
     return data
 
 
-def _assign_home(fname: str, gid: str) -> str:
+def load_overrides(path: Path | str) -> Overrides:
+    """Read and validate a planning-gate overrides file (O2b).
+
+    Raises :class:`HarvestError` on any violation: unreadable file, wrong
+    ``format``, unknown section or entry key, bad value, or a missing
+    ``why`` — an override without a reason is a tool error."""
+    path = Path(path)
+    try:
+        data = json.loads(path.read_text(encoding="utf-8-sig"))
+    except (OSError, UnicodeDecodeError, json.JSONDecodeError) as exc:
+        raise HarvestError(f"{path}: cannot read overrides file: {exc}") from exc
+    if not isinstance(data, dict):
+        raise HarvestError(f"{path.name}: overrides file must be a JSON object")
+    if data.get("format") != 1:
+        raise HarvestError(f"{path.name}: overrides file must carry \"format\": 1")
+    note: str | None = None
+    comments: list = []
+    sections: dict[str, dict] = {k: {} for k in OVERRIDE_SECTIONS}
+    for key, value in data.items():
+        if key == "format":
+            continue
+        if key.startswith("_"):
+            if key == "_note" and isinstance(value, str):
+                note = value
+            else:
+                comments.append(("top-level", key, value))
+            continue
+        if key not in OVERRIDE_SECTIONS:
+            raise HarvestError(f"{path.name}: unknown overrides section {key!r}")
+        if not isinstance(value, dict):
+            raise HarvestError(f"{path.name}: section {key!r} must be an object")
+        value_key, allowed = OVERRIDE_SECTIONS[key]
+        for gid, entry in value.items():
+            if gid.startswith("_"):
+                # Underscore-prefixed entries are comment records, not keys.
+                comments.append((key, gid, entry))
+                continue
+            if not isinstance(entry, dict):
+                raise HarvestError(f"{path.name}: override {key}/{gid} must be an object")
+            why = entry.get("why")
+            if not isinstance(why, str) or not why.strip():
+                raise HarvestError(
+                    f"{path.name}: override {key}/{gid} lacks a 'why' — an "
+                    f"override without a reason is a tool error"
+                )
+            unknown = [
+                k for k in entry if k not in (value_key, "why") and not k.startswith("_")
+            ]
+            if unknown:
+                raise HarvestError(
+                    f"{path.name}: override {key}/{gid} carries unknown key(s) {unknown}"
+                )
+            if value_key not in entry:
+                raise HarvestError(f"{path.name}: override {key}/{gid} lacks {value_key!r}")
+            val = entry[value_key]
+            if allowed is None:
+                if not isinstance(val, bool):
+                    raise HarvestError(
+                        f"{path.name}: override {key}/{gid} {value_key} must be a bool, "
+                        f"got {val!r}"
+                    )
+            elif val not in allowed:
+                raise HarvestError(
+                    f"{path.name}: override {key}/{gid} {value_key} {val!r} not in "
+                    f"{sorted(allowed)}"
+                )
+            sections[key][gid] = entry
+    try:
+        display = path.resolve().relative_to(Path.cwd()).as_posix()
+    except ValueError:
+        display = path.as_posix()
+    return Overrides(
+        display=display,
+        note=note,
+        priority=sections["priority"],
+        home=sections["home"],
+        scene_overridable=sections["scene_overridable"],
+        comments=comments,
+    )
+
+
+def _assign_home(fname: str, gid: str, ov: Overrides | None, log: "_Log") -> str:
     # Answer 7: 10_identity splits per group — apparent_age is identity,
     # every other group is persona.
     if fname == "10_identity.json":
-        return "identity" if gid == "apparent_age" else "persona"
-    return HOME_BY_FILE[fname]
+        table = "identity" if gid == "apparent_age" else "persona"
+    else:
+        table = HOME_BY_FILE[fname]
+    # O2b: `home` overrides supersede the table wherever the group appears;
+    # contradiction flagging runs on what remains after this.
+    if ov is not None and gid in ov.home:
+        log.home_overrides.append((gid, fname, table))
+        return ov.home[gid]["to"]
+    return table
 
 
 def _serialize(obj: dict) -> bytes:
@@ -312,10 +437,16 @@ class _Log:
         self.consumed_rows: list = []  # (file, text)
         self.field_drops = 0  # field == id, dropped per §1.10
         self.empty_prompts = 0  # empty v1 prompts preserved as empty texts
+        self.home_overrides: list = []  # (gid, file, superseded table home)
 
 
 def _parse_group(
-    raw: object, fname: str, rating: str, defined: dict[str, _Part], log: _Log
+    raw: object,
+    fname: str,
+    rating: str,
+    defined: dict[str, _Part],
+    log: _Log,
+    ov: Overrides | None,
 ) -> _Part:
     part = _Part(file=fname, rating=rating, raw=raw if isinstance(raw, dict) else {}, gid="", fragment=False)
     if not isinstance(raw, dict) or not isinstance(raw.get("id"), str) or not raw["id"]:
@@ -347,7 +478,7 @@ def _parse_group(
         base = defined[gid]
         part.render_eff = raw["render"] if "render" in raw else base.render_eff
         base_home = base.home
-        file_home = _assign_home(fname, gid)
+        file_home = _assign_home(fname, gid, ov, log)
         if base_home != file_home and part.hold_reason is None:
             part.hold(
                 f"contradicts its file's home: fragment file {fname!r} is "
@@ -364,7 +495,7 @@ def _parse_group(
             part.kind = KIND_MAP[kind]
         else:
             part.hold(f"un-mapped kind {kind!r}")
-        part.home = _assign_home(fname, gid)
+        part.home = _assign_home(fname, gid, ov, log)
         part.render_eff = raw.get("render")
 
     if "render" in raw and not isinstance(raw["render"], bool):
@@ -424,6 +555,8 @@ def _assemble_group(part: _Part) -> dict:
     if not part.fragment:
         out["kind"] = part.kind
         out["home"] = part.home
+        if part.scene_over:  # O2b gate override; spec §4 key order
+            out["scene_overridable"] = True
         if part.priority is not None:
             out["priority"] = part.priority
     if part.vw is not None:
@@ -440,11 +573,14 @@ def _assemble_group(part: _Part) -> dict:
     return out
 
 
-def harvest_tree(v1_root: Path | str) -> HarvestResult:
+def harvest_tree(
+    v1_root: Path | str, overrides: Overrides | None = None
+) -> HarvestResult:
     """Read a v1 checkout and produce the full emission set and reports.
 
     Pure transformation — writes nothing. Raises :class:`HarvestError` on a
-    refusal (unknown source file, unreadable source, null, example_ id)."""
+    refusal (unknown source file, unreadable source, null, example_ id, or
+    an override that never lands on an emitted group)."""
     v1_root = Path(v1_root)
     log = _Log()
     flags: list[Flag] = []
@@ -496,7 +632,7 @@ def harvest_tree(v1_root: Path | str) -> HarvestResult:
             file_comments = [(k, v) for k, v in data.items() if k.startswith("_")]
             parts: list[_Part] = []
             for raw in v1_groups:
-                part = _parse_group(raw, name, rating, defined, log)
+                part = _parse_group(raw, name, rating, defined, log, overrides)
                 parts.append(part)
                 if not part.fragment and part.gid != "<no id>" and part.gid not in defined:
                     defined[part.gid] = part
@@ -514,12 +650,14 @@ def harvest_tree(v1_root: Path | str) -> HarvestResult:
                 part.hold(f"defining group (in {defined[part.gid].file!r}) is held")
 
     # §1.6 priority on the MERGED group: required wherever any option carries
-    # image_text; mapped from the first definition's tier, no overrides.
+    # image_text; mapped from the first definition's tier. O2b: the gate's
+    # priority overrides apply AFTER the default map.
     merged_image: dict[str, bool] = {}
     for _, _, _, parts in parts_by_file:
         for part in parts:
             if part.hold_reason is None and part.has_image:
                 merged_image[part.gid] = True
+    applied_priority: dict[str, tuple[str, str]] = {}  # gid -> (default, final)
     for _, _, _, parts in parts_by_file:
         for part in parts:
             if part.fragment or part.hold_reason is not None:
@@ -528,12 +666,18 @@ def harvest_tree(v1_root: Path | str) -> HarvestResult:
                 if part.tier is None:
                     part.hold(
                         "carries image_text but no v1 tier — the §1.6 map has "
-                        "no input and priority overrides are not the harvest's"
+                        "no input and priority overrides are the gate's, not "
+                        "the harvest's"
                     )
                 elif part.tier not in TIER_MAP:
                     part.hold(f"un-mapped tier {part.tier!r}")
                 else:
-                    part.priority = TIER_MAP[part.tier]
+                    part.priority_default = TIER_MAP[part.tier]
+                    part.priority = part.priority_default
+                    entry = overrides.priority.get(part.gid) if overrides else None
+                    if entry is not None:
+                        part.priority = entry["to"]
+                        applied_priority[part.gid] = (part.priority_default, part.priority)
 
     # Holds cascade once more (a group held for priority may have fragments).
     for _, _, _, parts in parts_by_file:
@@ -543,10 +687,24 @@ def harvest_tree(v1_root: Path | str) -> HarvestResult:
                 if base.hold_reason is not None:
                     part.hold(f"defining group (in {base.file!r}) is held")
 
+    # O2b: scene_overridable overrides with value true emit the group key on
+    # the first definition (identity homes only — the validator's format
+    # error for a non-identity flag is the live safety net).
+    if overrides is not None:
+        for _, _, _, parts in parts_by_file:
+            for part in parts:
+                if part.fragment or part.hold_reason is not None:
+                    continue
+                entry = overrides.scene_overridable.get(part.gid)
+                if entry is not None and entry["value"] is True:
+                    part.scene_over = True
+
     files: dict[str, bytes] = {}
     inv_by_name = {row["file"]: row for row in inventory}
     priority_rows: list = []
     polish_rows: list = []
+    emitted_gids: set[str] = set()
+    emitted_first_defs: set[str] = set()
     for name, rating, file_comments, parts in parts_by_file:
         emitted_groups = []
         file_note = file_comments.get("_note")
@@ -555,12 +713,20 @@ def harvest_tree(v1_root: Path | str) -> HarvestResult:
                 flags.append(Flag(name, part.gid, part.hold_reason))
                 continue
             emitted_groups.append(_assemble_group(part))
+            emitted_gids.add(part.gid)
+            if not part.fragment:
+                emitted_first_defs.add(part.gid)
             if not part.fragment and part.priority is not None:
-                priority_rows.append((name, part.gid, part.tier, part.priority))
+                final = part.priority
+                if part.gid in applied_priority:
+                    final = f"{part.priority} — OVERRIDE"
+                priority_rows.append(
+                    (name, part.gid, part.tier, part.priority_default, final)
+                )
             elif part.fragment:
                 base = defined[part.gid]
                 priority_rows.append(
-                    (name, part.gid, "—", f"(fragment — inherits from {base.file})")
+                    (name, part.gid, "—", f"(fragment — inherits from {base.file})", "—")
                 )
             own_note = dict(part.comments).get("_note")
             if _note_matches_polish(own_note):
@@ -582,6 +748,25 @@ def harvest_tree(v1_root: Path | str) -> HarvestResult:
         _refuse_nulls(obj, name, "$")
         files[name] = _serialize(obj)
 
+    # O2b: every non-comment override entry must have landed on an emitted
+    # group — an override that targets nothing is a tool error.
+    if overrides is not None:
+        unapplied = [
+            f"priority/{gid}" for gid in overrides.priority if gid not in applied_priority
+        ]
+        unapplied += [f"home/{gid}" for gid in overrides.home if gid not in emitted_gids]
+        unapplied += [
+            f"scene_overridable/{gid}"
+            for gid in overrides.scene_overridable
+            if gid not in emitted_first_defs
+        ]
+        if unapplied:
+            raise HarvestError(
+                "override(s) never landed on an emitted group: "
+                + ", ".join(unapplied)
+                + " — an override that targets nothing is a tool error"
+            )
+
     source = _git_source(v1_root)
     result = HarvestResult(
         source=source,
@@ -593,8 +778,14 @@ def harvest_tree(v1_root: Path | str) -> HarvestResult:
         polish_md="",
     )
     result.log_md = _render_log(result, log)
-    result.priority_md = _render_priority(priority_rows)
+    result.priority_md = _render_priority(priority_rows, len(applied_priority))
     result.polish_md = _render_polish(polish_rows)
+    if overrides is not None:
+        n_first = sum(1 for r in priority_rows if r[3] in TIER_MAP.values())
+        n_frag = len(priority_rows) - n_first
+        result.overrides_md = _render_overrides(
+            overrides, applied_priority, log.home_overrides, n_first, n_frag
+        )
     return result
 
 
@@ -680,19 +871,104 @@ def _render_log(result: HarvestResult, log: _Log) -> str:
     return "\n".join(lines)
 
 
-def _render_priority(rows: list) -> str:
+def _render_priority(rows: list, overridden: int) -> str:
     lines = [
-        "# PRIORITY REVIEW — §1.6 default map applied, NO overrides",
+        "# PRIORITY REVIEW — §1.6 default map, then the gate's overrides",
         "",
-        "Overrides are decided on this table at the O2 gate (O2_INPUTS answer 4),",
-        "not by the harvest. Map: P0→must, P1→should, P2→flavor, P3→flavor.",
+        "Map: P0→must, P1→should, P2→flavor, P3→flavor (O2_INPUTS answer 4).",
+        "Overrides are the planning gate's, recorded in the overrides file and",
+        "OVERRIDES_APPLIED.md, applied after the default map; overridden rows",
+        f"are marked in the final column. Overridden rows in this emission: {overridden}.",
         "",
-        "| file | group | v1 tier | assigned priority |",
-        "|---|---|---|---|",
+        "| file | group | v1 tier | default priority | final |",
+        "|---|---|---|---|---|",
     ]
-    for file, gid, tier, priority in rows:
-        lines.append(f"| {file} | {gid} | {tier} | {priority} |")
+    for file, gid, tier, default, final in rows:
+        lines.append(f"| {file} | {gid} | {tier} | {default} | {final} |")
     lines.append("")
+    return "\n".join(lines)
+
+
+def _render_overrides(
+    ov: Overrides,
+    applied_priority: dict[str, tuple[str, str]],
+    home_overrides: list,
+    first_def_rows: int,
+    fragment_rows: int,
+) -> str:
+    def esc(s: str) -> str:
+        return s.replace("|", "\\|")
+
+    lines = [
+        "# OVERRIDES APPLIED — planning-gate decisions consumed by this run",
+        "",
+        f"- overrides file: `{ov.display}`",
+    ]
+    if ov.note is not None:
+        lines.append(f"- source `_note`, verbatim: {ov.note}")
+    lines += ["", "## `priority` — applied after the §1.6 default map", ""]
+    if ov.priority:
+        lines += [
+            "| group | default | override | why (verbatim) |",
+            "|---|---|---|---|",
+        ]
+        for gid, entry in ov.priority.items():
+            default, final = applied_priority[gid]
+            lines.append(f"| {gid} | {default} | {final} | {esc(entry['why'])} |")
+    else:
+        lines.append("(none)")
+    lines += [
+        "",
+        "## `home` — applied after the answer-7 table, superseding it wherever the group appears",
+        "",
+    ]
+    if ov.home:
+        lines += [
+            "| group | override | supersedes (answer-7 table) | why (verbatim) |",
+            "|---|---|---|---|",
+        ]
+        for gid, entry in ov.home.items():
+            occ = [f"{table} ({fname})" for g, fname, table in home_overrides if g == gid]
+            lines.append(
+                f"| {gid} | {entry['to']} | {', '.join(occ)} | {esc(entry['why'])} |"
+            )
+    else:
+        lines.append("(none)")
+    lines += [
+        "",
+        "## `scene_overridable` — identity homes only; value true emits the group key",
+        "",
+    ]
+    if ov.scene_overridable:
+        lines += ["| group | value | why (verbatim) |", "|---|---|---|"]
+        for gid, entry in ov.scene_overridable.items():
+            lines.append(
+                f"| {gid} | {json.dumps(entry['value'])} | {esc(entry['why'])} |"
+            )
+    else:
+        lines.append("(none)")
+    lines += ["", "## Comment records — recorded verbatim, never applied as keys", ""]
+    if ov.comments:
+        for section, key, value in ov.comments:
+            lines.append(
+                f"- `{section}` / `{key}`: `{json.dumps(value, ensure_ascii=False)}`"
+            )
+    else:
+        lines.append("(none)")
+    overridden = len(applied_priority)
+    lines += [
+        "",
+        "## Defaulted rows",
+        "",
+        f"- First-definition priority rows in this emission: {first_def_rows}; "
+        f"overridden: {overridden}; standing as defaulted: {first_def_rows - overridden}.",
+        f"- Fragment rows (inherit the defining group's priority, no default of "
+        f"their own): {fragment_rows}.",
+        "- The source `_note`'s own row arithmetic, where present, was counted at",
+        "  the gate against the review table as it then stood — before any held",
+        "  group returned; the counts above are recomputed from this emission.",
+        "",
+    ]
     return "\n".join(lines)
 
 
@@ -749,10 +1025,13 @@ def write_output(
     for name, blob in result.files.items():
         (out_dir / name).write_bytes(blob)
     report_dir.mkdir(parents=True, exist_ok=True)
-    for name, text in (
+    reports = [
         ("HARVEST_LOG.md", result.log_md),
         ("PRIORITY_REVIEW.md", result.priority_md),
         ("POLISH_FLAGS.md", result.polish_md),
-    ):
+    ]
+    if result.overrides_md:  # only a run with an overrides file writes this
+        reports.append(("OVERRIDES_APPLIED.md", result.overrides_md))
+    for name, text in reports:
         (report_dir / name).write_bytes(text.encode("utf-8"))
     return []
