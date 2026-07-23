@@ -10,9 +10,11 @@ Three failure surfaces:
   same strict-authoring stance as the option format: fail loud, load nothing.
 - :class:`GateRefusal` — the construction gate (N4) or finalization gate
   (N5) refuses a mutation. The record is unchanged on refusal.
-- :class:`SafetyNotInstalledError` — N6: the word-filter stage has not
-  landed; free-text and appearance-paragraph writes refuse HONESTLY instead
-  of stubbing into silence (the v1 NOT_CONFIGURED pattern).
+- :class:`SafetyNotInstalledError` — N6: no word filter was supplied to
+  this write path; free-text and appearance-paragraph writes refuse
+  HONESTLY instead of stubbing into silence (the v1 NOT_CONFIGURED
+  pattern). O4 opened the seam: with a filter passed in (§F) these paths
+  write; without one, every O3 refusal stands unchanged.
 
 Unknown ids at LOAD are deliberately not errors — they are the orphan
 report's business (N9): the record loads, orphaned picks stay written but
@@ -48,10 +50,14 @@ DRAFT_ALREADY_OPEN = "DRAFT_ALREADY_OPEN"
 NO_DRAFT = "NO_DRAFT"
 REQUIRED_GROUP_UNFILLED = "REQUIRED_GROUP_UNFILLED"
 
-# --- safety seam (N6) -------------------------------------------------------
+# --- safety seam (N6; opened by O4_INPUTS §F) -------------------------------
 SAFETY_NOT_INSTALLED = "SAFETY_NOT_INSTALLED"
 NAME_CHARSET = "NAME_CHARSET"
 NAME_LENGTH = "NAME_LENGTH"
+FREE_TEXT_OVERLONG = "FREE_TEXT_OVERLONG"
+PARAGRAPH_OVERLONG = "PARAGRAPH_OVERLONG"
+TEXT_BLOCKED = "TEXT_BLOCKED"
+NAME_BLOCKED = "NAME_BLOCKED"
 
 # --- record-file format codes (N1/N2, load surface) ------------------------
 RECORD_NULL = "RECORD_NULL"
@@ -80,8 +86,8 @@ class GateRefusal(RecordError):
 
 
 class SafetyNotInstalledError(RecordError):
-    """N6: the safety stage has not landed; this write path refuses honestly
-    rather than accepting text no filter has seen."""
+    """N6: no filter was supplied to this write path; it refuses honestly
+    rather than accepting text no filter has seen (§F law)."""
 
     def __init__(self, subject: str | None, message: str):
         super().__init__(SAFETY_NOT_INSTALLED, subject, message)

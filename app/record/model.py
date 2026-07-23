@@ -1,8 +1,11 @@
 """The character record: N1 file shape, N2 selections, mutations under the
-N4 gate, N5 finalization, the N6 safety seam.
+N4 gate, N5 finalization, the N6 safety seam (opened by O4_INPUTS §F: the
+free-text slots, the paragraph edit path, and name revalidation write when
+a :class:`~app.safety.filter.SafetyFilter` is passed in; with none, every
+O3 refusal stands unchanged).
 
 One JSON object per character. Key spellings are the builder's (recorded in
-SESSION_REPORT_O3):
+SESSION_REPORT_O3 / SESSION_REPORT_O4):
 
     {
       "format": 1,
@@ -10,11 +13,15 @@ SESSION_REPORT_O3):
       "created": "<UTC ISO-8601>",
       "active_version": 1,                     # absent before v1 exists
       "identity_versions": [ { "version": 1, "selections": {...},
-          "looks_text": "...",                 # slot; unwritable until safety
-          "appearance_paragraph": "...", "finalized": "<stamp>" } ],
-      "draft_identity": { "selections": {...} },   # at most one (N1)
-      "persona": { "name": "...", "name_safety": "pending",
-                   "selections": {...} }       # story slot absent until safety
+          "looks_text": "...",                 # slot; filtered write (O4)
+          "appearance_paragraph": "...",
+          "paragraph_author": "drafter",       # or "user"; absent = drafter
+          "finalized": "<stamp>" } ],
+      "draft_identity": { "selections": {...},     # at most one (N1)
+          "paragraph_edit": "..." },           # pending user edit, if any
+      "persona": { "name": "...", "name_safety": "pending",  # or "clear"
+                   "selections": {...},
+                   "story_text": "..." }       # slot; filtered write (O4)
     }
 
 Immutability of committed versions is by convention inside the single file
@@ -35,9 +42,12 @@ import unicodedata
 from dataclasses import dataclass, field
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Callable
+from typing import TYPE_CHECKING, Callable
 
 from app.options.catalog import Catalog
+
+if TYPE_CHECKING:  # §F wiring: the filter is passed in, never imported at
+    from app.safety.filter import SafetyFilter  # runtime — duck-typed here.
 from app.record import errors as E
 from app.record.errors import (
     GateRefusal,
@@ -62,9 +72,25 @@ RECORD_FORMAT = 1
 _NAME_PUNCTUATION = frozenset(" '-.")
 NAME_MAX_CHARS = 60
 
-# N6: every name write leaves this pending flag; the safety stage clears it
-# on revalidation. O3 knows no other value.
+# N6: a filterless name write leaves the pending flag; a filtered write (or
+# revalidation, explicit or at finalization) clears it. Exactly two values
+# exist (§F); blocked is never a stored state.
 NAME_SAFETY_PENDING = "pending"
+NAME_SAFETY_CLEAR = "clear"
+NAME_SAFETY_VALUES = frozenset({NAME_SAFETY_PENDING, NAME_SAFETY_CLEAR})
+
+# §F DECIDED: the free-text slot ceiling (Decision 7-amended).
+FREE_TEXT_MAX_CHARS = 240
+
+# §F: the paragraph-edit cap EXISTS by contract; the value is ILLUSTRATIVE
+# (builder's, recorded in SESSION_REPORT_O4).
+PARAGRAPH_MAX_CHARS = 1200
+
+# §F: every committed version records its paragraph's author; an absent key
+# on load reads as the drafter (O3 files predate the key).
+PARAGRAPH_AUTHOR_DRAFTER = "drafter"
+PARAGRAPH_AUTHOR_USER = "user"
+PARAGRAPH_AUTHORS = frozenset({PARAGRAPH_AUTHOR_DRAFTER, PARAGRAPH_AUTHOR_USER})
 
 
 def _utc_stamp() -> str:
@@ -80,7 +106,8 @@ class IdentityVersion:
     selections: dict
     appearance_paragraph: str
     finalized: str
-    looks_text: str | None = None  # the identity free-text slot (N6-sealed)
+    looks_text: str | None = None  # the identity free-text slot (N6)
+    paragraph_author: str = PARAGRAPH_AUTHOR_DRAFTER  # "drafter" | "user" (§F)
 
 
 @dataclass
@@ -88,7 +115,11 @@ class _Draft:
     """The at-most-one uncommitted working copy of v(n+1) (N1)."""
 
     selections: dict = field(default_factory=dict)
-    looks_text: str | None = None  # unwritable until the safety stage (N6)
+    looks_text: str | None = None  # the identity free-text slot (N6)
+    # §F: a pending user edit to the appearance paragraph; commits verbatim
+    # at finalization with author "user". Never copied into a new draft —
+    # user text must not survive an identity change it might misdescribe.
+    paragraph_edit: str | None = None
 
 
 @dataclass
@@ -98,7 +129,7 @@ class _Persona:
     name: str | None = None
     name_safety: str | None = None
     selections: dict = field(default_factory=dict)
-    story_text: str | None = None  # the persona free-text slot (N6-sealed)
+    story_text: str | None = None  # the persona free-text slot (N6)
 
 
 class CharacterRecord:
@@ -265,10 +296,19 @@ class CharacterRecord:
             looks_text=active.looks_text,
         )
 
-    def finalize(self, catalog: Catalog) -> IdentityVersion:
+    def finalize(
+        self, catalog: Catalog, safety: "SafetyFilter | None" = None
+    ) -> IdentityVersion:
         """The identity commit (N5): all of N4 over the whole character,
         required-when-visible across BOTH layers, then draft → v(n+1)
-        verbatim, paragraph drafted (N7), stamp set, active pointer moves."""
+        verbatim, paragraph drafted (N7) — or the draft's user edit
+        committed verbatim with author 'user' (§F) — stamp set, active
+        pointer moves.
+
+        §F: when a filter is supplied and a name exists still 'pending',
+        finalization revalidates it — pass writes 'clear', fail refuses
+        the whole finalization. With no filter, the O3 behavior stands
+        (pending survives; nothing here refuses for it)."""
         if self.draft is None:
             raise GateRefusal(
                 E.NO_DRAFT, None, "no draft identity is open; nothing to finalize"
@@ -280,47 +320,152 @@ class CharacterRecord:
             identity_selections=self.draft.selections,
             persona_selections=self.persona.selections,
         )
+        if safety is not None:
+            self.revalidate_name(safety)  # refusal aborts before any commit
+        if self.draft.paragraph_edit is not None:
+            paragraph = self.draft.paragraph_edit
+            author = PARAGRAPH_AUTHOR_USER
+        else:
+            paragraph = draft_appearance_paragraph(catalog, self.draft.selections)
+            author = PARAGRAPH_AUTHOR_DRAFTER
         version = IdentityVersion(
             version=len(self.identity_versions) + 1,
             selections=copy.deepcopy(self.draft.selections),
-            appearance_paragraph=draft_appearance_paragraph(
-                catalog, self.draft.selections
-            ),
+            appearance_paragraph=paragraph,
             finalized=_utc_stamp(),
             looks_text=self.draft.looks_text,
+            paragraph_author=author,
         )
         self.identity_versions.append(version)
         self.active_version = version.version
         self.draft = None
         return version
 
-    # -- the safety seam (N6) ----------------------------------------------
+    # -- the safety seam (N6, opened by O4_INPUTS §F) -----------------------
+    #
+    # Wiring (builder's spelling, the catalog-argument precedent): the
+    # filter arrives as a trailing optional argument on each write path.
+    # LAW: with no filter supplied, every O3 SafetyNotInstalledError
+    # refusal stands unchanged — the seam's honesty survives for tests
+    # and for any caller without the filter.
+    # §G: refusal, never redaction — a block refuses the whole write,
+    # naming category and matched term; the record is unchanged.
 
-    def set_looks_text(self, text: str) -> None:
-        raise SafetyNotInstalledError(
-            "looks_text",
-            "the looks free-text slot refuses writes until the safety stage "
-            "lands (N6); no filter has seen this text",
+    def _check_free_text(
+        self, safety: "SafetyFilter", text: str, surface: str, max_chars: int
+    ) -> None:
+        """The shared §F write chain: shape, cap, then the filter in
+        `freetext` context at the record's current rating."""
+        if not isinstance(text, str) or not text.strip():
+            raise GateRefusal(
+                E.BAD_VALUE_TYPE,
+                surface,
+                f"{surface} must be a non-empty string; clearing is its own "
+                f"API (no nulls, no empty-string spelling of 'cleared')",
+            )
+        if len(text) > max_chars:
+            code = (
+                E.PARAGRAPH_OVERLONG
+                if surface == "appearance_paragraph"
+                else E.FREE_TEXT_OVERLONG
+            )
+            raise GateRefusal(
+                code,
+                surface,
+                f"{surface} is {len(text)} characters; the cap is {max_chars}",
+            )
+        result = safety.check(
+            text, context="freetext", rating=self.rating, surface=surface
         )
+        if not result.allowed:
+            raise GateRefusal(
+                E.TEXT_BLOCKED,
+                surface,
+                f"{surface} refused: category {result.category!r} matched "
+                f"{result.matched!r}; rewrite and retry (§G: the write "
+                f"refuses whole, nothing is redacted)",
+            )
 
-    def set_story_text(self, text: str) -> None:
-        raise SafetyNotInstalledError(
-            "story_text",
-            "the story free-text slot refuses writes until the safety stage "
-            "lands (N6); no filter has seen this text",
+    def set_looks_text(
+        self, text: str, safety: "SafetyFilter | None" = None
+    ) -> None:
+        """The identity free-text slot (§F). Draft-scoped like every
+        identity write; cap FREE_TEXT_MAX_CHARS; filtered."""
+        if safety is None:
+            raise SafetyNotInstalledError(
+                "looks_text",
+                "the looks free-text slot refuses writes without the filter "
+                "(N6); no filter has seen this text",
+            )
+        if self.draft is None:
+            raise GateRefusal(
+                E.IDENTITY_NO_DRAFT,
+                "looks_text",
+                "identity is locked at finalization; open a draft to edit "
+                "its looks text (Decision 4)",
+            )
+        self._check_free_text(safety, text, "looks_text", FREE_TEXT_MAX_CHARS)
+        self.draft.looks_text = text
+
+    def clear_looks_text(self) -> None:
+        """Explicit clear (§F; N2: no nulls, no empty-string spelling).
+        Filter-free: clearing enters no text. Idempotent."""
+        if self.draft is None:
+            raise GateRefusal(
+                E.IDENTITY_NO_DRAFT,
+                "looks_text",
+                "identity is locked at finalization; open a draft to clear "
+                "its looks text (Decision 4)",
+            )
+        self.draft.looks_text = None
+
+    def set_story_text(
+        self, text: str, safety: "SafetyFilter | None" = None
+    ) -> None:
+        """The persona free-text slot (§F). Persona-scoped: no draft
+        needed; cap FREE_TEXT_MAX_CHARS; filtered."""
+        if safety is None:
+            raise SafetyNotInstalledError(
+                "story_text",
+                "the story free-text slot refuses writes without the filter "
+                "(N6); no filter has seen this text",
+            )
+        self._check_free_text(safety, text, "story_text", FREE_TEXT_MAX_CHARS)
+        self.persona.story_text = text
+
+    def clear_story_text(self) -> None:
+        """Explicit clear for the story slot. Filter-free; idempotent."""
+        self.persona.story_text = None
+
+    def edit_appearance_paragraph(
+        self, text: str, safety: "SafetyFilter | None" = None
+    ) -> None:
+        """§F: user edits target the DRAFT only — committed versions stay
+        frozen (N1). The edit lands as a pending draft field and commits
+        verbatim at finalization with author 'user'."""
+        if safety is None:
+            raise SafetyNotInstalledError(
+                "appearance_paragraph",
+                "user edits to the appearance paragraph refuse without the "
+                "filter (N6); the drafter's output stands",
+            )
+        if self.draft is None:
+            raise GateRefusal(
+                E.IDENTITY_NO_DRAFT,
+                "appearance_paragraph",
+                "no draft identity is open; the paragraph edit targets the "
+                "draft (§F) — committed versions stay frozen (N1)",
+            )
+        self._check_free_text(
+            safety, text, "appearance_paragraph", PARAGRAPH_MAX_CHARS
         )
+        self.draft.paragraph_edit = text
 
-    def edit_appearance_paragraph(self, text: str) -> None:
-        raise SafetyNotInstalledError(
-            "appearance_paragraph",
-            "user edits to the appearance paragraph refuse until the safety "
-            "stage lands (N6); the drafter's output stands",
-        )
-
-    def set_name(self, name: str) -> None:
-        """N6 interim: name alone is writable now, under the charset law;
-        the record carries name_safety='pending' until the safety stage
-        revalidates."""
+    def set_name(self, name: str, safety: "SafetyFilter | None" = None) -> None:
+        """N6: charset law first (unchanged from O3), then — with a filter —
+        the `name` context check (§F). A filtered pass stores
+        name_safety='clear'; a filterless write stores 'pending' for later
+        revalidation. Blocked is never a stored state."""
         if not isinstance(name, str):
             raise GateRefusal(E.BAD_VALUE_TYPE, "name", "name must be a string")
         if not 1 <= len(name) <= NAME_MAX_CHARS:
@@ -340,8 +485,47 @@ class CharacterRecord:
                 f"name contains {ch!r}; legal are letters, marks, spaces, "
                 f"apostrophe, hyphen, period (N6)",
             )
+        if safety is None:
+            self.persona.name = name
+            self.persona.name_safety = NAME_SAFETY_PENDING
+            return
+        result = safety.check_name(name, rating=self.rating, surface="name")
+        if not result.allowed:
+            raise GateRefusal(
+                E.NAME_BLOCKED,
+                "name",
+                f"name refused: category {result.category!r} matched "
+                f"{result.matched!r} (§G)",
+            )
         self.persona.name = name
-        self.persona.name_safety = NAME_SAFETY_PENDING
+        self.persona.name_safety = NAME_SAFETY_CLEAR
+
+    def revalidate_name(self, safety: "SafetyFilter | None" = None) -> None:
+        """§F: the explicit revalidation path for a 'pending' name — pass
+        writes 'clear', fail refuses and the record is unchanged.
+        Idempotent when nothing is pending (the clear_selection
+        precedent). Finalization also runs this automatically."""
+        if safety is None:
+            raise SafetyNotInstalledError(
+                "name",
+                "name revalidation needs the filter (N6)",
+            )
+        if (
+            self.persona.name is None
+            or self.persona.name_safety == NAME_SAFETY_CLEAR
+        ):
+            return  # nothing pending; revalidating it again would be noise
+        result = safety.check_name(
+            self.persona.name, rating=self.rating, surface="name"
+        )
+        if not result.allowed:
+            raise GateRefusal(
+                E.NAME_BLOCKED,
+                "name",
+                f"pending name refused on revalidation: category "
+                f"{result.category!r} matched {result.matched!r} (§G)",
+            )
+        self.persona.name_safety = NAME_SAFETY_CLEAR
 
 
 # --- serialization (N1) ------------------------------------------------------
@@ -363,6 +547,7 @@ def _record_dict(record: CharacterRecord) -> dict:
             "version": v.version,
             "selections": copy.deepcopy(v.selections),
             "appearance_paragraph": v.appearance_paragraph,
+            "paragraph_author": v.paragraph_author,
             "finalized": v.finalized,
         }
         if v.looks_text is not None:
@@ -372,6 +557,8 @@ def _record_dict(record: CharacterRecord) -> dict:
         draft: dict = {"selections": copy.deepcopy(record.draft.selections)}
         if record.draft.looks_text is not None:
             draft["looks_text"] = record.draft.looks_text
+        if record.draft.paragraph_edit is not None:
+            draft["paragraph_edit"] = record.draft.paragraph_edit
         data["draft_identity"] = draft
     persona: dict = {"selections": copy.deepcopy(record.persona.selections)}
     if record.persona.name is not None:
@@ -409,9 +596,16 @@ _HEADER_KEYS = frozenset(
     }
 )
 _VERSION_KEYS = frozenset(
-    {"version", "selections", "appearance_paragraph", "finalized", "looks_text"}
+    {
+        "version",
+        "selections",
+        "appearance_paragraph",
+        "paragraph_author",
+        "finalized",
+        "looks_text",
+    }
 )
-_DRAFT_KEYS = frozenset({"selections", "looks_text"})
+_DRAFT_KEYS = frozenset({"selections", "looks_text", "paragraph_edit"})
 _PERSONA_KEYS = frozenset({"name", "name_safety", "selections", "story_text"})
 
 
@@ -567,6 +761,15 @@ def load_record(path: Path | str, catalog: Catalog):
         looks = raw.get("looks_text")
         if looks is not None and not isinstance(looks, str):
             raise _fail(E.RECORD_BAD_TYPE, where, f"{where} 'looks_text' must be a string")
+        # §F: absent author key reads as the drafter (O3 files predate it).
+        author = raw.get("paragraph_author", PARAGRAPH_AUTHOR_DRAFTER)
+        if author not in PARAGRAPH_AUTHORS:
+            raise _fail(
+                E.RECORD_BAD_TYPE,
+                where,
+                f"{where} 'paragraph_author' must be one of "
+                f"{sorted(PARAGRAPH_AUTHORS)}, got {author!r}",
+            )
         versions.append(
             IdentityVersion(
                 version=i + 1,
@@ -574,6 +777,7 @@ def load_record(path: Path | str, catalog: Catalog):
                 appearance_paragraph=paragraph,
                 finalized=_read_str(raw, "finalized", where),
                 looks_text=looks,
+                paragraph_author=author,
             )
         )
 
@@ -609,7 +813,16 @@ def load_record(path: Path | str, catalog: Catalog):
             raise _fail(
                 E.RECORD_BAD_TYPE, "draft_identity", "'looks_text' must be a string"
             )
-        draft = _Draft(selections=selections, looks_text=looks)
+        paragraph_edit = raw.get("paragraph_edit")
+        if paragraph_edit is not None and not isinstance(paragraph_edit, str):
+            raise _fail(
+                E.RECORD_BAD_TYPE,
+                "draft_identity",
+                "'paragraph_edit' must be a string",
+            )
+        draft = _Draft(
+            selections=selections, looks_text=looks, paragraph_edit=paragraph_edit
+        )
 
     raw_persona = _require(data, "persona", "record")
     if not isinstance(raw_persona, dict):
@@ -622,14 +835,16 @@ def load_record(path: Path | str, catalog: Catalog):
     if name is not None:
         if not isinstance(name, str):
             raise _fail(E.RECORD_BAD_TYPE, "persona", "'name' must be a string")
-        # O3 knows exactly one safety state; the safety stage adds cleared
-        # values (and this check) later.
-        if name_safety != NAME_SAFETY_PENDING:
+        # §F: exactly two safety states exist — 'pending' (unrevalidated)
+        # and 'clear' (filtered). Blocked is never a stored state, so any
+        # other spelling is a format lie. Loads never mutate: a pending
+        # name loads pending; revalidation is an explicit write path.
+        if name_safety not in NAME_SAFETY_VALUES:
             raise _fail(
                 E.RECORD_BAD_TYPE,
                 "persona",
-                f"'name_safety' must be {NAME_SAFETY_PENDING!r} while the "
-                f"safety stage is not installed, got {name_safety!r}",
+                f"'name_safety' must be one of {sorted(NAME_SAFETY_VALUES)}, "
+                f"got {name_safety!r}",
             )
     elif name_safety is not None:
         raise _fail(
