@@ -252,6 +252,32 @@ def new_record(character_id="test_char", age=25):
     return CharacterRecord.create(character_id, age)
 
 
+# --- safety-layer test filter (O4) ------------------------------------------
+
+SAFETY_DATA_DIR = Path(__file__).parent.parent / "app" / "safety" / "data"
+
+
+@pytest.fixture(scope="session")
+def content_filter():
+    """One SafetyFilter over the REAL maintained word data (§I transplant
+    fidelity: the vector tables run against what actually ships). Session
+    scoped — compiling the term sets is the expensive part."""
+    from app.safety import SafetyFilter
+
+    return SafetyFilter(SAFETY_DATA_DIR)
+
+
+def refuse_safety_data(data_dir, code):
+    """Assert SafetyFilter refuses to start over ``data_dir`` with the
+    given §C code (the filter never starts over a bad data directory)."""
+    from app.safety import SafetyDataError, SafetyFilter
+
+    with pytest.raises(SafetyDataError) as excinfo:
+        SafetyFilter(data_dir)
+    assert excinfo.value.code == code, excinfo.value
+    return excinfo.value
+
+
 def refuse_gate(code, fn, *args, **kwargs):
     """Assert a record mutation refuses with the given gate code and, when
     a record is passed as the bound method's owner, leaves it unchanged."""
