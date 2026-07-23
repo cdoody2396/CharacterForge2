@@ -4,10 +4,14 @@ Supersedes DECISIONS.md §15 and the §12 numeric reservation for the character 
 Consolidates planning Decisions 1–10 (incl. 4a, 7-amended, 8, 8a, 9, 9a) and the
 kickoff turn's promotions (§1).
 
-Changelog: 2026-07-22 (O3) — §4 gains the `required` group key
-(required-when-visible; pick kinds only, session home illegal), per
-O3_INPUTS.md N3/§D. Earlier amendments live in O2_INPUTS.md (§8 age bands
-struck; the eight O1 NOT_DECIDED answers).
+Changelog: 2026-07-23 (O4) — no option-format change; the safety stage
+landed (O4_INPUTS.md: `app/safety/` word filter, N6 seam opened in
+`app/record/`). The record-file shape gained keys outside this spec's
+scope (`paragraph_author`, `paragraph_edit`, `name_safety: "clear"`) —
+see SESSION_REPORT_O4.md. · 2026-07-22 (O3) — §4 gains the `required`
+group key (required-when-visible; pick kinds only, session home illegal),
+per O3_INPUTS.md N3/§D. Earlier amendments live in O2_INPUTS.md (§8 age
+bands struck; the eight O1 NOT_DECIDED answers).
 
 ---
 
