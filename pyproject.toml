@@ -1,7 +1,7 @@
 [project]
 name = "characterforge2"
 version = "0.1.0"
-description = "CharacterForge v2 — option format loader, catalog, validator, harvest tooling, character record model, ledger skeleton, safety filter (stages O1–O4)"
+description = "CharacterForge v2 — option format loader, catalog, validator, harvest tooling, character record model, ledger skeleton, safety filter, service spine (stages O1–O5)"
 requires-python = ">=3.12"
 dependencies = [
     "fastapi==0.139.2",

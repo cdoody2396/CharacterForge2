@@ -1,6 +1,6 @@
 # CharacterForge2
 
-Stages O1–O4 of CharacterForge v2. This repository currently contains:
+Stages O1–O5 of CharacterForge v2. This repository currently contains:
 
 - **Option-format loader and catalog** (`app/options/loader.py`,
   `app/options/catalog.py`) — parses and merges option JSON files
@@ -72,23 +72,44 @@ Stages O1–O4 of CharacterForge v2. This repository currently contains:
   provider makes G1 honestly undeterminable until the image section
   supplies the ring-derivation rule. No artifacts render at this stage;
   synthetic sidecar fixtures test everything.
-- **Tests** (`tests/`) — 633 tests covering every format law with refusing
+- **Service spine** (`app/spine/`, stage O5 per
+  [O5_INPUTS.md](O5_INPUTS.md)) — one local process owning all of the
+  above at runtime behind an authenticated, **loopback-only**,
+  server-authoritative API. The spine is the **single evaluator** (§B):
+  visibility, rating admissibility, required flags, retired handling,
+  widget derivation, and gate refusals are computed spine-side and
+  served as facts; no client re-implements catalog or gate logic.
+  Fail-loud startup (catalog + drop-in through the full validator rule
+  set, safety word data, writable data root — any error refuses start
+  with every error named); single instance per data root with
+  crash-natural stale-lock recovery; per-run token auth on every
+  surface; atomic `runtime.json` discovery; per-character serialized
+  mutations; the real `AuditLog` as the filter's sink plus
+  `spine_start`/`spine_stop` lifecycle lines. Every refusal arrives as
+  `{code, subject, message}` with the library's code verbatim. The
+  endpoint inventory lives in
+  [SESSION_REPORT_O5.md](SESSION_REPORT_O5.md).
+- **Tests** (`tests/`) — 782 tests covering every format law with refusing
   tests, the harvest transformation rules, override consumption,
   refusals, the validator gate, byte-identical idempotence, every
   record-layer refusal individually, the ported v1 obfuscation/
   false-positive vector tables over the real word data, every §C
-  declaration law, and the opened seam both directions (filtered writes
-  and the no-filter refusals).
+  declaration law, the opened seam both directions (filtered writes
+  and the no-filter refusals), and the spine end to end over HTTP
+  (startup refusals, auth, creator view, the full record lifecycle,
+  every refusal code structured and unrenamed, audit, real-server
+  loopback/discovery, concurrent-mutation serialization).
   `tests/fixtures/` is the only home for illustrative data.
 
 ## Running the tests
 
-Requires Python 3.12 and [uv](https://docs.astral.sh/uv/). No runtime
-dependencies.
+Requires Python 3.12 and [uv](https://docs.astral.sh/uv/). Runtime
+dependencies (since O5, per O5_INPUTS §C) are exactly `fastapi`,
+`uvicorn`, and `httpx`, pinned in [requirements.txt](requirements.txt)
+and mirrored in pyproject/uv.lock.
 
 ```
-uv venv --python 3.12
-uv pip install pytest
+uv sync
 uv run pytest
 ```
 
@@ -99,6 +120,26 @@ uv run python -m app.options.validate app/data/options
 ```
 
 Exit 0 clean / 1 errors; `--json` emits a machine-readable summary.
+
+## Running the spine
+
+```
+uv run python -m app.spine [--data-root PATH]
+```
+
+One process, bound to `127.0.0.1` on a random free port. The data root
+(all mutable state) defaults to `%LOCALAPPDATA%/CharacterForge2`;
+`--data-root` wins over the `CHARACTERFORGE2_DATA_ROOT` environment
+variable. On a clean start the spine writes `runtime.json` (host, port,
+per-run token, pid, version) atomically under the data root — clients
+read it and send the token in the `X-Spine-Token` header on every
+request; there is no unauthenticated surface. User option add-ons load
+from `options_dropin/` under the data root, after the maintained tree,
+through the full validator rule set; any error in either source refuses
+startup with every error named. A second start against the same data
+root refuses distinctly; a crashed run's lock recovers on the next
+start. Stop with Ctrl+C — a clean stop logs `spine_stop` to the audit
+trail and removes `runtime.json`.
 
 ## The harvest tool — FROZEN at O2b
 
@@ -125,14 +166,16 @@ without the explicit `--i-know-this-overwrites-maintained-data` flag.
 amended by [O2_INPUTS.md](O2_INPUTS.md)** (spec §8 age bands struck; the
 eight O1 NOT_DECIDED items answered) **and [O3_INPUTS.md](O3_INPUTS.md)**
 (§4 gains `required`, N3; the record layer's contract is its §B). The
-safety stage's contract is [O4_INPUTS.md](O4_INPUTS.md) (no option-format
-change). The §0 marking convention is binding:
+safety stage's contract is [O4_INPUTS.md](O4_INPUTS.md) and the spine
+stage's is [O5_INPUTS.md](O5_INPUTS.md) (neither changes the option
+format). The §0 marking convention is binding:
 **DECIDED** items are implemented exactly as written, and **ILLUSTRATIVE**
 items (every identifier beginning `example_`) may never appear in committed
 data — the loader refuses them outside `tests/fixtures/`
 (`EXAMPLE_ID_IN_DATA`). See [SESSION_REPORT_O1.md](SESSION_REPORT_O1.md),
 [SESSION_REPORT_O2.md](SESSION_REPORT_O2.md),
 [SESSION_REPORT_O2B.md](SESSION_REPORT_O2B.md),
-[SESSION_REPORT_O3.md](SESSION_REPORT_O3.md), and
-[SESSION_REPORT_O4.md](SESSION_REPORT_O4.md) for what each stage decided,
+[SESSION_REPORT_O3.md](SESSION_REPORT_O3.md),
+[SESSION_REPORT_O4.md](SESSION_REPORT_O4.md), and
+[SESSION_REPORT_O5.md](SESSION_REPORT_O5.md) for what each stage decided,
 found ambiguous, and left open.

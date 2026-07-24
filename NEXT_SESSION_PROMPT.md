@@ -1,62 +1,93 @@
-# NEXT_SESSION_PROMPT — stage O5 — DRAFT
+# NEXT_SESSION_PROMPT — after O5 — DRAFT
 
-Status: DRAFT. Stage O4 landed 2026-07-23 (safety transplant: `app/safety/`
-word filter, N6 seam opened — see SESSION_REPORT_O4.md); this prompt is
-not a kickoff until the planning chat picks the next stage and answers its
-input list. The builder does not choose its own scope.
+Status: DRAFT. Stage O5 landed 2026-07-24 (service spine: `app/spine/`,
+one authenticated loopback process owning catalog + records + safety +
+audit + ledger — see SESSION_REPORT_O5.md); this prompt is not a kickoff
+until the planning chat picks the next stage and answers its input
+list. The builder does not choose its own scope.
+
+The candidates the planning chat expects (O5_INPUTS §K): **creator UI**
+· **image-identity section**. §B below carries verbatim to whichever
+runs.
 
 ---
 
-## Open items O4 leaves on the table
+## Carried verbatim — O5_INPUTS §B (binding on the UI stage)
 
-1. **The candidate O4_INPUTS §J names: the service spine**, "carrying the
-   recorded creator-UX input" (that input lives in the planning chat's
-   records, not this repo — deliver it with the kickoff). O3's record +
-   ledger and O4's filter are pure library code with injected paths and
-   filters; the spine decides processes, lifecycles, storage roots
-   (records dir, sidecar dirs, DB path, audit log dir, the word-data
-   dir), catalog reload semantics vs the frozen maintained tree, and the
-   app-side write sites §H deferred (where the real `AuditLog` is
-   constructed and which surfaces pass which codes).
-2. **`misc` enforcement migration** (O4_INPUTS §D): `misc` stays floor
-   until its contents are inventoried — the inventory now exists
-   (SESSION_REPORT_O4 §B: 9 terms, 1 regex — incest, necrophilia, snuff,
-   pipe-bomb instructions et al.). If any of it should unlock at a
-   rating, that is a one-line data edit under §C; a ruling either way
-   closes the item.
-3. **Catalog-declared `free_text` groups remain unwritable** (noted
-   consequence, SESSION_REPORT_O4): the record slots opened; a `free_text`
-   group in the catalog still refuses at the gate. The maintained tree
-   has zero such groups, so nothing is reachable — but the seam exists
-   and some later contract owns it.
-4. **Out-stages named by O4_INPUTS §A**, each still owned elsewhere:
-   chat/image use-time filtering, Layer-2 model gating, the
+> The owner's verbatim findings on v1, recorded as a named input:
+>
+> > Bad choices on screen, bad screen formatting, bad option selection
+> > methods, bad user experience in making a character. Image and chat
+> > were not being updated as we were working on what the format and
+> > options should actually be.
+>
+> Binding consequence …: **the spine is the single evaluator.**
+> Visibility (`visible_when`), rating admissibility, `required` flags,
+> retired-option handling, widget derivation, and gate refusals are all
+> computed spine-side and served to the front-end as facts; no client
+> ever re-implements catalog or gate logic (the v1 two-evaluator drift
+> hazard, designed out per the amended checkpoint). The UI stage
+> inherits this section verbatim.
+
+## Open items O5 leaves on the table
+
+1. **Creator UI candidate.** The spine serves everything a screen
+   needs (creator view with derived widgets `segmented`/`chips`/
+   `swatch`/`picker`, structured refusal codes, discovery via
+   `runtime.json` + `X-Spine-Token`). The UI consumes the spine ONLY
+   (§B above). Needed from the planning chat: shell/framework decision
+   (and how it starts/finds/stops the spine) · screen inventory and
+   section layout (the catalog's `section`/`order`/`hint` are served,
+   uninterpreted so far) · rendering contract per widget · how drafts,
+   finalize, versions, rating raises, and refusal codes surface to the
+   creator · whether any catalog `free_text` group is introduced (its
+   filtered write path must be specified in that same contract — §I.2
+   ownership) · a ruling on O5 NOT_DECIDED 1 (record-less creator-view
+   preview) if the UI wants one.
+2. **Image-identity candidate.** Still owed (unchanged from O3): the
+   ring-derivation rule (the `NullRingProvider` seam in
+   `app/ledger/grade.py` stands until then — G1 honestly
+   undeterminable) · the reference-core "LoRA seeds" disambiguation ·
+   the G0 exotic-anatomy carve-out · the ring-skip-to-LoRA execution
+   call. The spine already serves `artifacts/` layout (lazy, empty),
+   receipt-indexed artifact/staleness queries, and the grade
+   passthrough; generation logging stays with this section (O5 §H).
+3. **O5 NOT_DECIDED items** (SESSION_REPORT_O5): (1) a record-less
+   creator-view preview — the view exists for any record including a
+   fresh one; a preview before any record exists was not built ·
+   (2) `httpx2` (a TestClient deprecation suggestion) — adding it would
+   exceed §C's exact-three dependency law.
+4. **Closed by O5 §I** (for the record): `misc` enforcement — floor,
+   permanent, list stands as built · catalog-declared `free_text`
+   groups — sealed; the contract that first introduces such a group
+   owns its filtered write path.
+5. **Out-stages named by O5_INPUTS §A**, each still owned elsewhere:
+   desktop shell / packaging (incl. §D's deferred user word-data tuning
+   on installed builds) · job runner, worker supervisor, GPU-slot law,
+   image/chat/training workers, llama.cpp and embedder processes ·
+   transcripts / memory / jobs tables (N10) · prompt assemblers ·
+   Layer-2 model gating · chat/image use-time filtering · the
    rating-downgrade residue rule.
-5. **Still owed to the image-identity section** (unchanged from O3): the
-   ring-derivation rule, the reference-core "LoRA seeds" disambiguation,
-   the G0 exotic-anatomy carve-out, the ring-skip-to-LoRA execution call.
 6. **POLISH_FLAGS** — still OPEN as its own track (unchanged since O2b).
-7. **Personal drop-in pass** — catalog-side, frozen tool, nothing blocks
-   on it (unchanged since O3).
+7. **Personal drop-in pass** — catalog-side, frozen tool; the landing
+   zone now exists (`options_dropin/` under the data root loads after
+   the maintained tree, full validator rule set, restart to take
+   effect). Nothing blocks on it.
 
-## What the chosen stage needs from the planning chat (at minimum)
-
-- **Service spine:** the recorded creator-UX input (§J's phrase) ·
-  process model · storage roots for every injected path (records,
-  sidecars, DB, audit logs, word data) · catalog reload semantics vs the
-  frozen maintained tree · which existing seams it may wrap (ledger
-  attach, orphan surfacing, filter construction + audit sink wiring) ·
-  what, if anything, of the §H write-site placement lands now.
-
-## Ground rules to carry forward (unchanged)
+## Ground rules to carry forward (unchanged unless noted)
 
 1. Build only what the prompt scopes. Invent nothing; ambiguity →
    SESSION_REPORT `NOT_DECIDED`, build nothing for it.
 2. `python -m app.options.validate` stays the gatekeeper for any data
    change; all tests green before any push.
 3. OPTION_FORMAT_SPEC.md as amended by O2_INPUTS.md and O3_INPUTS.md is
-   the contract (O4_INPUTS.md added no format change); §0 marking
-   convention binding. N7's sentence wording, the paragraph cap value
-   (1200), and all fixture content remain ILLUSTRATIVE.
+   the contract (O4/O5 added no format change); §0 marking convention
+   binding.
 4. The §C hard law is code, not data: `minors`/`slurs` load only at
    floor. No stage may soften it by data edit.
+5. **Dependencies (new at O5)**: exactly `fastapi`, `uvicorn`, `httpx`,
+   pinned (requirements.txt + pyproject/uv.lock). Anything further is a
+   `NOT_DECIDED` for the planning gate.
+6. **The spine is the single evaluator (new at O5, §B)**: no client
+   re-implements catalog or gate logic; catalog changes take effect at
+   restart only.
