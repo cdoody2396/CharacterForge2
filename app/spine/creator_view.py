@@ -89,7 +89,14 @@ def _held_entry(group: Group, option_id: str) -> dict:
     option = group.resolve(option_id)
     if option is None:
         # An orphaned pick: unknown to the catalog, surfaced verbatim.
-        return {"id": option_id, "label": None, "retired": False, "orphaned": True}
+        # No Option to resolve, so tags is empty (§G.1, builder detail).
+        return {
+            "id": option_id,
+            "label": None,
+            "retired": False,
+            "orphaned": True,
+            "tags": [],
+        }
     return {
         "id": option.id,
         "label": option.label,
@@ -97,6 +104,7 @@ def _held_entry(group: Group, option_id: str) -> dict:
         "orphaned": False,
         "color": option.color,
         "thumb": option.thumb,
+        "tags": list(option.tags),
     }
 
 

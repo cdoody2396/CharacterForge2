@@ -140,6 +140,49 @@ class TestAdmissibilityAndRetired:
             assert old_look["value"] == ["legacy", "current"]
 
 
+class TestTagsServed:
+    """§G.1 (O6): option tags are served facts — pinned in the menu
+    entry shape and in the held entry shape, resolved and orphaned."""
+
+    def test_menu_entries_carry_tags_as_a_list_of_strings(self, tmp_path):
+        ctx = make_ctx(tmp_path)
+        with spine_client(ctx) as client:
+            cid = create_character(client, ctx)
+            species = view_groups(client, ctx, cid)["species"]
+            by_id = {option["id"]: option for option in species["options"]}
+            for option in by_id.values():
+                assert isinstance(option["tags"], list)
+                assert all(isinstance(tag, str) for tag in option["tags"])
+            assert by_id["cat"]["tags"] == ["furred"]
+            assert by_id["robot"]["tags"] == []  # untagged serves empty, not absent
+
+    def test_held_entries_carry_tags_resolved_and_retired(self, tmp_path):
+        ctx = make_ctx(tmp_path)
+        record = CharacterRecord.create("held_tags", 25)
+        record.draft.selections["old_look"] = ["legacy"]  # retired, resolvable
+        save_record(record, ctx.store.path_for("held_tags"))
+
+        with spine_client(ctx) as client:
+            select(client, ctx, "held_tags", "species", "cat")
+            groups = view_groups(client, ctx, "held_tags")
+            held_species = groups["species"]["current"]
+            assert [entry["tags"] for entry in held_species] == [["furred"]]
+            held_legacy = groups["old_look"]["current"][0]
+            assert held_legacy["retired"] is True
+            assert held_legacy["tags"] == []  # untagged retired option
+
+    def test_orphaned_held_entry_carries_empty_tags(self, tmp_path):
+        ctx = make_ctx(tmp_path)
+        record = CharacterRecord.create("orphan_tags", 25)
+        record.draft.selections["old_look"] = ["ghost"]  # unknown to the catalog
+        save_record(record, ctx.store.path_for("orphan_tags"))
+
+        with spine_client(ctx) as client:
+            entry = view_groups(client, ctx, "orphan_tags")["old_look"]["current"][0]
+            assert entry["orphaned"] is True
+            assert entry["tags"] == []
+
+
 class TestFactsAndWidgets:
     def test_required_flags_and_passthrough(self, tmp_path):
         ctx = make_ctx(tmp_path)

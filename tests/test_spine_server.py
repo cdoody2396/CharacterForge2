@@ -4,7 +4,11 @@ bound port, graceful stop removes it and lands both audit lifecycle
 lines.
 """
 
+import os
+import stat
+
 import httpx
+import pytest
 
 from app.spine.discovery import read_discovery, write_discovery
 from app.spine.service import TOKEN_HEADER
@@ -21,6 +25,19 @@ def test_write_discovery_is_atomic_and_shaped(tmp_path):
     assert payload["token"] == "t0k3n"
     assert payload["pid"] == 999
     assert payload["version"] == "0.1.0"
+
+
+@pytest.mark.skipif(
+    os.name != "posix",
+    reason="POSIX mode bits; Windows is best-effort (§G.2 — LOCALAPPDATA ACL)",
+)
+def test_discovery_file_is_owner_only(tmp_path):
+    """§G.2 (O6): runtime.json carries the token — written 0o600. The
+    final file inherits the tmp's mode through os.replace, so this
+    asserts the whole window."""
+    path = tmp_path / "runtime.json"
+    write_discovery(path, port=4242, token="t0k3n", pid=999, version="0.1.0")
+    assert stat.S_IMODE(path.stat().st_mode) == 0o600
 
 
 def test_real_server_lifecycle(tmp_path):

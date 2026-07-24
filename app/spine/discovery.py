@@ -33,7 +33,17 @@ def write_discovery(
     tmp.write_text(
         json.dumps(payload, indent=2, ensure_ascii=False) + "\n", encoding="utf-8"
     )
+    _chmod_owner_only(tmp)
     os.replace(tmp, path)
+    _chmod_owner_only(path)
+
+
+def _chmod_owner_only(path: Path) -> None:
+    """Owner-only permissions on the discovery file and its tmp (§G.2):
+    0o600 best-effort — asserted on POSIX; on Windows the mode bits are
+    advisory and the %LOCALAPPDATA% ACL already scopes the file."""
+    with suppress(OSError):
+        os.chmod(path, 0o600)
 
 
 def read_discovery(path: Path | str) -> dict:
