@@ -216,5 +216,20 @@ validator          → files: 13  groups: 135  options: 2359  retired: 0
 
 ## Stage close (§K.7) — observed at the pushed head
 
-Recorded by the close commit after push, from a fresh checkout on a
-clean tree; see the section appended below.
+The close ran against a **fresh clone** of the pushed head `dc2c289`
+(`git status --porcelain` empty before and after the runs; `uv sync`
+then `npm ci` from the committed lockfiles). Observed tails, verbatim:
+
+```
+git rev-parse HEAD → dc2c289f88cf62a7e3bada0e167773b3744ab515
+uv run pytest      → ================= 786 passed, 1 skipped, 1 warning in 12.54s ==================
+npm test           → Test Files  7 passed (7)  /  Tests  29 passed (29)
+                     Test Files  1 passed (1)  /  Tests  10 passed (10)
+npm run build      → ✓ built in 150ms
+validator          → files: 13  groups: 135  options: 2359  retired: 0
+                     errors: 0 — clean   (exit 0)
+```
+
+(The 1 skip is the §G.2 POSIX permissions assertion on this Windows
+host, as designed.) This tails-recording commit changes documentation
+only; the suites' behavior is that of `dc2c289`.
