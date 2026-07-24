@@ -81,9 +81,10 @@ CONFLICT_CODES = frozenset(
 
 def status_for(exc: RecordError) -> int:
     if isinstance(exc, SafetyNotInstalledError):
-        # The spine always passes the real filter; reaching this is a
-        # spine-invariant breach, not a client error.
-        return 500
+        # §I.2: client-reachable as the sealed-free_text-group refusal —
+        # the only HTTP path that raises it (the spine always passes the
+        # real filter to the slot setters). Law-in-context: 409.
+        return 409
     if isinstance(exc, GateRefusal):
         return 409 if exc.code in CONFLICT_CODES else 422
     if isinstance(exc, RecordFormatError):
