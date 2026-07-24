@@ -1,0 +1,8 @@
+{
+  "status": 401,
+  "body": {
+    "code": "AUTH_INVALID",
+    "subject": "X-Spine-Token",
+    "message": "[AUTH_INVALID] the supplied token does not match this run"
+  }
+}

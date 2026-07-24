@@ -1,0 +1,7 @@
+{
+  "status": 200,
+  "body": {
+    "identity_stale": [],
+    "variable_stale_marked": []
+  }
+}

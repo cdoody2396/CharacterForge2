@@ -1,0 +1,20 @@
+{
+  "status": 201,
+  "body": {
+    "record": {
+      "format": 1,
+      "character_id": "f99035d5d3344acabd5d172f89e3558c",
+      "age": 25,
+      "rating": "standard",
+      "created": "2026-07-24T23:06:06+00:00",
+      "identity_versions": [],
+      "draft_identity": {
+        "selections": {}
+      },
+      "persona": {
+        "selections": {}
+      }
+    },
+    "orphans": []
+  }
+}

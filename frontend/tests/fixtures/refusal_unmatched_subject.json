@@ -1,0 +1,8 @@
+{
+  "status": 422,
+  "body": {
+    "code": "UNKNOWN_GROUP",
+    "subject": "no_such_group",
+    "message": "[UNKNOWN_GROUP] unknown group id 'no_such_group'"
+  }
+}

@@ -8,7 +8,7 @@
 import { useMemo, useState } from "react";
 import { api } from "../spine/client";
 import type { Refusal, ViewGroup } from "../spine/types";
-import { stationsOf, useRecordData } from "../state/recordData";
+import { stationsOf, subjectMatches, useRecordData } from "../state/recordData";
 import { WidgetHost, isMulti } from "../widgets/WidgetHost";
 import { FaultScreen, RefusalStamp } from "../parts/faults";
 import type { ToastPayload } from "../parts/ToastHost";
@@ -82,7 +82,8 @@ export function Session({
 
   const routeRefusal = (refusal: Refusal) => {
     const anchored =
-      (current.kind === "group" && refusal.subject === current.id) ||
+      (current.kind === "group" &&
+        subjectMatches(refusal.subject, current.id)) ||
       (current.kind === "name" && refusal.subject === "name");
     if (anchored) setStamp(refusal);
     else onToast({ kind: "refusal", refusal });

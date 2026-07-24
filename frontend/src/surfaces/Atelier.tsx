@@ -11,6 +11,7 @@ import type { Refusal } from "../spine/types";
 import {
   groupsSetCount,
   stationsOf,
+  subjectMatches,
   useRecordData,
   visibleGroups,
 } from "../state/recordData";
@@ -97,14 +98,17 @@ export function Atelier({
 
   const routeRefusal = (refusal: Refusal) => {
     const station = stations.find((s) =>
-      s.groups.some((group) => group.id === refusal.subject),
+      s.groups.some((group) => subjectMatches(refusal.subject, group.id)),
     );
     if (station) {
       // Field-anchored (§F.7) — and the §F.6 deep-link for
       // REQUIRED_GROUP_UNFILLED: the named group's station activates.
+      const group = station.groups.find((entry) =>
+        subjectMatches(refusal.subject, entry.id),
+      );
       setActiveKey(station.key);
       setStamp(refusal);
-      setHighlightId(refusal.subject);
+      setHighlightId(group?.id ?? refusal.subject);
     } else if ((TEXT_SLOTS as readonly string[]).includes(refusal.subject)) {
       setActiveKey(TEXT_KEY);
       setStamp(refusal);
@@ -243,7 +247,9 @@ export function Atelier({
               <WidgetHost
                 key={group.id}
                 group={group}
-                stamp={stamp?.subject === group.id ? stamp : null}
+                stamp={
+                  stamp && subjectMatches(stamp.subject, group.id) ? stamp : null
+                }
                 highlight={highlightId === group.id}
                 busy={busy}
                 onSelect={(value) =>

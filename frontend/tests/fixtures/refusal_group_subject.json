@@ -1,0 +1,8 @@
+{
+  "status": 409,
+  "body": {
+    "code": "RATING_ABOVE_RECORD",
+    "subject": "genitalia/vulva",
+    "message": "[RATING_ABOVE_RECORD] option 'vulva' is rated 'explicit', above the record's 'standard'; raise the record rating first"
+  }
+}

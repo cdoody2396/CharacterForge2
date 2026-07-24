@@ -1,0 +1,8 @@
+{
+  "status": 422,
+  "body": {
+    "code": "AGE_UNDER_FLOOR",
+    "subject": "age",
+    "message": "[AGE_UNDER_FLOOR] age 19 is under the 20+ floor"
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "status": 409,
+  "body": {
+    "code": "REQUIRED_GROUP_UNFILLED",
+    "subject": "hybrid_race",
+    "message": "[REQUIRED_GROUP_UNFILLED] required group 'hybrid_race' is visible and has no value; a character must be whole to finalize (N5)"
+  }
+}

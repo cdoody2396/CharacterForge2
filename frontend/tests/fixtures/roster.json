@@ -1,0 +1,19 @@
+{
+  "status": 200,
+  "body": {
+    "records": [
+      {
+        "character_id": "f99035d5d3344acabd5d172f89e3558c",
+        "name": null,
+        "rating": "explicit",
+        "active_version": null,
+        "grade": {
+          "grade": null,
+          "determinable": false,
+          "g1_determinable": false
+        },
+        "orphan_count": 0
+      }
+    ]
+  }
+}

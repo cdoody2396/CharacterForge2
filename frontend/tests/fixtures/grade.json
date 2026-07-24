@@ -1,0 +1,18 @@
+{
+  "status": 200,
+  "body": {
+    "character_id": "f99035d5d3344acabd5d172f89e3558c",
+    "grade": null,
+    "determinable": false,
+    "g1_determinable": false,
+    "ladder_decided": true,
+    "evidence": {
+      "floor": "G0",
+      "artifacts": 0,
+      "kinds": [],
+      "active_loras": 0,
+      "variable_stale_marked": 0
+    },
+    "notes": "grade undeterminable above the floor: G1 needs the canonical set, whose ring derivation is owed to the image-identity section (Null ring provider); character is at least G0"
+  }
+}

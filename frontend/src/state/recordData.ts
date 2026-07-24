@@ -165,6 +165,15 @@ export function groupsSetCount(view: CreatorView): {
   };
 }
 
+/** §F.7 anchoring: a refusal subject matches a rendered group when it
+ * IS the group id or extends it as "group/option" (the spine's
+ * selection refusals carry the compound form — observed in captured
+ * fixtures, e.g. "genitalia/vulva"). Display stays verbatim; this
+ * only decides where the stamp anchors. */
+export function subjectMatches(subject: string, groupId: string): boolean {
+  return subject === groupId || subject.startsWith(`${groupId}/`);
+}
+
 /** Gate ruling (O6, recorded): raise targets mirror the fixed rating
  * order standard → mature → explicit in copy only — the same
  * mirrored-law status §F.6 grants the RATING_DECREASE copy. The spine
