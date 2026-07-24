@@ -1,0 +1,141 @@
+/* Base layer: vendored fonts (§C.3 — offline law, no CDN anything),
+   reset, and element defaults. Consumes register tokens only. */
+
+@font-face {
+  font-family: "Playfair Display";
+  src: url("/fonts/playfair-display-latin-400-normal.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Playfair Display";
+  src: url("/fonts/playfair-display-latin-400-italic.woff2") format("woff2");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Playfair Display";
+  src: url("/fonts/playfair-display-latin-700-normal.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Space Grotesk";
+  src: url("/fonts/space-grotesk-latin-400-normal.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Space Grotesk";
+  src: url("/fonts/space-grotesk-latin-500-normal.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Space Grotesk";
+  src: url("/fonts/space-grotesk-latin-700-normal.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "JetBrains Mono";
+  src: url("/fonts/jetbrains-mono-latin-400-normal.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "JetBrains Mono";
+  src: url("/fonts/jetbrains-mono-latin-700-normal.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--iron);
+  color: var(--text);
+  font-family: var(--font-grotesk);
+  font-size: var(--size-body);
+  line-height: 1.5;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  color: var(--text-bright);
+  font-weight: 700;
+  margin: 0;
+}
+
+button {
+  font-family: var(--font-grotesk);
+  font-size: var(--size-small);
+  color: var(--text);
+  background: var(--recess);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 0.4rem 0.8rem;
+  cursor: pointer;
+}
+
+button:hover:not(:disabled) {
+  border-color: var(--line-strong);
+  color: var(--text-bright);
+}
+
+button:disabled {
+  color: var(--text-faint);
+  cursor: not-allowed;
+}
+
+input,
+textarea {
+  font-family: var(--font-grotesk);
+  font-size: var(--size-body);
+  color: var(--text-bright);
+  background: var(--recess);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 0.45rem 0.6rem;
+}
+
+textarea {
+  resize: vertical;
+}
+
+code,
+.mono {
+  font-family: var(--font-mono);
+  font-size: var(--size-code);
+}
+
+/* Full keyboard operability with VISIBLE focus states (§F.9). */
+:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-offset);
+}
+
+::placeholder {
+  color: var(--text-faint);
+}

@@ -1,0 +1,58 @@
+/* §F.9 — the register: forge iron and ember, dark-first, app-wide.
+   This is THE register file: a register swap must touch this file
+   only. Every other stylesheet consumes these custom properties and
+   declares no raw color, family, or scale of its own. */
+
+:root {
+  /* iron — surfaces */
+  --iron: #2c2c2a; /* body */
+  --recess: #232322; /* wells, inputs, rails */
+  --line: #444441; /* quiet borders */
+  --line-strong: #5f5e5a; /* emphasized borders */
+
+  /* text ladder, bright → faint */
+  --text-bright: #f1efe8;
+  --text: #d3d1c7;
+  --text-dim: #b4b2a9;
+  --text-faint: #888780;
+
+  /* ember ladder */
+  --ember: #ef9f27; /* the live coal — primary accent */
+  --ember-bright: #fac775; /* focus, hover, highlights */
+  --ember-deep: #ba7517; /* pressed, borders on active */
+  --ember-coal: #854f0b; /* recessed accent fills */
+  --ember-char: #633806; /* deepest accent recess */
+  --ember-glow: #faeeda; /* text on ember fills */
+
+  /* refusal — the stamp palette */
+  --refusal-recess: #501313;
+  --refusal-line: #791f1f;
+  --refusal-text: #f7c1c1;
+  --refusal-bright: #f09595;
+
+  /* confirm */
+  --confirm: #5dcaa5;
+
+  /* type — display serif for character voice, grotesk for controls,
+     mono for codes (§F.9) */
+  --font-display: "Playfair Display", serif;
+  --font-grotesk: "Space Grotesk", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+
+  /* scale */
+  --size-code: 0.8125rem;
+  --size-small: 0.875rem;
+  --size-body: 1rem;
+  --size-title: 1.375rem;
+  --size-question: 2.25rem; /* the Session's big type */
+
+  /* shape + rhythm */
+  --radius: 6px;
+  --radius-big: 10px;
+  --gap: 0.5rem;
+  --pad: 0.75rem;
+
+  /* focus — visible on every widget (§F.9) */
+  --focus-ring: 2px solid var(--ember-bright);
+  --focus-offset: 2px;
+}
