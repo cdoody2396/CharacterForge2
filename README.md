@@ -1,6 +1,6 @@
 # CharacterForge2
 
-Stages O1–O5 of CharacterForge v2. This repository currently contains:
+Stages O1–O6 of CharacterForge v2. This repository currently contains:
 
 - **Option-format loader and catalog** (`app/options/loader.py`,
   `app/options/catalog.py`) — parses and merges option JSON files
@@ -89,7 +89,26 @@ Stages O1–O5 of CharacterForge v2. This repository currently contains:
   `{code, subject, message}` with the library's code verbatim. The
   endpoint inventory lives in
   [SESSION_REPORT_O5.md](SESSION_REPORT_O5.md).
-- **Tests** (`tests/`) — 782 tests covering every format law with refusing
+- **Creator UI** (`frontend/`, stage O6 per [O6_INPUTS.md](O6_INPUTS.md))
+  — a React + Vite + TypeScript app with three surfaces over the spine:
+  **Roster** (list, create behind the age gate) → **Session** (guided
+  walk, one served group per screen, big type) ⇄ **Atelier** (workbench:
+  station rail · canvas · record pane, with a fixed Text station and a
+  Ctrl+K jump palette). The client fetches only relative `/spine/*`
+  paths (same-origin rule — the Vite proxy maps the origin config-side;
+  no CORS surface exists) and may narrow or reorder served facts, never
+  widen them; after every mutation it refetches, never predicts. The
+  four served widget kinds render as segmented / chips / swatch /
+  virtualized picker (heavy kit — filter, tag facets, sort — at ≥ 24
+  options); refusals surface verbatim as field-anchored stamps or
+  toasts. Forge iron/ember register lives token-deep in
+  `frontend/src/register/tokens.css`; fonts are vendored OFL files
+  (Playfair Display · Space Grotesk · JetBrains Mono) — the built
+  artifact makes zero network requests. Component fixtures are captured
+  from a real spine run by `frontend/scripts/capture-fixtures.mjs`,
+  never hand-written. O6 also hardened `runtime.json` to owner-only
+  permissions and pinned tags into creator-view held entries (§G).
+- **Tests** (`tests/`) — 787 tests covering every format law with refusing
   tests, the harvest transformation rules, override consumption,
   refusals, the validator gate, byte-identical idempotence, every
   record-layer refusal individually, the ported v1 obfuscation/
@@ -98,8 +117,14 @@ Stages O1–O5 of CharacterForge v2. This repository currently contains:
   and the no-filter refusals), and the spine end to end over HTTP
   (startup refusals, auth, creator view, the full record lifecycle,
   every refusal code structured and unrenamed, audit, real-server
-  loopback/discovery, concurrent-mutation serialization).
-  `tests/fixtures/` is the only home for illustrative data.
+  loopback/discovery, concurrent-mutation serialization, and the O6
+  §G deltas — held-entry tags, owner-only discovery permissions
+  (POSIX-asserted), token-never-in-audit).
+  `tests/fixtures/` is the only home for illustrative data. The
+  front-end adds 39 vitest tests (`frontend/tests/`): per-widget and
+  heavy-kit component tests over captured fixtures, the refetch law,
+  refusal surfacing, session flow, roster, record pane, and a
+  node-environment integration suite that spawns the real spine.
 
 ## Running the tests
 
@@ -141,6 +166,30 @@ root refuses distinctly; a crashed run's lock recovers on the next
 start. Stop with Ctrl+C — a clean stop logs `spine_stop` to the audit
 trail and removes `runtime.json`.
 
+## Running the creator UI
+
+Prerequisites: Node ≥ 20 (with npm) beside the Python toolchain above.
+One-time setup, then the launcher:
+
+```
+cd frontend && npm ci && cd ..
+python scripts/dev.py
+```
+
+The stdlib-only launcher starts the spine over `./.devroot`
+(gitignored), reads `runtime.json` host-side, then starts Vite with
+`VITE_SPINE_ORIGIN`/`VITE_SPINE_TOKEN` injected — the React app itself
+never reads `runtime.json` and never learns the spine's origin; it
+fetches only relative `/spine/*` paths through the dev proxy. Open the
+printed Vite URL. Both processes stop when the launcher exits.
+
+Front-end tests and the production build (run from `frontend/`):
+
+```
+npm test        # component (jsdom) + integration (real spawned spine)
+npm run build   # typecheck + bundle; the artifact is fully offline
+```
+
 ## The harvest tool — FROZEN at O2b
 
 The emitted tree in `app/data/options/` is now the **MAINTAINED SOURCE**:
@@ -166,9 +215,10 @@ without the explicit `--i-know-this-overwrites-maintained-data` flag.
 amended by [O2_INPUTS.md](O2_INPUTS.md)** (spec §8 age bands struck; the
 eight O1 NOT_DECIDED items answered) **and [O3_INPUTS.md](O3_INPUTS.md)**
 (§4 gains `required`, N3; the record layer's contract is its §B). The
-safety stage's contract is [O4_INPUTS.md](O4_INPUTS.md) and the spine
-stage's is [O5_INPUTS.md](O5_INPUTS.md) (neither changes the option
-format). The §0 marking convention is binding:
+safety stage's contract is [O4_INPUTS.md](O4_INPUTS.md), the spine
+stage's is [O5_INPUTS.md](O5_INPUTS.md), and the creator-UI stage's is
+[O6_INPUTS.md](O6_INPUTS.md) (none of them changes the option format).
+The §0 marking convention is binding:
 **DECIDED** items are implemented exactly as written, and **ILLUSTRATIVE**
 items (every identifier beginning `example_`) may never appear in committed
 data — the loader refuses them outside `tests/fixtures/`
@@ -176,6 +226,7 @@ data — the loader refuses them outside `tests/fixtures/`
 [SESSION_REPORT_O2.md](SESSION_REPORT_O2.md),
 [SESSION_REPORT_O2B.md](SESSION_REPORT_O2B.md),
 [SESSION_REPORT_O3.md](SESSION_REPORT_O3.md),
-[SESSION_REPORT_O4.md](SESSION_REPORT_O4.md), and
-[SESSION_REPORT_O5.md](SESSION_REPORT_O5.md) for what each stage decided,
+[SESSION_REPORT_O4.md](SESSION_REPORT_O4.md),
+[SESSION_REPORT_O5.md](SESSION_REPORT_O5.md), and
+[SESSION_REPORT_O6.md](SESSION_REPORT_O6.md) for what each stage decided,
 found ambiguous, and left open.
