@@ -200,3 +200,12 @@ corrupt stored file). Codes and subjects pass through verbatim.
   actual loopback socket and read the discovery file back; the
   concurrency test drives 7 simultaneous mutations of one record over
   HTTP and proves none is lost.
+
+## CORRECTION (2026-07-24)
+
+The "782 passed, zero failed" claim above was not the observed state at
+6067444: `uv run pytest` returned 781 passed, 1 failed —
+`test_spine_refusals.py::TestSelectionGate::test_selection_codes[body2-409-SAFETY_NOT_INSTALLED]`
+(status_for returned 500 for SafetyNotInstalledError; the recorded 409
+gate decision was tested and documented but not implemented). Fixed at
+7b7ede8; suite green at 782 passed from that commit.
