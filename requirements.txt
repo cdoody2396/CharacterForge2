@@ -1,0 +1,7 @@
+# O5_INPUTS §C: the zero-runtime-dependency rule ends here BY DECISION.
+# Exactly these three, pinned; anything further is a NOT_DECIDED.
+# (Mirrored in pyproject.toml [project] dependencies + uv.lock — decided
+# at the gate, SESSION_REPORT_O5.)
+fastapi==0.139.2
+uvicorn==0.51.0
+httpx==0.28.1
